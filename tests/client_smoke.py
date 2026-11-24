@@ -3,6 +3,7 @@
 import argparse
 import os
 import re
+from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
@@ -33,7 +34,7 @@ def check(browser, width, height, mobile, language):
     page.goto(HOST, wait_until="domcontentloaded", timeout=30000)
     data = page.evaluate("window.TANEM_SITE_DATA")
     assert data and data["mode"] == "production", "Site did not load production data"
-    desktop = (width >= 1024) or not mobile
+    desktop = width >= 1024
     root = "#salon-desktop-v1" if desktop else "#salon-mobile"
     page.locator(root).wait_for(state="visible", timeout=18000)
     page.wait_for_function("!document.documentElement.classList.contains('br-booting')")
@@ -57,10 +58,19 @@ def check(browser, width, height, mobile, language):
     assert not team_section.is_hidden(), "Team is a permanent structural section"
     assert not reviews_section.is_hidden(), "Reviews are a permanent structural section"
     if not data["team"]:
-        placeholder_cards = page.locator("#salonDesktopTeam .std-master.is-placeholder" if desktop else "#tn13Team .tn22-master-card.is-placeholder")
-        assert placeholder_cards.count() == 4, "Empty team must preserve four neutral visual master cards"
-        real_team_cards = page.locator("#salonDesktopTeam [data-desktop-master]" if desktop else "#tn13Team [data-mid]")
-        assert real_team_cards.count() == 0, "Neutral team cards must not become invented specialists"
+        profiles = page.evaluate("window.TANEM_CONTENT.profiles")
+        assert profiles and all(profile.get("kind") == "direction" for profile in profiles)
+        heading = page.locator("#stdTeamTitle" if desktop else "#tn13Team h2")
+        assert "Мастер" not in heading.inner_text(), "Absent team must not invent people"
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), "Page overflows horizontally"
+    prices = cards.locator(".tanem-service-price")
+    for price in prices.all():
+        assert not re.search(r"\d\s*[–—]\s*\d", price.inner_text()), "Collapsed card still exposes a range"
+    if language == "en":
+        for description in cards.locator(".tanem-service-description").all():
+            assert not re.search(r"[А-Яа-я]", description.inner_text()), "Russian description in English mode"
+    Path("test-artifacts/visual").mkdir(parents=True, exist_ok=True)
+    page.screenshot(path=f"test-artifacts/visual/{data['salon']['name']['en']}-{width}-{language}.png", full_page=True)
     if not data["reviews"]:
         review_cards = page.locator("#salonDesktopReviews .std-review-card" if desktop else "#tn13Reviews .br-review-card")
         assert review_cards.count() == 0, "Empty reviews state must not invent reviews"
@@ -117,6 +127,9 @@ def main():
                 for language in languages:
                     check(browser, width, height, mobile, language)
             check(browser, 1180, 820, True, "ru")
+            for width in (320, 360, 375, 414, 430, 768):
+                check(browser, width, 932 if width == 430 else 844, True, "ru")
+            check(browser, 390, 844, False, "ru")
         finally:
             browser.close()
     print("PASS actual production site on desktop, phone and touch tablet")

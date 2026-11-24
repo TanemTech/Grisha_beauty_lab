@@ -1,0 +1,28 @@
+/* Owner-requested preview, 2026-11-25. Existing card widths, palette and team gaps stay intact. */
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options{grid-column:1/-1;grid-row:2;min-width:0;margin-top:5px;position:relative;z-index:3;pointer-events:auto;width:100%}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs{display:table;width:auto;max-width:100%;border-collapse:separate;border-spacing:0 4px}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs>div{display:table-row}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs dt{display:table-cell;white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none;padding-right:18px;vertical-align:baseline}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs dd{display:table-cell;white-space:nowrap;text-align:right;vertical-align:baseline;font-variant-numeric:tabular-nums}
+html[data-br-device] .tanem-service-price{white-space:nowrap!important;display:block!important}
+@media(max-width:1023px){
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-card{grid-template-columns:minmax(0,1fr)!important;row-gap:0!important}
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-copy{grid-column:1;grid-row:1}
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-side{grid-column:1;grid-row:2;justify-self:start;justify-content:flex-start;gap:12px;margin-top:8px}
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-options{grid-row:3}
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-price{font-size:15px!important}
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-description p{font-size:12px;line-height:1.5}
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-tariffs dt,
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-tariffs dd{font-size:12px}
+ #salon-mobile .tanem-master-head h2{overflow-wrap:normal;word-break:normal}
+ #salon-mobile .tn22-master-name{overflow:visible;text-overflow:clip}
+ #salon-mobile .tn22-master-role{overflow:visible;text-overflow:clip}
+ #salon-mobile .tn13-panel{max-height:92dvh}
+}
+/* Glints keep the existing background and hover treatment. No layout animation. */
+.tanem-glint{position:relative!important;overflow:hidden!important;isolation:isolate}
+.tanem-glint>.tanem-glint-light{position:absolute;inset:-70% auto -70% -55%;width:35%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.48),transparent);transform:translateX(-250%) rotate(18deg);animation:tanem-button-glint 6s ease-in-out infinite;z-index:3}
+@keyframes tanem-button-glint{0%,70%{transform:translateX(-250%) rotate(18deg)}88%,100%{transform:translateX(650%) rotate(18deg)}}
+.tanem-entrance{animation:tanem-entrance .42s cubic-bezier(.22,1,.36,1) both}
+@keyframes tanem-entrance{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.tanem-glint>.tanem-glint-light,.tanem-entrance{animation:none!important}.tanem-glint>.tanem-glint-light{display:none}}

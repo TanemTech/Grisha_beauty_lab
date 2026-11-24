@@ -30,7 +30,7 @@
   };
 
   function setText(selector,value,scope=document){
-    scope.querySelectorAll(selector).forEach(node=>{node.textContent=value});
+    scope.querySelectorAll(selector).forEach(node=>{node.dataset.tanemLocalized='true';if(node.textContent!==value)node.textContent=value});
   }
   function setLink(node,url,fallback){
     if(!node)return;
@@ -343,6 +343,12 @@
     applySchedule(lang);
     applyRatingAndReviews(lang);
     applyOptionalSections();
+    if(window.TANEM_CONTENT?.directions){
+      const heading=lang==='en'?'Our services':'Направления';
+      setText('#stdTeamTitle,.std-team-kicker,#tn13Team .tn22-kicker,#tn13Team h2',heading);
+      setText('.std-team-subtitle',lang==='en'?'Services and work by category.':'Услуги и работы по направлениям.');
+      setText('a[href="#salonDesktopTeam"],a[href="#tn13Team"],button[data-section="tn13Team"]',heading);
+    }
     replaceBrandTokens(document.body,name);
     document.title=city?name+' — '+city:name;
     const description=document.querySelector('meta[name="description"]');
@@ -411,7 +417,7 @@
     const desktop=window.__BR_DESKTOP_DEVICE__===true;
     const overlay=document.querySelector(desktop?'#stdMasterOverlay':'.tn22-master-page');
     if(!overlay)return;
-    const masters=new Map((data.team||[]).map(master=>[master.id,master]));
+    const masters=new Map((window.TANEM_CONTENT?.profiles||data.team||[]).map(master=>[master.id,master]));
     for(const button of document.querySelectorAll('[data-empty-master]')){
       const id=button.dataset.emptyMaster;
       masters.set(id,{id,empty:true});
@@ -474,7 +480,9 @@
         (link?'<span class="'+(desktop?'std-review-more':'tn30-review-open')+'">'+esc(words.read)+' →</span>':'')+'</'+tag+'>';
     }
     function render(master){
-      const lang=currentLang(),words=copy[lang]||copy.ru;
+      const lang=currentLang(),words={...(copy[lang]||copy.ru)};
+      if(master.kind==='direction'){words.about=lang==='en'?'About this category':'О направлении';words.portfolio=lang==='en'?'Salon work':'Работы салона';}
+      if(master.workScope==='salon')words.portfolio=lang==='en'?'Salon work':'Работы салона';
       const target=overlay.querySelector(desktop?'#stdMasterPageContent':'.tn22-master-body');
       if(!target)return;
       stopServiceToggle();
@@ -487,7 +495,7 @@
       const reviews=(master.reviewIds||[]).map(id=>reviewById.get(id)).filter(Boolean).slice(0,9);
       const works=masterGallery(master);
       const visibleWorks=desktop&&works.length>=3?works.slice(0,Math.min(9,Math.floor(works.length/3)*3)):works;
-      const tabs=['about','services','portfolio','reviews'];
+      const tabs=master.kind==='direction'?['about','services','portfolio']:['about','services','portfolio','reviews'];
       const name=text(master.name,lang),role=text(master.role,lang),avatar=typeof master.photo==='string'?master.photo:master.photo?.src;
       const moreLabel=words.more;
       const lessLabel=words.less;
@@ -506,6 +514,7 @@
             reviews.map(review=>reviewMarkup(review,lang,words)).join('')+'</div></div>':
             (master.empty?'':'<p class="tanem-master-empty">'+esc(words.emptyReviews)+'</p>'))+'</section>'
       ];
+      if(master.kind==='direction')sections.pop();
       target.innerHTML='<div class="tanem-master-head"><div class="tanem-master-photo">'+(avatar?'<img src="'+esc(avatar)+'" alt="'+esc(name)+'">':'')+'</div><h2>'+esc(name)+'</h2><p>'+esc(role)+'</p></div><div class="tanem-master-sections">'+sections.join('')+'</div>';
       const existing=overlay.querySelector('.tanem-master-jump');
       if(existing)existing.remove();
@@ -683,10 +692,47 @@
     });
   }
 
+  function setupPresentation(){
+    const sheet=document.querySelector('link[href^="review-refinements.css"]');
+    if(sheet)document.head.appendChild(sheet);
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+    const glintSelector='#stdViewWorks,#stdOpenGallery,#stdStickyGalleryOpen,#stdViewGallery,.tn22-worklink,.tn22-port-all,.tn22-view-gallery,[data-master-gallery]';
+    const entranceSelector='#salon-mobile>section,#tn38About,.std-portfolio,.mct-prices,.mct-about,.std-reviews,.std-contact,.tn22-photo,.std-portfolio-tile';
+    const seen=new WeakSet();
+    const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{
+      entries.forEach(({target,isIntersecting})=>{
+        if(target.classList.contains('tanem-glint')){
+          const light=target.querySelector('.tanem-glint-light');
+          if(light)light.style.animationPlayState=isIntersecting?'running':'paused';
+        }
+        if(isIntersecting&&target.matches(entranceSelector)&&!seen.has(target)){
+          seen.add(target);if(!reduce.matches)target.classList.add('tanem-entrance');
+        }
+      });
+    },{threshold:.01}):null;
+    const scan=scope=>{
+      const nodes=[...(scope.matches?.(glintSelector)?[scope]:[]),...scope.querySelectorAll(glintSelector)];
+      nodes.forEach(node=>{
+        node.classList.add('tanem-glint');
+        if(!node.querySelector('.tanem-glint-light')){
+          const light=document.createElement('span');light.className='tanem-glint-light';light.setAttribute('aria-hidden','true');node.appendChild(light);
+        }
+        observer?.observe(node);
+      });
+      scope.querySelectorAll(entranceSelector).forEach(node=>observer?.observe(node));
+    };
+    scan(document);
+    new MutationObserver(records=>records.forEach(record=>{
+      record.addedNodes.forEach(node=>{if(node.nodeType===1&&!node.classList.contains('tanem-glint-light'))scan(node)});
+      if(record.target.nodeType===1&&record.target.matches(glintSelector))scan(record.target);
+    })).observe(document.body,{childList:true,subtree:true});
+  }
+
   window.addEventListener('salon-template:languagechange',apply);
   apply();
   setupDesktopTeamPaging();
   setupMasterProfiles();
+  setupPresentation();
   [80,260,700].forEach(delay=>window.setTimeout(apply,delay));
   window.setInterval(()=>applySchedule(currentLang()),60000);
 })();

@@ -26,7 +26,7 @@
     ])
   );
   const worksCategory=SITE.mode==='production'
-    ? Object.keys(DESKTOP_GALLERY_GROUPS).find(cat=>cat.trim().toLowerCase()!=='салон')
+    ? window.TANEM_CONTENT?.galleryDefault||Object.keys(DESKTOP_GALLERY_GROUPS).find(cat=>cat.trim().toLowerCase()!=='салон')
     : 'Ногти';
   const SERVICE_CATEGORIES=SITE.categoryOrder.filter(category=>SITE.services.some(service=>service.category===category));
   const SERVICE_DATA=Object.fromEntries(SERVICE_CATEGORIES.map(category=>[
@@ -42,8 +42,9 @@
       return tuple;
     })
   ]));
-  const TEAM_MASTERS=SITE.team.map(master=>({
+  const TEAM_MASTERS=(window.TANEM_CONTENT?.profiles||SITE.team).map(master=>({
     id:master.id,
+    kind:master.kind,
     name:russian(master.name),
     role:russian(master.role),
     about:russian(master.about),
@@ -1373,7 +1374,7 @@
   function desktopSkipText(node){
     const el=node.parentElement;
     if(!el)return true;
-    if(el.closest('.std-lang-switch,.std-review-text,.tanem-service-card,.tanem-master-head,.tanem-master-sections,.tanem-master-jump'))return true;
+    if(el.closest('.std-lang-switch,.std-review-text,.tanem-service-card,.tanem-master-head,.tanem-master-sections,.tanem-master-jump,[data-tanem-localized]'))return true;
     return /^(SCRIPT|STYLE|NOSCRIPT)$/.test(el.tagName);
   }
   function translateDesktopTree(scope,lang=currentDesktopLang){

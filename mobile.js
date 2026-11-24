@@ -83,12 +83,13 @@ const GALLERY=Object.fromEntries(
   Object.entries(SITE.media.gallery).map(([category,items])=>[category,items.map(mediaItem)])
 );
 const worksCategory=SITE.mode==='production'
- ? Object.keys(GALLERY).find(cat=>cat.trim().toLowerCase()!=='салон')||'Салон'
+ ? window.TANEM_CONTENT?.galleryDefault||Object.keys(GALLERY).find(cat=>cat.trim().toLowerCase()!=='салон')||'Салон'
  : 'Салон';
 const PORTFOLIO=(window.TANEM_PORTFOLIO_PREVIEW??SITE.media.portfolio).map(mediaItem);
 const REVIEW_DATA=SITE.reviews.map(review=>[russian(review.author),russian(review.text)]);
-const MASTERS=SITE.team.map(master=>({
+const MASTERS=(window.TANEM_CONTENT?.profiles||SITE.team).map(master=>({
   id:master.id,
+  kind:master.kind,
   name:russian(master.name),
   role:russian(master.role),
   about:russian(master.about),
@@ -1105,7 +1106,7 @@ services.insertAdjacentElement('afterend',about);
   function skipText(node){
     var el=node.parentElement;
     if(!el) return true;
-    if(el.closest('.br-lang-switch,.tanem-service-card,.tanem-master-head,.tanem-master-sections,.tanem-master-jump')) return true;
+    if(el.closest('[data-tanem-localized],.br-lang-switch,.tanem-service-card,.tanem-master-head,.tanem-master-sections,.tanem-master-jump')) return true;
     if(el.closest('.tn30-review-card p,.br-review-card p,.tn22-master-review p')) return true;
     return /^(SCRIPT|STYLE|NOSCRIPT)$/.test(el.tagName);
   }
@@ -1137,7 +1138,7 @@ services.insertAdjacentElement('afterend',about);
     if(!scope) return;
     ['aria-label','title','alt'].forEach(function(attr){
       scope.querySelectorAll('['+attr+']').forEach(function(el){
-        if(el.closest('.tanem-service-card,.tanem-master-head,.tanem-master-sections,.tanem-master-jump'))return;
+        if(el.closest('[data-tanem-localized],.tanem-service-card,.tanem-master-head,.tanem-master-sections,.tanem-master-jump'))return;
         var key='brI18n'+attr.replace(/-([a-z])/g,function(_,c){return c.toUpperCase();}).replace(/^./,function(c){return c.toUpperCase();});
         var source=el.dataset[key];
         var current=(el.getAttribute(attr)||'').trim();

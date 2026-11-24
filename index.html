@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#FAF9F6">
-<title>SALON NAME — цифровой офис</title>
-<meta name="description" content="Универсальный шаблон цифрового офиса салона красоты.">
+<title>Бьюти Лаб — Балашиха</title>
+<meta name="description" content="Бьюти Лаб в Балашихе: услуги, цены, работы салона и контакты для записи.">
 <link rel="icon" type="image/png" href="favicon-source.png">
 <link rel="shortcut icon" href="favicon-source.png">
 <link rel="apple-touch-icon" href="favicon-source.png">
@@ -37,11 +37,13 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
 #brLoadError a{display:inline-block;margin-top:22px;color:#181818}
 @media(prefers-reduced-motion:reduce){#brBootIntro{transition:none!important}}
 </style>
-<link rel="stylesheet" href="desktop.css?v=salon-20261003-v2" media="(hover:hover) and (pointer:fine), (min-width:1024px)">
-<link rel="stylesheet" href="salon-palette.css?v=salon-factory-v1" media="(hover:hover) and (pointer:fine), (min-width:1024px)">
-<script src="site-data.js?v=salon-20261003-v1"></script>
-<script src="site-regions.js?v=salon-final-20260928-v2"></script>
-<script src="site-services.js?v=salon-eva-rules-v2"></script>
+<link rel="stylesheet" href="desktop.css?v=review-20261125" media="(min-width:1024px)">
+<link rel="stylesheet" href="salon-palette.css?v=review-20261125" media="(min-width:1024px)">
+<script src="site-data.js?v=review-20261125"></script>
+<script src="site-regions.js?v=review-20261125"></script>
+<script src="site-content.js?v=review-20261125"></script>
+<link rel="stylesheet" href="review-refinements.css?v=review-20261125">
+<script src="site-services.js?v=review-20261125"></script>
 <script>
 (()=>{
  const site=window.TANEM_SITE_DATA;
@@ -58,8 +60,15 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
    })
    .slice(0,7);
  }
- const desktop=!!(window.matchMedia&&(matchMedia('(hover:hover) and (pointer:fine)').matches||matchMedia('(min-width:1024px)').matches));
+ const desktop=!!(window.matchMedia&&matchMedia('(min-width:1024px)').matches);
  window.__BR_DESKTOP_DEVICE__=desktop;
+ // One breakpoint for markup and CSS. Reload only when crossing layouts.
+ const layoutQuery=matchMedia('(min-width:1024px)');
+ let layoutTimer;
+ layoutQuery.addEventListener('change',()=>{
+   clearTimeout(layoutTimer);
+   layoutTimer=setTimeout(()=>{if(layoutQuery.matches!==desktop)location.reload()},180);
+ });
  document.documentElement.dataset.brDevice=desktop?'desktop':'mobile';
  if(!desktop){
   const css=document.createElement('link');
@@ -69,11 +78,11 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
   const preload=document.createElement('link');
   preload.rel='preload';
   preload.as='style';
-  preload.href='mobile-overrides.css?v=salon-20261003-v5';
+  preload.href='mobile-overrides.css?v=review-20261125';
   const palettePreload=document.createElement('link');
   palettePreload.rel='preload';
   palettePreload.as='style';
-  palettePreload.href='salon-palette.css?v=salon-factory-v1';
+  palettePreload.href='salon-palette.css?v=review-20261125';
   document.head.appendChild(palettePreload);
   document.head.appendChild(preload);
  }
@@ -151,10 +160,10 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
    }else ready();
  }
  const script=document.createElement('script');
- script.src=desktop?'desktop.js?v=salon-eva-rules-v2':'mobile.js?v=salon-eva-rules-v2';
+ script.src=desktop?'desktop.js?v=review-20261125':'mobile.js?v=review-20261125';
  script.async=false;script.onload=()=>{
    const runtime=document.createElement('script');
-   runtime.src='site-runtime.js?v=salon-eva-rules-v2';
+   runtime.src='site-runtime.js?v=review-20261125';
    runtime.async=false;runtime.onload=loaded;
    runtime.onerror=()=>{if(closed)error.classList.add('is-visible')};
    document.body.appendChild(runtime);
