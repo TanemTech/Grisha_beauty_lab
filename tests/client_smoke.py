@@ -108,11 +108,15 @@ def main():
     with sync_playwright() as playwright:
         browser = getattr(playwright, args.engine).launch(headless=True)
         try:
-            for case in [(1366, 900, False, "ru"), (1366, 900, False, "en"),
-                         (1366, 900, False, "hy"), (390, 844, True, "ru"),
-                         (390, 844, True, "en"), (390, 844, True, "hy"),
-                         (1180, 820, True, "ru")]:
-                check(browser, *case)
+            probe = browser.new_page()
+            probe.goto(HOST, wait_until="domcontentloaded")
+            languages = probe.evaluate("window.TANEM_SITE_DATA.locales")
+            probe.close()
+            assert languages and "ru" in languages and "en" in languages
+            for width, height, mobile in [(1366, 900, False), (390, 844, True)]:
+                for language in languages:
+                    check(browser, width, height, mobile, language)
+            check(browser, 1180, 820, True, "ru")
         finally:
             browser.close()
     print("PASS actual production site on desktop, phone and touch tablet")

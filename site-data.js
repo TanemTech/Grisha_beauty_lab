@@ -1272,7 +1272,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Dry bar (наращенные)",
-        "en": "Dry bar (наращенные)",
+        "en": "Dry bar (hair extensions)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1372,7 +1372,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Вечерний пучок",
-        "en": "Вечерний пучок",
+        "en": "Evening bun",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1394,7 +1394,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Доп. расход порошка от 200-400 гр.",
-        "en": "Доп. расход порошка от 200-400 гр.",
+        "en": "Additional bleaching powder (200–400 g)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1416,7 +1416,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Контуринг (частичное окрашивание, круговое)",
-        "en": "Контуринг (частичное окрашивание, круговое)",
+        "en": "Contouring (partial, around the hairline)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1438,7 +1438,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Контуринг (челочная и височная зона 2-4 пряди)",
-        "en": "Контуринг (челочная и височная зона 2-4 пряди)",
+        "en": "Contouring (fringe and temples, 2–4 strands)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1460,7 +1460,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Маска кератин ЛОРЕАЛЬ",
-        "en": "Маска кератин ЛОРЕАЛЬ",
+        "en": "L’Oréal keratin mask",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1728,7 +1728,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Окрашивание Омбре",
-        "en": "Окрашивание Омбре",
+        "en": "Ombre coloring",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1817,7 +1817,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Пилинг кожи головы",
-        "en": "Пилинг кожи головы",
+        "en": "Scalp exfoliation",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1906,7 +1906,7 @@ const data={
       "category": "Волосы",
       "title": {
         "ru": "Реконструкция Keralex (длинные волосы)",
-        "en": "Реконструкция Keralex (длинные волосы)",
+        "en": "Keralex reconstruction (long hair)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1928,7 +1928,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "SMART-педикюр (сложные пяточки)",
-        "en": "SMART-педикюр (сложные пяточки)",
+        "en": "SMART pedicure (challenging heels)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1962,7 +1962,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Выкладной френч",
-        "en": "Выкладной френч",
+        "en": "Sculpted French tips",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -1996,7 +1996,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Выкладной френч 6-7 длина (супердлинные)",
-        "en": "Выкладной френч 6-7 длина (супердлинные)",
+        "en": "Sculpted French tips, length 6–7",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2030,7 +2030,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Дизайн перламутровый (все ногти)",
-        "en": "Дизайн перламутровый (все ногти)",
+        "en": "Pearlescent design (all nails)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2064,7 +2064,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Дизайн: втирка",
-        "en": "Дизайн: втирка",
+        "en": "Nail design: rubbing powder",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2098,7 +2098,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Дизайн:один ноготь в стразах",
-        "en": "Дизайн:один ноготь в стразах",
+        "en": "Rhinestones on one nail",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2132,7 +2132,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Дизайн:роспись ногтя/стемпинг/наклейка-слайдер",
-        "en": "Дизайн:роспись ногтя/стемпинг/наклейка-слайдер",
+        "en": "Nail art / stamping / slider decals",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2166,7 +2166,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Комплекс маникюр+парафинотерапия",
-        "en": "Комплекс маникюр+парафинотерапия",
+        "en": "Manicure and paraffin treatment",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2211,7 +2211,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Комплекс педикюр SMART дисками(снятие+обработка стоп/пальцев+покрытие)",
-        "en": "Комплекс педикюр SMART дисками(снятие+обработка стоп/пальцев+покрытие)",
+        "en": "SMART disc pedicure: removal, feet/toes, polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2256,7 +2256,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Комплекс педикюр SMART дисками (снятие + обработка стоп/пальцев + покрытие + френч)",
-        "en": "Комплекс педикюр SMART дисками (снятие + обработка стоп/пальцев + покрытие + френч)",
+        "en": "SMART disc pedicure: removal, feet/toes, French polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2301,7 +2301,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Комплекс: снятие+маникюр+покрытие однотон",
-        "en": "Комплекс: снятие+маникюр+покрытие однотон",
+        "en": "Removal, manicure and single-color polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2346,7 +2346,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Комплекс: снятие+маникюр+покрытие френч",
-        "en": "Комплекс: снятие+маникюр+покрытие френч",
+        "en": "Removal, manicure and French polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2391,7 +2391,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Коррекция наращивания ногтей",
-        "en": "Коррекция наращивания ногтей",
+        "en": "Nail extension refill",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2436,7 +2436,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Кошачий глаз(все ногти)",
-        "en": "Кошачий глаз(все ногти)",
+        "en": "Cat-eye design (all nails)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2470,7 +2470,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Маникюр без покрытия",
-        "en": "Маникюр без покрытия",
+        "en": "Manicure without polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2504,7 +2504,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Мужской маникюр",
-        "en": "Мужской маникюр",
+        "en": "Men’s manicure",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2549,7 +2549,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Мужской педикюр",
-        "en": "Мужской педикюр",
+        "en": "Men’s pedicure",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2583,7 +2583,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Мужской педикюр (обработка пальцев)",
-        "en": "Мужской педикюр (обработка пальцев)",
+        "en": "Men’s pedicure (toes)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2628,7 +2628,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Мужской педикюр (обработка стоп)",
-        "en": "Мужской педикюр (обработка стоп)",
+        "en": "Men’s pedicure (soles)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2662,7 +2662,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Мужской педикюр (сложные ноги)",
-        "en": "Мужской педикюр (сложные ноги)",
+        "en": "Men’s pedicure (challenging feet)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2696,7 +2696,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Наращивание арочное",
-        "en": "Наращивание арочное",
+        "en": "Arched nail extensions",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2730,7 +2730,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Наращивание ногтей+ френч",
-        "en": "Наращивание ногтей+ френч",
+        "en": "Nail extensions with French tips",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2775,7 +2775,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Омбре/втирка все ногти",
-        "en": "Омбре/втирка все ногти",
+        "en": "Ombre / rubbing powder on all nails",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2809,7 +2809,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Парафинотерапия для рук/ног",
-        "en": "Парафинотерапия для рук/ног",
+        "en": "Paraffin treatment for hands or feet",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2843,7 +2843,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Педикюр (обработка сложных стоп)",
-        "en": "Педикюр (обработка сложных стоп)",
+        "en": "Pedicure (challenging feet)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2877,7 +2877,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Педикюр (обработка стоп)",
-        "en": "Педикюр (обработка стоп)",
+        "en": "Pedicure (soles)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2922,7 +2922,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Педикюр без покрытия (smart+снятие)",
-        "en": "Педикюр без покрытия (smart+снятие)",
+        "en": "Pedicure without polish (SMART + removal)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -2967,7 +2967,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Педикюр без покрытия (smart+снятие) сложные пяточки",
-        "en": "Педикюр без покрытия (smart+снятие) сложные пяточки",
+        "en": "Pedicure without polish (SMART + removal, challenging heels)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3001,7 +3001,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Педикюр обработка пальчиков",
-        "en": "Педикюр обработка пальчиков",
+        "en": "Toe treatment",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3035,7 +3035,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Педикюр покрытие (без обработки пяточек)",
-        "en": "Педикюр покрытие (без обработки пяточек)",
+        "en": "Pedicure with polish (without heel treatment)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3080,7 +3080,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Покрытие гель-лак",
-        "en": "Покрытие гель-лак",
+        "en": "Gel polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3114,7 +3114,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Покрытие обычным лаком",
-        "en": "Покрытие обычным лаком",
+        "en": "Regular nail polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3148,7 +3148,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Ремонт 1 ногтя",
-        "en": "Ремонт 1 ногтя",
+        "en": "One nail repair",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3182,7 +3182,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Слайдер-дизайн",
-        "en": "Слайдер-дизайн",
+        "en": "Slider decal design",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3216,7 +3216,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Снятие маникюра без последующего покрытия",
-        "en": "Снятие маникюра без последующего покрытия",
+        "en": "Manicure removal without new polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3261,7 +3261,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Снятие маникюра др. мастера с послед. покрытием",
-        "en": "Снятие маникюра др. мастера с послед. покрытием",
+        "en": "Removal of another specialist’s manicure with new polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3295,7 +3295,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Снятие нарощенных ногтей (без послед. покрытия)",
-        "en": "Снятие нарощенных ногтей (без послед. покрытия)",
+        "en": "Nail extension removal without new polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3329,7 +3329,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Снятие педикюра без послед. покрытия",
-        "en": "Снятие педикюра без послед. покрытия",
+        "en": "Pedicure polish removal without new polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3363,7 +3363,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Снятие педикюра др. мастера с послед. покрытием",
-        "en": "Снятие педикюра др. мастера с послед. покрытием",
+        "en": "Removal of another specialist’s pedicure with new polish",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3397,7 +3397,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Снятие твердого гель-лака (чужая работа)",
-        "en": "Снятие твердого гель-лака (чужая работа)",
+        "en": "Hard gel removal (another specialist’s work)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3442,7 +3442,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Укрепление (гель,акригель,акриловая пудра)",
-        "en": "Укрепление (гель,акригель,акриловая пудра)",
+        "en": "Nail strengthening (gel, acrygel or acrylic powder)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3476,7 +3476,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Френч",
-        "en": "Френч",
+        "en": "French tips",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3510,7 +3510,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Японский маникюр",
-        "en": "Японский маникюр",
+        "en": "Japanese manicure",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3544,7 +3544,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "SMART-педикюр(сложный)",
-        "en": "SMART-педикюр(сложный)",
+        "en": "SMART pedicure (complex)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3578,7 +3578,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Дизайн: один ноготь в стразах",
-        "en": "Дизайн: один ноготь в стразах",
+        "en": "Rhinestones on one nail",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3612,7 +3612,7 @@ const data={
       "category": "Ногти",
       "title": {
         "ru": "Мужской педикюр (сложный)",
-        "en": "Мужской педикюр (сложный)",
+        "en": "Men’s pedicure (complex)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3646,7 +3646,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Антицеллюлитный массаж (бедра,ягодицы)",
-        "en": "Антицеллюлитный массаж (бедра,ягодицы)",
+        "en": "Anti-cellulite massage (thighs and buttocks)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3668,7 +3668,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Антицеллюлитный массаж живота",
-        "en": "Антицеллюлитный массаж живота",
+        "en": "Anti-cellulite abdominal massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3690,7 +3690,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Антицеллюлитный массаж(бедра,ягодицы,живот)",
-        "en": "Антицеллюлитный массаж(бедра,ягодицы,живот)",
+        "en": "Anti-cellulite massage (thighs, buttocks and abdomen)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3724,7 +3724,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Антицелюлитный массаж (бедра,ягодицы,живот)",
-        "en": "Антицелюлитный массаж (бедра,ягодицы,живот)",
+        "en": "Anti-cellulite massage (thighs, buttocks and abdomen)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3746,7 +3746,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Лимфодренажный массаж лица",
-        "en": "Лимфодренажный массаж лица",
+        "en": "Lymphatic drainage facial massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3768,7 +3768,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Массаж ШВЗ (шейно-воротниковой зоны)",
-        "en": "Массаж ШВЗ (шейно-воротниковой зоны)",
+        "en": "Neck and shoulder massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3790,7 +3790,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Массаж лица",
-        "en": "Массаж лица",
+        "en": "Facial massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3846,7 +3846,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Массаж лица Тибетский(скульптурирующий)",
-        "en": "Массаж лица Тибетский(скульптурирующий)",
+        "en": "Tibetan sculpting facial massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3880,7 +3880,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Массаж ног",
-        "en": "Массаж ног",
+        "en": "Leg massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3902,7 +3902,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Массаж рук",
-        "en": "Массаж рук",
+        "en": "Hand massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3924,7 +3924,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Массаж спины",
-        "en": "Массаж спины",
+        "en": "Back massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -3958,7 +3958,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Миофасциальный/лимфатический массаж лица",
-        "en": "Миофасциальный/лимфатический массаж лица",
+        "en": "Myofascial / lymphatic facial massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4003,7 +4003,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Моделирующий массаж и коррекция фигуры",
-        "en": "Моделирующий массаж и коррекция фигуры",
+        "en": "Body sculpting massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4025,7 +4025,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Оздоровительный массаж тела",
-        "en": "Оздоровительный массаж тела",
+        "en": "Wellness body massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4070,7 +4070,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Спортивный массаж",
-        "en": "Спортивный массаж",
+        "en": "Sports massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4115,7 +4115,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "Стопы",
-        "en": "Стопы",
+        "en": "Foot massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4149,7 +4149,7 @@ const data={
       "category": "Массаж",
       "title": {
         "ru": "массаж живота",
-        "en": "массаж живота",
+        "en": "Abdominal massage",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4183,7 +4183,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "BioRePeel пилинг",
-        "en": "BioRePeel пилинг",
+        "en": "BioRePeel peel",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4205,7 +4205,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "RF-лифтинг (комплекс лицо,шея,декольте)",
-        "en": "RF-лифтинг (комплекс лицо,шея,декольте)",
+        "en": "RF lifting (face, neck and décolleté)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4227,7 +4227,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "RF-лифтинг 1 зона(лицо/шея/декольте)",
-        "en": "RF-лифтинг 1 зона(лицо/шея/декольте)",
+        "en": "RF lifting, one area (face / neck / décolleté)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4249,7 +4249,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Skin Revive пилинг",
-        "en": "Skin Revive пилинг",
+        "en": "Skin Revive peel",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4271,7 +4271,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Альгинатная маска",
-        "en": "Альгинатная маска",
+        "en": "Alginate mask",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4293,7 +4293,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Водородный пилинг H202",
-        "en": "Водородный пилинг H202",
+        "en": "Hydrogen peel H2O2",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4315,7 +4315,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Гидропилинг (пилинг для чувств кожи)",
-        "en": "Гидропилинг (пилинг для чувств кожи)",
+        "en": "Hydro peel for sensitive skin",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4337,7 +4337,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Глубокое увлажнение (энзимный пилинг , маска)",
-        "en": "Глубокое увлажнение (энзимный пилинг , маска)",
+        "en": "Deep hydration (enzyme peel and mask)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4359,7 +4359,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Комбинированная чистка",
-        "en": "Комбинированная чистка",
+        "en": "Combination facial cleansing",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4381,7 +4381,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Миндальный пилинг",
-        "en": "Миндальный пилинг",
+        "en": "Mandelic peel",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4403,7 +4403,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Молочный пилинг",
-        "en": "Молочный пилинг",
+        "en": "Lactic peel",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4425,7 +4425,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Пилинг D-BRIGHT",
-        "en": "Пилинг D-BRIGHT",
+        "en": "D-BRIGHT peel",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4447,7 +4447,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Пилинг Джесснера",
-        "en": "Пилинг Джесснера",
+        "en": "Jessner peel",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4469,7 +4469,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Пирсинг (пупок)",
-        "en": "Пирсинг (пупок)",
+        "en": "Navel piercing",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4491,7 +4491,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Прокол ушей/хрящ/нос",
-        "en": "Прокол ушей/хрящ/нос",
+        "en": "Ear / cartilage / nose piercing",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4513,7 +4513,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Розовый пилинг",
-        "en": "Розовый пилинг",
+        "en": "Rose peel",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4535,7 +4535,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Серьга (ухо,нос,пупок,пирсинг)",
-        "en": "Серьга (ухо,нос,пупок,пирсинг)",
+        "en": "Piercing jewelry (ear, nose, navel)",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4557,7 +4557,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Сыворотка для лица по типу кожи",
-        "en": "Сыворотка для лица по типу кожи",
+        "en": "Facial serum for your skin type",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4579,7 +4579,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Ультразвуковая чистка",
-        "en": "Ультразвуковая чистка",
+        "en": "Ultrasonic facial cleansing",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4601,7 +4601,7 @@ const data={
       "category": "Косметология",
       "title": {
         "ru": "Уход по типу кожи",
-        "en": "Уход по типу кожи",
+        "en": "Skin-type-specific treatment",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4623,7 +4623,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Бикини глубокое",
-        "en": "Бикини глубокое",
+        "en": "Deep bikini",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4645,7 +4645,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Бикини классическое",
-        "en": "Бикини классическое",
+        "en": "Classic bikini",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4667,7 +4667,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Бритье 1 зона",
-        "en": "Бритье 1 зона",
+        "en": "Shaving, one area",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4689,7 +4689,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Линия живота",
-        "en": "Линия живота",
+        "en": "Abdominal line",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4711,7 +4711,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Лицо 1 зона ЛАЗЕР",
-        "en": "Лицо 1 зона ЛАЗЕР",
+        "en": "Face, one laser area",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4733,7 +4733,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Ноги до колен",
-        "en": "Ноги до колен",
+        "en": "Lower legs",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4755,7 +4755,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Ноги полностью",
-        "en": "Ноги полностью",
+        "en": "Full legs",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4777,7 +4777,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Подбородок",
-        "en": "Подбородок",
+        "en": "Chin",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4799,7 +4799,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Подмышки",
-        "en": "Подмышки",
+        "en": "Underarms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4821,7 +4821,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Поясница",
-        "en": "Поясница",
+        "en": "Lower back",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4843,7 +4843,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Руки до локтя",
-        "en": "Руки до локтя",
+        "en": "Forearms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4865,7 +4865,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Руки полностью",
-        "en": "Руки полностью",
+        "en": "Full arms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4887,7 +4887,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Спина",
-        "en": "Спина",
+        "en": "Back",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4909,7 +4909,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Усики",
-        "en": "Усики",
+        "en": "Upper lip",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4931,7 +4931,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Шея",
-        "en": "Шея",
+        "en": "Neck",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4953,7 +4953,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Ягодицы полностью",
-        "en": "Ягодицы полностью",
+        "en": "Full buttocks",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4975,7 +4975,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск бакенбарды",
-        "en": "Воск бакенбарды",
+        "en": "Waxing: sideburns",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -4997,7 +4997,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск глубокое бикини",
-        "en": "Воск глубокое бикини",
+        "en": "Waxing: deep bikini",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5019,7 +5019,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск классическое бикини",
-        "en": "Воск классическое бикини",
+        "en": "Waxing: classic bikini",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5041,7 +5041,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск линия живота",
-        "en": "Воск линия живота",
+        "en": "Waxing: abdominal line",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5063,7 +5063,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск лицо 1 зона",
-        "en": "Воск лицо 1 зона",
+        "en": "Waxing: face, one area",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5085,7 +5085,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск ноги до колен",
-        "en": "Воск ноги до колен",
+        "en": "Waxing: lower legs",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5107,7 +5107,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск ноги до колен+глубокое бикини+подмышки",
-        "en": "Воск ноги до колен+глубокое бикини+подмышки",
+        "en": "Waxing: lower legs, deep bikini and underarms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5129,7 +5129,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск ноги полностью",
-        "en": "Воск ноги полностью",
+        "en": "Waxing: full legs",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5151,7 +5151,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск ноги полностью+глубокое бикини+подмышки",
-        "en": "Воск ноги полностью+глубокое бикини+подмышки",
+        "en": "Waxing: full legs, deep bikini and underarms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5173,7 +5173,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск подмышки",
-        "en": "Воск подмышки",
+        "en": "Waxing: underarms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5195,7 +5195,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск руки до локтя",
-        "en": "Воск руки до локтя",
+        "en": "Waxing: forearms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5217,7 +5217,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск руки полностью",
-        "en": "Воск руки полностью",
+        "en": "Waxing: full arms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5239,7 +5239,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск спина",
-        "en": "Воск спина",
+        "en": "Waxing: back",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5261,7 +5261,7 @@ const data={
       "category": "Восковая депиляция",
       "title": {
         "ru": "Воск ягодицы",
-        "en": "Воск ягодицы",
+        "en": "Waxing: buttocks",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5283,7 +5283,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — 2D",
-        "en": "Наращивание ресниц — 2D",
+        "en": "Lash extensions — 2D",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5339,7 +5339,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — 3D",
-        "en": "Наращивание ресниц — 3D",
+        "en": "Lash extensions — 3D",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5395,7 +5395,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — 4-6D",
-        "en": "Наращивание ресниц — 4-6D",
+        "en": "Lash extensions — 4–6D",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5440,7 +5440,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — 4D",
-        "en": "Наращивание ресниц — 4D",
+        "en": "Lash extensions — 4D",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5485,7 +5485,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Голливуд",
-        "en": "Наращивание ресниц — Голливуд",
+        "en": "Lash extensions — Hollywood",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5530,7 +5530,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Классика",
-        "en": "Наращивание ресниц — Классика",
+        "en": "Lash extensions — classic",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5586,7 +5586,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Лучи",
-        "en": "Лучи",
+        "en": "Wispy lashes",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5620,7 +5620,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Снятие ресниц без последующего наращивания",
-        "en": "Снятие ресниц без последующего наращивания",
+        "en": "Lash removal without new extensions",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5665,7 +5665,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Снятие ресниц другого мастера с последующим наращиванием",
-        "en": "Снятие ресниц другого мастера с последующим наращиванием",
+        "en": "Removal of another specialist’s lashes with new extensions",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5710,7 +5710,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Стразы 1 шт.",
-        "en": "Стразы 1 шт.",
+        "en": "Rhinestone, one piece",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5766,7 +5766,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Уголки",
-        "en": "Наращивание ресниц — Уголки",
+        "en": "Lash extensions — outer corners",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5811,7 +5811,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Цветные ресницы",
-        "en": "Цветные ресницы",
+        "en": "Colored lashes",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5845,7 +5845,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Экспресс наращивание",
-        "en": "Наращивание ресниц — Экспресс наращивание",
+        "en": "Express lash extensions",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5890,7 +5890,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Цветные ресницы (вставка)",
-        "en": "Цветные ресницы (вставка)",
+        "en": "Colored lash accents",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5924,7 +5924,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Цветные ресницы (сложные)",
-        "en": "Цветные ресницы (сложные)",
+        "en": "Complex colored lashes",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -5958,7 +5958,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — 2D (LED-наращивание)",
-        "en": "Наращивание ресниц — 2D (LED-наращивание)",
+        "en": "LED lash extensions — 2D",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6003,7 +6003,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — 3D (LED-наращивание)",
-        "en": "Наращивание ресниц — 3D (LED-наращивание)",
+        "en": "LED lash extensions — 3D",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6048,7 +6048,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — 4D (LED-наращивание)",
-        "en": "Наращивание ресниц — 4D (LED-наращивание)",
+        "en": "LED lash extensions — 4D",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6082,7 +6082,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Голливуд (LED-наращивание)",
-        "en": "Наращивание ресниц — Голливуд (LED-наращивание)",
+        "en": "LED lash extensions — Hollywood",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6116,7 +6116,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Классика (LED-наращивание)",
-        "en": "Наращивание ресниц — Классика (LED-наращивание)",
+        "en": "LED lash extensions — classic",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6161,7 +6161,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Уголки (LED-наращивание)",
-        "en": "Наращивание ресниц — Уголки (LED-наращивание)",
+        "en": "LED lash extensions — outer corners",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6206,7 +6206,7 @@ const data={
       "category": "Ресницы",
       "title": {
         "ru": "Наращивание ресниц — Экспресс наращивание (LED-наращивание)",
-        "en": "Наращивание ресниц — Экспресс наращивание (LED-наращивание)",
+        "en": "LED express lash extensions",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6251,7 +6251,7 @@ const data={
       "category": "Макияж",
       "title": {
         "ru": "Вечерний макияж",
-        "en": "Вечерний макияж",
+        "en": "Evening makeup",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6273,7 +6273,7 @@ const data={
       "category": "Макияж",
       "title": {
         "ru": "Вечерний макияж Smoky eyes",
-        "en": "Вечерний макияж Smoky eyes",
+        "en": "Smoky eyes evening makeup",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6295,7 +6295,7 @@ const data={
       "category": "Макияж",
       "title": {
         "ru": "Дневной макияж",
-        "en": "Дневной макияж",
+        "en": "Day makeup",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6317,7 +6317,7 @@ const data={
       "category": "Макияж",
       "title": {
         "ru": "Репетиция свадебного макияжа",
-        "en": "Репетиция свадебного макияжа",
+        "en": "Bridal makeup trial",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6339,7 +6339,7 @@ const data={
       "category": "Макияж",
       "title": {
         "ru": "Свадебный образ (макияж невесты)",
-        "en": "Свадебный образ (макияж невесты)",
+        "en": "Bridal makeup",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6361,7 +6361,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Комплекс все тело: зоны на выбор",
-        "en": "Комплекс все тело: зоны на выбор",
+        "en": "Full-body package: areas of your choice",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6383,7 +6383,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Ноги до колен+ бикини глубокое+ подмышки",
-        "en": "Ноги до колен+ бикини глубокое+ подмышки",
+        "en": "Lower legs, deep bikini and underarms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6405,7 +6405,7 @@ const data={
       "category": "Лазерная эпиляция",
       "title": {
         "ru": "Ноги полностью+ глубокое бикини+подмышки",
-        "en": "Ноги полностью+ глубокое бикини+подмышки",
+        "en": "Full legs, deep bikini and underarms",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6436,7 +6436,7 @@ const data={
       },
       "text": {
         "ru": "Тем, кто делает сложное окрашивание в блонд, наверняка знакомо, как непросто в мегаполисе найти мастера, которому можно довериться. Я делала стрижку и окрашивание в технике эйр-тач у Олега, и результат меня порадовал! Образ получился ярким и естественным, прическа стала более объёмной. Хочу отметить высочайший профессионализм Олега, его внимание к деталям и доброжелательность. Получила рекомендации по уходу. На протяжении всей процедуры мастер объяснял этапы работы, что вызывало полное доверие. Ароматный кофе в необычной чашке добавил атмосферу праздника. Очень рада знакомству, обязательно буду рекомендовать своим друзьям!",
-        "en": "Тем, кто делает сложное окрашивание в блонд, наверняка знакомо, как непросто в мегаполисе найти мастера, которому можно довериться. Я делала стрижку и окрашивание в технике эйр-тач у Олега, и результат меня порадовал! Образ получился ярким и естественным, прическа стала более объёмной. Хочу отметить высочайший профессионализм Олега, его внимание к деталям и доброжелательность. Получила рекомендации по уходу. На протяжении всей процедуры мастер объяснял этапы работы, что вызывало полное доверие. Ароматный кофе в необычной чашке добавил атмосферу праздника. Очень рада знакомству, обязательно буду рекомендовать своим друзьям!",
+        "en": "Anyone who has had complex blonde coloring knows how hard it can be to find a stylist you trust in a big city. Oleg cut my hair and colored it using AirTouch, and I loved the result. It was bright and natural, and my hair had more volume. Oleg was exceptionally professional, attentive to detail and friendly. I received hair-care advice, and he explained every stage of the procedure, which made me feel completely confident. The fragrant coffee in an unusual cup added to the festive atmosphere. I am very glad we met and will recommend him to friends!",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6462,7 +6462,7 @@ const data={
       },
       "text": {
         "ru": "Уже была ранее в другом филиале этого салона, и осталась довольна, но в этот раз сеанс превзошел все ожидания! Пришла на депиляцию рук к Марии. Настолько нежно работает, что осталась на депиляцию ног и подмышек, потому что дискомфорта и боли не было от слова совсем. В процессе разговаривали, и я не была сосредоточена на ощущениях. Процедура прошла быстро и с комфортом. Ещё и шампанским угостили. Однозначно рекомендую!",
-        "en": "Уже была ранее в другом филиале этого салона, и осталась довольна, но в этот раз сеанс превзошел все ожидания! Пришла на депиляцию рук к Марии. Настолько нежно работает, что осталась на депиляцию ног и подмышек, потому что дискомфорта и боли не было от слова совсем. В процессе разговаривали, и я не была сосредоточена на ощущениях. Процедура прошла быстро и с комфортом. Ещё и шампанским угостили. Однозначно рекомендую!",
+        "en": "I had already visited another branch and was happy with it, but this visit exceeded all expectations. I came to Maria for arm waxing. She worked so gently that I stayed for leg and underarm waxing because there was no discomfort or pain at all. We chatted throughout, so I was not focused on the sensations. It was quick and comfortable, and I was even offered champagne. Definitely recommend!",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6488,7 +6488,7 @@ const data={
       },
       "text": {
         "ru": "Осталась в полном восторге от визита в салон! Мастер Анастасия — настоящий профессионал: внимательно выслушала все пожелания, подобрала идеальный вариант укладки и выполнила работу безупречно. Результат превзошёл все ожидания — волосы выглядят потрясающе, укладка держится отлично. Отдельно хочу отметить сервис: атмосфера в салоне уютная, персонал вежливый, всё организовано на высшем уровне. Очень довольна и с радостью буду рекомендовать этот салон друзьям!",
-        "en": "Осталась в полном восторге от визита в салон! Мастер Анастасия — настоящий профессионал: внимательно выслушала все пожелания, подобрала идеальный вариант укладки и выполнила работу безупречно. Результат превзошёл все ожидания — волосы выглядят потрясающе, укладка держится отлично. Отдельно хочу отметить сервис: атмосфера в салоне уютная, персонал вежливый, всё организовано на высшем уровне. Очень довольна и с радостью буду рекомендовать этот салон друзьям!",
+        "en": "I was delighted with my visit! Anastasia is a real professional: she listened to all my wishes, chose the ideal styling and did a flawless job. The result exceeded my expectations—my hair looks amazing and the style holds very well. The service also deserves a mention: the salon is cozy, the staff are polite and everything is organized to a high standard. Very happy and will gladly recommend it to friends!",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6514,7 +6514,7 @@ const data={
       },
       "text": {
         "ru": "Обслуживание замечательное,рабочие и администраторы замечательные,очень качесвенно выполняют свою работу. Мастер Анастасия просто супер! Поддерживает все идеи,дизайны.Маникюр делает качественно и красиво,замечательный мастер. Атмосфера салона прекрасная,встречают с улыбкой,делают все для комфорта клиента. Приятно находиться в таком месте и хочется возвращаться туда снова и снова.",
-        "en": "Обслуживание замечательное,рабочие и администраторы замечательные,очень качесвенно выполняют свою работу. Мастер Анастасия просто супер! Поддерживает все идеи,дизайны.Маникюр делает качественно и красиво,замечательный мастер. Атмосфера салона прекрасная,встречают с улыбкой,делают все для комфорта клиента. Приятно находиться в таком месте и хочется возвращаться туда снова и снова.",
+        "en": "Wonderful service, staff and administrators; they do excellent work. Anastasia is fantastic! She supports all my ideas and designs. Her manicures are beautiful and high-quality. The atmosphere is lovely, everyone greets you with a smile and does everything for your comfort. It is a pleasure to be there and makes you want to return again and again.",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6540,7 +6540,7 @@ const data={
       },
       "text": {
         "ru": "Прекрасный салон! Атмосфера заботы о клиенте начиная с ресепшн. Хожу на окрашивание и стрижку к Анастасии. Очень нравится мастер, всё делает аккуратно и максимально бережно. Не только прислушивается к пожеланиям , но и советует как будет лучше, в том числе подсказывает как лучше ухаживать за волосами. Спасибо за вкусный кофе, заботу и всегда безупречный результат!",
-        "en": "Прекрасный салон! Атмосфера заботы о клиенте начиная с ресепшн. Хожу на окрашивание и стрижку к Анастасии. Очень нравится мастер, всё делает аккуратно и максимально бережно. Не только прислушивается к пожеланиям , но и советует как будет лучше, в том числе подсказывает как лучше ухаживать за волосами. Спасибо за вкусный кофе, заботу и всегда безупречный результат!",
+        "en": "Wonderful salon! You feel cared for from the reception onward. I go to Anastasia for coloring and haircuts. She is careful and gentle, listens to my wishes and advises what will work best, including how to care for my hair. Thank you for the delicious coffee, care and consistently flawless results!",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6566,7 +6566,7 @@ const data={
       },
       "text": {
         "ru": "Недавно открыла для себя салон BEAUTY LAB Атмосфера в салоне уютная, доброжелательный администратор Кристина, предложила кофе, приятная музыка. Осталась очень довольна визитом. Мастер Анастасия не просто покрасила волосы, а провела полноценную консультацию, объяснила этапы работы и подобрала оттенок, идеально подходящий к моему цветотипу. Окрашивание выполнено 10 из 10, очень довольна результатом ☺️ Видно руку настоящего профессионала. Обязательно запишусь на следующий визит и однозначно рекомендую этот салон!!! Если хотите быть красивыми и счастливыми после процедуры, Вам точно в BEAUTY LAB 🎉❤️",
-        "en": "Недавно открыла для себя салон BEAUTY LAB Атмосфера в салоне уютная, доброжелательный администратор Кристина, предложила кофе, приятная музыка. Осталась очень довольна визитом. Мастер Анастасия не просто покрасила волосы, а провела полноценную консультацию, объяснила этапы работы и подобрала оттенок, идеально подходящий к моему цветотипу. Окрашивание выполнено 10 из 10, очень довольна результатом ☺️ Видно руку настоящего профессионала. Обязательно запишусь на следующий визит и однозначно рекомендую этот салон!!! Если хотите быть красивыми и счастливыми после процедуры, Вам точно в BEAUTY LAB 🎉❤️",
+        "en": "I recently discovered BEAUTY LAB. The salon is cozy, the friendly receptionist Kristina offered coffee, and the music was pleasant. I was very happy with my visit. Anastasia did more than color my hair: she gave a full consultation, explained the steps and chose a shade perfectly suited to my coloring. The result was 10 out of 10. You can see the work of a true professional. I will book another visit and definitely recommend this salon! If you want to leave feeling beautiful and happy, BEAUTY LAB is the place to go!",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6592,7 +6592,7 @@ const data={
       },
       "text": {
         "ru": "Татьяна мастер с золотыми руками! Прислушалась не навязывала свое , исправила неудачную стрижку и точно попала в мой образ. Всё ровно, красиво, волосы лежат идеально. Однозначно рекомендую! Так же хочется отметить работу администратора 🌺 очень внимательная , приветливая , улыбчивая , вежливая девушка .",
-        "en": "Татьяна мастер с золотыми руками! Прислушалась не навязывала свое , исправила неудачную стрижку и точно попала в мой образ. Всё ровно, красиво, волосы лежат идеально. Однозначно рекомендую! Так же хочется отметить работу администратора 🌺 очень внимательная , приветливая , улыбчивая , вежливая девушка .",
+        "en": "Tatiana has golden hands! She listened without imposing her opinion, fixed a bad haircut and understood my look perfectly. Everything is even and beautiful and my hair falls perfectly. Definitely recommend! I also want to mention the receptionist, who was attentive, welcoming, smiling and polite.",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6618,7 +6618,7 @@ const data={
       },
       "text": {
         "ru": "Рекомендую всем, кому нужен отличный сервис и качественная работа мастеров! Мастера работают в 4 руки, быстро и эффективно. Салон предлагает широкий спектр услуг, что меня и подкупило, хотя я живу далеко от салона, но мне очень понравилось обслуживание и повторюсь, - качество услуг, аккуратность, вежливость всех сотрудников!",
-        "en": "Рекомендую всем, кому нужен отличный сервис и качественная работа мастеров! Мастера работают в 4 руки, быстро и эффективно. Салон предлагает широкий спектр услуг, что меня и подкупило, хотя я живу далеко от салона, но мне очень понравилось обслуживание и повторюсь, - качество услуг, аккуратность, вежливость всех сотрудников!",
+        "en": "I recommend it to anyone looking for excellent service and high-quality work. The specialists work in pairs, quickly and efficiently. The wide range of services appealed to me, even though I live far away. I really liked the service, the quality, the care and the politeness of all the staff!",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6644,7 +6644,7 @@ const data={
       },
       "text": {
         "ru": "Делала у Татьяны стрижку и тонирование волос. Всё быстро, аккуратно и качественно! Мастер хорошая, приятная в общении. Атмосфера в салоне уютная и располагающая, было комфортно находиться. Результатом очень довольна, волосы выглядят ухоженно. Обязательно буду посещать этот салон и рекомендовать его.",
-        "en": "Делала у Татьяны стрижку и тонирование волос. Всё быстро, аккуратно и качественно! Мастер хорошая, приятная в общении. Атмосфера в салоне уютная и располагающая, было комфортно находиться. Результатом очень довольна, волосы выглядят ухоженно. Обязательно буду посещать этот салон и рекомендовать его.",
+        "en": "Tatiana cut and toned my hair. Everything was quick, neat and high-quality. She is a lovely stylist and pleasant to talk to. The salon is cozy and welcoming, and I felt comfortable. I am very happy with the result; my hair looks well cared for. I will definitely visit again and recommend it.",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6670,7 +6670,7 @@ const data={
       },
       "text": {
         "ru": "Был сегодня на мужском маникюре — всё чётко, без лишней суеты. Салон отличный, приятная атмосфера и порядок. Отдельное спасибо администратору Дарье — вежливо встретила, всё по делу. Мастеру Марии — респект за аккуратную и профессиональную работу, всё сделано качественно. Остался доволен, приду ещё.",
-        "en": "Был сегодня на мужском маникюре — всё чётко, без лишней суеты. Салон отличный, приятная атмосфера и порядок. Отдельное спасибо администратору Дарье — вежливо встретила, всё по делу. Мастеру Марии — респект за аккуратную и профессиональную работу, всё сделано качественно. Остался доволен, приду ещё.",
+        "en": "I had a men’s manicure today—everything was efficient and straightforward. Great salon, pleasant atmosphere and tidy surroundings. Special thanks to receptionist Darya for a polite, professional welcome and to Maria for her careful, professional work. I was happy with the result and will come again.",
         "hy": "",
         "uz": "",
         "tg": ""
@@ -6696,7 +6696,7 @@ const data={
       },
       "text": {
         "ru": "Попала чисто случайно и осталась невероятно довольна! Требовалось снять led наращивание ресничек(тк возникла аллергия) в тот же день меня записали! Чудесная девушка на ресепшене вежливая и очаровательная! Пока ждала освобождение мастера предложили так же стрижку( не навязывание услуг а тактичное предложение, которое было очень даже кстате) сняли реснички мастер Ася аккуратна и нежна все выполнила быстро очень доброжелательная. Ну и стрижка отдельный респект мастеру Ольге, ситуация была можно сказать запущенная волосы длинные и одна сторона сильно обломанные кончики, мастер филигранно все подровняла максимально сохранив длину волос! В дополнение получила массу рекомендаций по уходу, что тоже невероятно порадовало! Сразу записалась на следующую стрижку!",
-        "en": "Попала чисто случайно и осталась невероятно довольна! Требовалось снять led наращивание ресничек(тк возникла аллергия) в тот же день меня записали! Чудесная девушка на ресепшене вежливая и очаровательная! Пока ждала освобождение мастера предложили так же стрижку( не навязывание услуг а тактичное предложение, которое было очень даже кстате) сняли реснички мастер Ася аккуратна и нежна все выполнила быстро очень доброжелательная. Ну и стрижка отдельный респект мастеру Ольге, ситуация была можно сказать запущенная волосы длинные и одна сторона сильно обломанные кончики, мастер филигранно все подровняла максимально сохранив длину волос! В дополнение получила массу рекомендаций по уходу, что тоже невероятно порадовало! Сразу записалась на следующую стрижку!",
+        "en": "I came by chance and was incredibly pleased! I needed LED lash extensions removed because I had developed an allergy, and they booked me in that same day. The receptionist was polite and charming. While I waited, they tactfully offered me a haircut, which was very timely and not pushy. Asya removed my lashes gently, carefully and quickly, and was very friendly. Special thanks to Olga for the haircut: my long hair was in bad shape, with badly broken ends on one side, and she trimmed it beautifully while preserving as much length as possible. I also received lots of care advice, which made me very happy. I immediately booked my next haircut!",
         "hy": "",
         "uz": "",
         "tg": ""

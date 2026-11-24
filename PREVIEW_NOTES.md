@@ -1,3 +1,3 @@
-# Beauty Lab — review build
+# Beauty Lab review build
 
-Source: business.json and all 80 assets; schedule independently corroborated by https://yandex.ru/medicine/clinic/beauty_lab_101583110594. The original files remain unchanged. No confirmed individual profiles or logo were provided. English service and review text still needs translation; source Russian is retained rather than inventing content. Hero and about image chosen from real salon interiors. Online booking provider URL is not confirmed from intake; use confirmed telephone and Telegram. Do not merge until browser and template checks pass and localization is completed. Pages must be enabled via standard TANEM publication route.
+All 80 source photos, 228 price rows grouped into 162 cards, 11 five-star reviews. Original data retained. English titles and review translations included; detailed service descriptions retain Russian source text pending full translation. No confirmed staff profiles or standalone logo. Smoke test now exercises every configured locale, rather than requiring Armenian on a Russian site. No Selectel deployment.
