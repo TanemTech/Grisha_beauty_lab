@@ -187,8 +187,8 @@ function setGalleryOrigin(origin){
  gallery.style.setProperty('--gallery-origin-x',x+'%');
  gallery.style.setProperty('--gallery-origin-y',y+'%');
 }
-function openGallery(cat=Object.keys(GALLERY)[1]||Object.keys(GALLERY)[0],origin=null){clearTimeout(galleryCloseTimer);galleryCat=Object.hasOwn(GALLERY,cat)?cat:Object.keys(GALLERY)[0];setGalleryOrigin(origin);renderGallery();gallery.classList.remove('closing');gallery.scrollTop=0;requestAnimationFrame(()=>gallery.classList.add('open'))}
-function closeGallery(){if(!gallery.classList.contains('open'))return;clearTimeout(galleryCloseTimer);gallery.classList.remove('open');gallery.classList.add('closing');galleryCloseTimer=setTimeout(()=>gallery.classList.remove('closing'),520)}
+function openGallery(cat=Object.keys(GALLERY)[1]||Object.keys(GALLERY)[0],origin=null){clearTimeout(galleryCloseTimer);galleryCat=Object.hasOwn(GALLERY,cat)?cat:Object.keys(GALLERY)[0];setGalleryOrigin(origin);renderGallery();gallery.classList.remove('closing');gallery.scrollTop=0;requestAnimationFrame(()=>{gallery.getBoundingClientRect();gallery.classList.add('open')})}
+function closeGallery(){if(!gallery.classList.contains('open'))return;clearTimeout(galleryCloseTimer);gallery.classList.remove('open');gallery.classList.add('closing');galleryCloseTimer=setTimeout(()=>gallery.classList.remove('closing'),660)}
 const heroWorksLink=hero.querySelector('.tn22-worklink');if(heroWorksLink)heroWorksLink.onclick=e=>{e.preventDefault();openGallery(undefined,e.currentTarget)};
 
 const sectionItems=[['tn13Portfolio','Портфолио'],['tn13Services','Услуги'],['tn38About','О нас'],['tn13Team','Команда'],['tn13Reviews','Отзывы'],['tn13Visit','Визит']];const sectionIds=sectionItems.map(x=>x[0]);const sectionNav=document.createElement('nav');sectionNav.className='tn23-section-nav';sectionNav.setAttribute('aria-hidden','true');sectionNav.innerHTML=sectionItems.map((x,i)=>`<button type="button" data-section="${x[0]}" class="${i===0?'active':''}">${x[1]}</button>`).join('');sectionNav.classList.add('salon-template-fixed-nav');document.body.appendChild(sectionNav);
@@ -1304,4 +1304,4 @@ services.insertAdjacentElement('afterend',about);
 })();
 
 /* salon-template-cold-neutral-20260924 */
-(function(){if(document.getElementById('salon-template-cold-neutral-20260924'))return;const lateCss=document.createElement('link');lateCss.id='salon-template-cold-neutral-20260924';lateCss.rel='stylesheet';lateCss.href='mobile-overrides.css?v=salon-20261003-v4';document.head.appendChild(lateCss);const paletteCss=document.createElement('link');paletteCss.id='tanem-salon-palette-v2';paletteCss.rel='stylesheet';paletteCss.href='salon-palette.css?v=salon-factory-v1';document.head.appendChild(paletteCss);})();
+(function(){if(document.getElementById('salon-template-cold-neutral-20260924'))return;const lateCss=document.createElement('link');lateCss.id='salon-template-cold-neutral-20260924';lateCss.rel='stylesheet';lateCss.href='mobile-overrides.css?v=salon-20261003-v4';document.head.appendChild(lateCss);const paletteCss=document.createElement('link');paletteCss.id='tanem-salon-palette-v2';paletteCss.rel='stylesheet';paletteCss.href='salon-palette.css?v=beauty-lab-review-v3';document.head.appendChild(paletteCss);})();

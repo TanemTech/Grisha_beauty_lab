@@ -475,7 +475,7 @@
       const items=(master.serviceIds||[]).map(id=>serviceById.get(id)).filter(Boolean);
       const reviews=(master.reviewIds||[]).map(id=>reviewById.get(id)).filter(Boolean).slice(0,9);
       const works=masterGallery(master);
-      const visibleWorks=desktop&&works.length>=3?works.slice(0,Math.min(9,Math.floor(works.length/3)*3)):works;
+      const visibleWorks=works.slice(0,desktop?6:4);
       const tabs=['about','services','portfolio','reviews'];
       const name=text(master.name,lang),role=text(master.role,lang),avatar=typeof master.photo==='string'?master.photo:master.photo?.src;
       const moreLabel=words.more;

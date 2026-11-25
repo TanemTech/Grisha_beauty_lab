@@ -874,35 +874,92 @@ html[data-br-device="mobile"] #salon-mobile .tn22-master-page .tanem-master-revi
 @media(hover:hover) and (pointer:fine){.tanem-master-review-window.is-static .tanem-master-review-track{cursor:auto}}
 
 /* Beauty Lab client preview: approved catalogue, booking and hero adjustments. */
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) .tanem-service-options summary{
-  min-height:24px!important;margin:5px 0 0!important;padding:3px 8px!important;
-  border:1px solid rgba(255,255,255,.18);border-radius:7px;
-  background:rgba(255,255,255,.06);text-decoration:none!important;
+/* Fixed catalogue header; accordion occupies a separate full-width row. */
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-card:has(.tanem-service-options){
+  align-content:start!important;align-items:center!important;grid-template-rows:auto auto!important;row-gap:0!important;
 }
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) .tanem-service-options .tanem-options-label{
-  border-bottom:0!important;white-space:normal;font-size:12px;
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-card:has(.tanem-service-options) .tanem-service-side{
+  grid-row:1!important;align-self:center!important;
+}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options{
+  grid-column:1/-1;grid-row:2;min-width:0;width:100%;margin:0!important;pointer-events:none;
+}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options summary{
+  display:inline-flex!important;width:max-content!important;max-width:100%!important;min-height:25px!important;
+  margin:5px 0 0!important;padding:3px 9px!important;border:1px solid rgba(255,255,255,.24)!important;
+  border-radius:7px!important;background:rgba(255,255,255,.075)!important;text-decoration:none!important;
+}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options .tanem-options-label{
+  border:0!important;text-decoration:none!important;white-space:normal;font-size:12px;
 }
 html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) .tanem-master-price-list .tanem-service-options summary{
-  border-color:rgba(64,53,46,.15);background:rgba(64,53,46,.045);
+  border-color:rgba(64,53,46,.19)!important;background:rgba(64,53,46,.06)!important;
 }
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-card:has(.tanem-service-options[open]) .tanem-service-side{
-  align-self:start;
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-options-panel{
+  width:100%!important;min-width:0!important;
 }
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options.is-length .tanem-options-panel{
-  width:calc(100% + 250px);
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs{
+  width:100%!important;max-width:100%!important;
 }
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options.is-length .tanem-service-tariffs{
-  width:min(100%,300px);max-width:100%;
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs>div{
+  grid-template-columns:minmax(0,1fr) max-content!important;gap:14px!important;align-items:baseline!important;
 }
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options.is-length .tanem-service-tariffs>div{
-  grid-template-columns:minmax(0,1fr) max-content;gap:16px;
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs dt{
+  white-space:normal!important;overflow-wrap:normal;min-width:0;
 }
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options.is-length .tanem-service-tariffs dt{white-space:nowrap}
-html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options.is-length .tanem-service-tariffs dd{text-align:right}
-html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-options.is-length .tanem-options-panel{width:calc(100% + 116px)}
-html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-options.is-length .tanem-service-tariffs{width:min(100%,260px)}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-tariffs dd{
+  text-align:right!important;white-space:nowrap!important;
+}
+/* Preserve the hero gradient while allowing a small shadow beyond the card. */
 html[data-br-device="mobile"] #salon-mobile #tn13Top .tn22-card{
-  box-shadow:0 -6px 22px rgba(37,29,26,.10),0 -2px 7px rgba(37,29,26,.06)!important;
+  -webkit-mask-image:none!important;mask-image:none!important;
+  box-shadow:0 -6px 22px -3px rgba(37,29,26,.16),-7px -4px 19px -5px rgba(37,29,26,.10),7px -4px 19px -5px rgba(37,29,26,.10)!important;
+}
+/* A second line of specialization must not change portrait alignment. */
+html[data-br-device="mobile"] #salon-mobile #tn13Team .tn22-team-grid{align-items:flex-start!important}
+html[data-br-device="mobile"] #salon-mobile #tn13Team .tn22-master-card{
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;align-self:flex-start!important;
+}
+html[data-br-device="mobile"] #salon-mobile #tn13Team .tn22-master-role{
+  min-height:2.6em!important;max-width:100%!important;white-space:normal!important;
+}
+html[data-br-device="desktop"] #salonDesktopTeam .std-master{
+  justify-content:flex-start!important;align-self:start!important;
+}
+html[data-br-device="desktop"] #salonDesktopTeam .std-master-role{
+  min-height:2.6em!important;max-width:100%!important;white-space:normal!important;
+}
+/* Calm fade/scale; the gallery's ordering and navigation are unchanged. */
+html[data-br-device="mobile"] #salon-mobile #tn13Gallery{
+  transform:translate3d(0,10px,0) scale(.985)!important;border-radius:18px!important;
+  transition:transform .60s cubic-bezier(.22,.68,.24,1),opacity .46s ease,border-radius .60s ease,visibility 0s linear .60s!important;
+}
+html[data-br-device="mobile"] #salon-mobile #tn13Gallery.open{
+  transform:translate3d(0,0,0) scale(1)!important;border-radius:0!important;transition-delay:0s!important;
+}
+html[data-br-device="mobile"] #salon-mobile #tn13Gallery.closing{
+  transform:translate3d(0,8px,0) scale(.985)!important;border-radius:18px!important;
+}
+html[data-br-device="desktop"] #salon-desktop-v1 #stdGalleryBrowser.std-gallery-browser{
+  transition:opacity .46s ease,transform .60s cubic-bezier(.22,.68,.24,1),visibility .60s!important;
+}
+html[data-br-device="desktop"] #salon-desktop-v1 #stdGalleryBrowser .std-gallery-browser-shell{
+  transition:opacity .42s ease .04s,transform .56s cubic-bezier(.22,.68,.24,1) .04s!important;
+}
+/* Brief, infrequent highlight. No movement or flashing. */
+html[data-br-device] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#stdViewGallery,.tn22-port-all,.tn22-worklink,.tn22-view-gallery,[data-master-gallery]){
+  animation:tanem-gallery-hint 9s ease-in-out infinite!important;
+}
+html[data-br-device] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#stdViewGallery,.tn22-port-all,.tn22-worklink,.tn22-view-gallery,[data-master-gallery]):is(:hover,:focus-visible,:active){
+  animation-play-state:paused!important;
+}
+@keyframes tanem-gallery-hint{
+  0%,82%,100%{filter:brightness(1)}
+  90%{filter:brightness(1.075)}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-br-device] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#stdViewGallery,.tn22-port-all,.tn22-worklink,.tn22-view-gallery,[data-master-gallery]){animation:none!important}
+  html[data-br-device="mobile"] #salon-mobile #tn13Gallery,html[data-br-device="desktop"] #salon-desktop-v1 #stdGalleryBrowser.std-gallery-browser,html[data-br-device="desktop"] #salon-desktop-v1 #stdGalleryBrowser .std-gallery-browser-shell{transition:none!important}
 }
 html[data-br-device="mobile"] #salon-mobile #tn13BookSheet{
   display:flex!important;align-items:flex-end!important;visibility:hidden!important;

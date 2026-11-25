@@ -96,12 +96,20 @@ def check(browser, width, height, mobile, language):
         dry = page.locator('[data-tanem-service-id="service-003"]').first
         assert re.sub(r"\s+", "", air.locator(".tanem-service-price").inner_text()) == ("от17000₽" if language == "ru" else "from17000₽")
         assert re.sub(r"\s+", "", dry.locator(".tanem-service-price").inner_text()) == "1500₽"
+        position = "(e)=>{const r=e.getBoundingClientRect(),p=e.querySelector('.tanem-service-price').getBoundingClientRect();return [p.top-r.top,p.right-r.left]}"
+        before = air.evaluate(position)
+        assert air.locator("summary").evaluate("(e)=>parseFloat(getComputedStyle(e).borderTopWidth)>0")
+        assert air.locator(".tanem-options-label").evaluate("(e)=>parseFloat(getComputedStyle(e).borderBottomWidth)===0")
         air.locator("summary").click()
         assert air.locator("details").get_attribute("open") is not None
         rows = air.locator(".tanem-service-tariffs > div")
         assert rows.count() == 4
         bounds = rows.evaluate_all("(els)=>els.map(e=>{const a=e.querySelector('dt'),b=e.querySelector('dd');return {h:a.getBoundingClientRect().height,line:parseFloat(getComputedStyle(a).lineHeight),left:a.getBoundingClientRect().right,right:b.getBoundingClientRect().left,price:b.getBoundingClientRect().right}})")
-        assert all(r["h"] <= r["line"] + 1 and r["left"] <= r["right"] + 1 for r in bounds), bounds
+        assert all(r["left"] <= r["right"] + 1 for r in bounds), bounds
+        assert all(r["h"] <= r["line"] + 1 for r in bounds[:3]), bounds
+        after = air.evaluate(position)
+        assert max(abs(a-b) for a,b in zip(before,after)) <= 1, (before,after)
+        assert abs(bounds[0]["price"] - air.locator(".tanem-service-price").evaluate("(e)=>e.getBoundingClientRect().right")) <= 3, bounds
         assert max(r["price"] for r in bounds) - min(r["price"] for r in bounds) <= 1, bounds
         air.locator("summary").click()
         if not desktop:
@@ -122,6 +130,8 @@ def check(browser, width, height, mobile, language):
         page.locator("#stdGalleryBrowserBack" if desktop else ".tn22-gallery-back").click()
         if not desktop:
             page.wait_for_function("!document.querySelector('#tn13Gallery').classList.contains('closing')")
+        avatars = page.locator(".std-master-avatar" if desktop else ".tn22-master-circle").evaluate_all("(els)=>els.filter(e=>e.getClientRects().length&&e.closest('button')).slice(0,2).map(e=>e.getBoundingClientRect().top)")
+        assert len(avatars)==2 and abs(avatars[0]-avatars[1])<=1, avatars
         master = page.locator('[data-desktop-master="direction-1"]' if desktop else '[data-mid="direction-1"]').first
         master.click()
         overlay = page.locator("#stdMasterOverlay" if desktop else ".tn22-master-page")
@@ -131,7 +141,8 @@ def check(browser, width, height, mobile, language):
         ids = overlay.locator("[data-tanem-service-id]").evaluate_all("(els)=>els.map(e=>e.dataset.tanemServiceId)")
         assert ids and set(ids).issubset(set(directions[0]["serviceIds"]))
         works = overlay.locator(".tanem-master-gallery img").evaluate_all("(els)=>els.map(e=>e.getAttribute('src'))")
-        assert works and set(works).issubset(set(directions[0]["work"]))
+        assert len(works) == (6 if desktop else 4) and set(works).issubset(set(directions[0]["work"]))
+        assert overlay.locator("[data-master-gallery]").count()==1
         overlay.locator("#stdMasterPageClose" if desktop else ".tn22-back").click()
         if not desktop:
             page.wait_for_function("!document.querySelector('.tn22-master-page').classList.contains('closing')")

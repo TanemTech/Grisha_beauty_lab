@@ -61,7 +61,7 @@
     const options=variants.length?'<details class="tanem-service-options'+(service.variantType==='length'?' is-length':'')+'"><summary><span class="tanem-options-label">'+escape(optionsLabel)+' +</span></summary><div class="tanem-options-panel">'+tariffs+'</div></details>':'';
     return '<article class="'+(device==='desktop'?'dct-service-card':'tn31-service-row')+' tanem-service-card" data-tanem-service-id="'+escape(service.id)+'" data-tanem-profile="'+escape(service.profileId||'catalogue')+'" data-tanem-layout="'+device+'" data-tanem-lang="'+lang+'">'+
       '<div class="tanem-service-copy"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
-      options+'</div>'+
+      '</div>'+options+
       '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration">'+escape(time)+'</small>':'')+(price?priceMarkup(price,device):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+
       '<button class="tanem-service-book" type="button" '+(device==='desktop'?'data-service-book':'data-book-service')+' aria-label="'+book+': '+escape(title)+'"></button></article>';
   }
