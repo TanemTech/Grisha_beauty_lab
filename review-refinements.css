@@ -123,12 +123,16 @@ html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServi
   flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;
 }
 html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-duration{
-  padding:0!important;border:0!important;border-radius:0!important;font-size:10px!important;line-height:1.2!important;opacity:.76;flex:0 0 auto;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-height:29px!important;min-width:58px!important;padding:4px!important;margin:0!important;
+  border:1px solid rgba(255,255,255,.15)!important;border-radius:999px!important;
+  background:rgba(255,255,255,.085)!important;color:#e8e8e6!important;
+  font:600 12px/1.15 Manrope,Arial,sans-serif!important;white-space:nowrap!important;opacity:1;flex:0 0 auto;
 }
 html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-card:has(.tanem-service-duration){min-height:64px!important}
 @media(max-width:390px){
  html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-side{gap:5px!important}
- html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-duration{font-size:9px!important}
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-duration{padding-inline:5px!important}
 }
 html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options{margin-top:6px!important}
 html[data-br-device] .tanem-service-options summary{
@@ -182,4 +186,17 @@ html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopTop .std-hero-fram
 @media(prefers-reduced-motion:reduce){
  .tanem-soft-press>.tanem-press-light{display:none!important;animation:none!important}
  html[data-br-device="mobile"] #salon-mobile #tn13Gallery,html[data-br-device="desktop"] #stdGalleryBrowser.std-gallery-browser{transition:none!important;transform:none!important}
+}
+
+/* r5: duration pill restored from the approved template; stays left of the price. */
+html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-duration{
+ min-width:40px!important;min-height:25px!important;padding:3px 6px!important;
+ border-color:rgba(255,255,255,.13)!important;background:rgba(255,255,255,.10)!important;
+ color:#dedede!important;font:600 10px/1.1 Manrope,Arial,sans-serif!important;
+}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) .tanem-master-price-list .tanem-service-duration{
+ color:#6f6258!important;background:rgba(111,98,88,.06)!important;border-color:rgba(111,98,88,.18)!important;
+}
+@media(max-width:370px){
+ html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-duration{font-size:9px!important;padding-inline:5px!important}
 }
