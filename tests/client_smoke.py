@@ -68,6 +68,26 @@ def check(browser, width, height, mobile, language):
         real_team_cards = page.locator("#salonDesktopTeam [data-desktop-master]" if desktop else "#tn13Team [data-mid]")
         assert real_team_cards.count() == 0, "Neutral team cards must not become invented specialists"
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), "Page overflows horizontally"
+    if width in (390, 1366) and language == "ru" and data.get("previewConfig", {}).get("categoryMasterFallback"):
+        preview = context.new_page()
+        preview.goto(HOST + ("&" if "?" in HOST else "?") + "preview=1", wait_until="domcontentloaded")
+        preview.wait_for_function("!document.documentElement.classList.contains('br-booting')")
+        preview.locator(switch).first.click()
+        preview.wait_for_timeout(250)
+        timed = preview.locator(("#stdServiceList" if desktop else "#tn13Services") + " .tanem-service-card:has(.tanem-service-duration)")
+        preview_metrics = timed.evaluate_all("""cards => cards.map(card => {
+            const rect = el => el.getBoundingClientRect();
+            const box = rect(card), copy = rect(card.querySelector('.tanem-service-copy'));
+            const time = rect(card.querySelector('.tanem-service-duration'));
+            const price = rect(card.querySelector('.tanem-service-price'));
+            return {right:box.right-time.right,width:time.width,gap1:time.left-copy.right,
+                    gap2:price.left-time.right,dy:Math.abs((time.top+time.bottom-price.top-price.bottom)/2)};
+        })""")
+        assert len(preview_metrics) >= 4, "Four preview durations must be present"
+        assert max(m["right"] for m in preview_metrics)-min(m["right"] for m in preview_metrics) <= 2, "Time column moved"
+        assert max(m["width"] for m in preview_metrics)-min(m["width"] for m in preview_metrics) <= 1, "Duration pills differ in width"
+        assert all(abs(m["gap1"]-m["gap2"]) <= 2 and m["gap1"] > 0 and m["dy"] <= 2 for m in preview_metrics), f"Metadata alignment: {preview_metrics}"
+        preview.close()
     prices = cards.locator(".tanem-service-price")
     for price in prices.all():
         assert not re.search(r"\d\s*[–—]\s*\d", price.inner_text()), "Collapsed card still exposes a range"
@@ -79,7 +99,8 @@ def check(browser, width, height, mobile, language):
             const copy=el.querySelector('.tanem-service-copy').getBoundingClientRect();
             const price=el.querySelector('.tanem-service-price').getBoundingClientRect();
             const box=el.getBoundingClientRect();
-            return {gap:price.left-copy.right,edge:box.right-price.right};
+            const time=el.querySelector('.tanem-service-duration')?.getBoundingClientRect();
+            return {gap:(time||price).left-copy.right,edge:time?price.left-time.right:box.right-price.right};
         }""")
         assert metrics['gap']>0, "Description overlaps the price"
         assert abs(metrics['gap']-metrics['edge'])<=2, f"Price spacing is unequal: {metrics}"
