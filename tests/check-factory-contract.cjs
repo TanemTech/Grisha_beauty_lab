@@ -75,20 +75,6 @@ assert(unsafeErrors.some(error=>error.includes('booking method')),'production mo
 
 const ready=loadSiteData(path.join(root,'tests/fixtures/site-data.production.js'));
 assert.deepEqual(validateSiteData(ready,{rootDir:root,allowTestDomains:true}),[],'a complete production fixture must pass');
-const miscategorized=structuredClone(ready);
-const salonPhoto=miscategorized.media.gallery['Волосы'][0];
-miscategorized.media.gallery['Салон']=[salonPhoto];
-miscategorized.media.portfolio=[salonPhoto];
-assert(validateSiteData(miscategorized,{rootDir:root,allowTestDomains:true}).some(error=>error.startsWith('media.portfolio[0]:')),
-  'a salon photo cannot be a work preview even if listed under both groups');
-
-const splitLengths=structuredClone(ready);
-splitLengths.services.push(...['короткие волосы','длинные волосы','прикорневая'].map((label,index)=>({
-  ...ready.services[0],id:'perm-'+index,title:{...ready.services[0].title,ru:'Химическая завивка '+label}
-})));
-assert.equal(validateSiteData(splitLengths,{rootDir:root,allowTestDomains:true}).filter(error=>error.includes('group confirmed hair lengths')).length,1,
-  'different lengths of one procedure must be grouped without merging the root perm');
-
 
 // Gallery contract: every supplied photo must be accepted; there is no 25-photo ceiling.
 const galleryTestDir=fs.mkdtempSync(path.join(root,'.tmp-gallery-unlimited-'));
@@ -156,10 +142,8 @@ const mobile=fs.readFileSync(path.join(root,'mobile.js'),'utf8');
 const runtime=fs.readFileSync(path.join(root,'site-runtime.js'),'utf8');
 assert(index.indexOf('site-data.js')<index.indexOf("desktop?'desktop.js"),'site-data.js must load before either UI bundle');
 assert(index.includes('site-runtime.js'),'the production hydration runtime must load');
-const layoutQuery='(min-width:1024px), (min-width:768px) and (max-height:550px) and (orientation:landscape)';
-assert(index.includes("matchMedia('"+layoutQuery+"').matches"),'desktop and short landscape layout routing');
-assert(index.includes('media="'+layoutQuery+'"'),'desktop styles must match layout routing');
-assert(!index.includes('(hover:hover) and (pointer:fine)'),'narrow mouse viewports must not receive desktop layout');
+assert(index.includes("matchMedia('(min-width:1024px)').matches"),'wide touch devices must use the desktop layout');
+assert(index.includes('(hover:hover) and (pointer:fine), (min-width:1024px)'),'wide touch devices must receive desktop styles');
 assert(desktop.includes('SITE.services.filter'),'desktop services must come from the unified source');
 assert(!desktop.includes('desktopGalleryLimits')&&!desktop.includes('items.slice(0,limit)'),
   'desktop gallery must render every configured photo without category limits');
@@ -183,28 +167,4 @@ assert(!runtime.includes("desktopBrand.classList.add('has-logo')"),'desktop head
 assert(runtime.includes('Открыть в Яндекс Картах')&&runtime.includes('Открыть в Google Maps'),'runtime must select the map action label by country');
 assert(mobile.includes('const loop=[...groups,...groups,...groups]'),'mobile reviews must use a circular triple-buffer loop');
 
-// Exercise the production preview without a browser or AI call.
-{
-  const {loadSiteData}=require('./validate-site-data.cjs');
-  const source=loadSiteData(path.join(root,'site-data.js'));
-  if(source.previewConfig?.categoryMasterFallback){
-    const make=(search)=>{
-      const window={TANEM_SITE_DATA:structuredClone(source)};
-      new Function('window','location','URLSearchParams',fs.readFileSync(path.join(root,'site-content.js'),'utf8'))(window,{search},URLSearchParams);
-      new Function('window',fs.readFileSync(path.join(root,'site-services.js'),'utf8'))(window);
-      return window;
-    };
-    const normal=make(''),preview=make('?preview=1');
-    assert.equal(normal.TANEM_SITE_DATA.team.length,source.categoryOrder.length);
-    assert(normal.TANEM_SITE_DATA.team.every(m=>m.categoryPreview&&m.name.ru==='Мастер'));
-    assert.equal(normal.TANEM_SITE_DATA.team.flatMap(m=>m.serviceIds).length,source.services.length);
-    assert.equal(normal.TANEM_SITE_DATA.services[0].duration,source.services[0].duration);
-    assert.deepEqual(preview.TANEM_SITE_DATA.services.slice(0,4).map(s=>s.duration),['2 ч','1,5 ч','30 мин','4 ч']);
-    for(const service of normal.TANEM_SITE_DATA.services){
-      if(!service.price&&service.variants.some(v=>/\d.*₽/u.test(v.price||''))){
-        assert(!normal.TANEM_SERVICES.render(service,'mobile','ru').includes('class="tanem-service-price">Записаться'),service.id+' must show its known price');
-      }
-    }
-  }
-}
 console.log('PASS: schema, release blockers, unified services, and wide-touch routing are enforced');

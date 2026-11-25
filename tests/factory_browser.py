@@ -27,21 +27,6 @@ def wait_for_app(page, root):
     assert not errors, f"browser errors: {errors}"
 
 
-def check_empty_profile(page, mobile):
-    profile = page.locator(".tn22-master-page.open" if mobile else "#stdMasterOverlay.open")
-    page.locator("[data-empty-master]").first.click()
-    expect(profile.locator(".tanem-master-section")).to_have_count(4)
-    expect(profile.locator(".tanem-master-head img")).to_have_count(0)
-    expect(profile.locator(".tanem-service-card, [data-master-work], .tanem-master-review")).to_have_count(0)
-    expect(profile.locator(".tn22-master-book" if mobile else "#stdMasterPageBook")).to_be_hidden()
-    page.go_back()
-    expect(profile).to_have_count(0)
-    page.go_forward()
-    expect(profile.locator("h3").first).to_have_text("О мастере")
-    page.keyboard.press("Escape")
-    expect(profile).to_have_count(0)
-
-
 def check_desktop(browser):
     page = browser.new_page(viewport={"width": 1366, "height": 900}, locale="ru-RU")
     wait_for_app(page, "#salon-desktop-v1")
@@ -53,9 +38,8 @@ def check_desktop(browser):
     assert page.locator("#stdServiceList .dct-service-card").count() == 3
     assert not page.locator("#salonDesktopTeam").is_hidden()
     expect_text(page.locator("#salonDesktopTeam .std-team-subtitle"), "Команда салона", "desktop empty team state")
-    assert page.locator("#salonDesktopTeam .std-master.is-placeholder").count() == 4
+    assert page.locator("#salonDesktopTeam .std-master.is-placeholder").count() == 4, "desktop empty team must keep four visual master cards"
     assert page.locator("#salonDesktopPortfolio").is_hidden()
-    check_empty_profile(page, False)
     expect_text(page.locator(".std-reviews-score strong"), "5,0", "desktop rating")
     expect_text(page.locator(".std-review-meta").first, "Google", "desktop review source")
     assert page.locator(".std-phone").get_attribute("href") == "tel:+37410555555"
@@ -69,17 +53,8 @@ def check_desktop(browser):
     expect_text(page.locator('#salonDesktopContacts [data-contact-type="messenger"] .std-contact-card-title'), "Telegram", "desktop messenger title")
     expect_text(page.locator('#salonDesktopContacts [data-contact-type="address"] .std-contact-card-sub'), "Открыть в Google Maps", "desktop map action")
     expect_text(page.locator("#stdServiceList .dct-service-card-title").first, "Стрижка", "desktop service in Russian")
-    frame = page.locator(".std-contact-map iframe")
-    assert "output=embed" in frame.get_attribute("src")
-    frame.evaluate("""el => {
-      el.setAttribute('data-src-updates','0');
-      new MutationObserver(records => el.setAttribute('data-src-updates',
-        Number(el.getAttribute('data-src-updates')) + records.length))
-        .observe(el,{attributes:true,attributeFilter:['src']});
-    }""")
     page.locator('[data-desktop-lang="en"]').first.click()
     page.wait_for_timeout(150)
-    expect(frame).to_have_attribute("data-src-updates", "0")
     assert page.locator(".std-address").inner_text().strip().startswith("Yerevan")
     expect_text(page.locator("#stdServiceList .dct-service-card-title").first, "Haircut", "desktop service in English")
     page.evaluate("window.TANEM_SITE_DATA.contacts.phone=''")
@@ -152,9 +127,8 @@ def check_mobile(browser):
     page.wait_for_timeout(120)
     assert page.locator("#tn13Services .tn31-service-row").count() == 3
     assert not page.locator("#tn13Team").is_hidden()
-    assert page.locator("#tn13Team .tn22-master-card.is-placeholder").count() == 4
+    assert page.locator("#tn13Team .tn22-master-card.is-placeholder").count() == 4, "mobile empty team must keep four visual master cards"
     assert page.locator("#tn13Portfolio").is_hidden()
-    check_empty_profile(page, True)
     assert page.locator("#tn13Reviews .br-review-card").count() >= 3
     expect_text(page.locator("#tn13Reviews .br-review-meta span").first, "Google", "mobile review source")
     page.locator(".tn22-cta").click()
@@ -183,7 +157,7 @@ def check_wide_touch(browser):
     context.close()
 
 
-def check_eva_components(browser, mobile, width, boundary=False):
+def check_eva_components(browser, mobile, width):
     context = browser.new_context(viewport={"width": width, "height": 900},
                                   is_mobile=mobile, has_touch=mobile, locale="ru-RU")
     page = context.new_page()
@@ -203,26 +177,15 @@ def check_eva_components(browser, mobile, width, boundary=False):
         ...s.services[0],id:'linked-'+i,title:t('Подтверждённая процедура '+(i+1))
       }));
       s.services.push(...linked);
-      s.categoryOrder.push('Ногти');
-      s.categoryLabels['Ногти']=t('Ногти');
-      s.services.push(...Array.from({length:27},(_,i)=>({
-        ...s.services[0],id:'nails-'+i,title:t('Маникюр '+(i+1)),category:'Ногти'
-      })));
       s.team=[{
         id:'test-specialist',name:t('Нина'),role:t('Парикмахер'),about:t('Работает со стрижками.'),
         photo:'tests/fixtures/photo.svg',categories:['Волосы'],
         serviceIds:['care',...linked.map(service=>service.id)],work:photos.slice(4,15),
         reviewIds:['review-anna']
       }];
-      const specialist=s.team[0];
-      s.team=Array.from({length:5},(_,i)=>({
-        ...specialist,id:'specialist-'+i,name:t('Мастер '+(i+1)),serviceIds:[],work:[],reviewIds:[]
-      })).concat(specialist);
     })();
     """
 
-    if boundary:
-        extra = extra.replace("length:27", "length:26").replace("length:5", "length:4")
     def provide_linked_fixture(route):
         response = route.fetch()
         route.fulfill(response=response, body=response.text() + extra)
@@ -233,35 +196,22 @@ def check_eva_components(browser, mobile, width, boundary=False):
     ru = '[data-lang="ru"]' if mobile else '[data-desktop-lang="ru"]'
     en = '[data-lang="en"]' if mobile else '[data-desktop-lang="en"]'
     page.locator(ru).first.click()
-    if not mobile:
-        all_tab = page.locator('#stdServiceTabs [data-service-category="Все"]')
-        expect(all_tab).to_have_count(1 if boundary else 0)
-        if not boundary:
-            expect(page.locator('#stdServiceTabs [data-service-category="Волосы"]')).to_have_attribute("aria-selected", "true")
     service_list = "#tn13Services" if mobile else "#stdServiceList"
     option = page.locator(f'{service_list} [data-tanem-service-id="care"] summary')
-    expect(option.locator(".tanem-options-label")).to_have_text("Варианты и цены +")
+    expect(option.locator(".tanem-options-label")).to_have_text("Стоимость по длине +")
     option.click()
     assert option.get_attribute("aria-expanded") == "true"
     expect_text(page.locator(f'{service_list} .tanem-variant-duration').first, "45 мин", "variant duration")
     booking = "#tn13BookSheet" if mobile else "#stdBookOverlay"
     assert page.locator(booking + ".open").count() == 0
     page.locator(en).first.click()
-    expect(option.locator(".tanem-options-label")).to_have_text("Options and prices −")
+    expect(option.locator(".tanem-options-label")).to_have_text("Prices by hair length −")
     assert option.get_attribute("aria-expanded") == "true"
     option.click()
     assert option.get_attribute("aria-expanded") == "false"
     page.locator(ru).first.click()
     preview = "#tn13Portfolio .tn22-photo" if mobile else "#salonDesktopPortfolio .std-work"
     assert page.locator(preview).count() == 7
-    assert page.locator(preview + " img").first.get_attribute("src").endswith("?item=4")
-    price = page.locator(f'{service_list} [data-tanem-service-id="care"] .tanem-service-price')
-    expect(price).to_have_text("от 8 000 ֏")
-    if not mobile:
-        team = page.locator("#salonDesktopTeam")
-        expect(team.locator(".std-master:visible")).to_have_count(4)
-        team.locator('[data-turn="1"]').click()
-        expect(team.locator(".std-master:visible")).to_have_count(1 if boundary else 2)
     page.locator('[data-mid="test-specialist"]' if mobile else '[data-desktop-master="test-specialist"]').click()
     profile = ".tn22-master-page.open" if mobile else "#stdMasterOverlay.open"
     panel = page.locator(profile)
@@ -282,37 +232,13 @@ def check_eva_components(browser, mobile, width, boundary=False):
     category = '[data-gcat="Волосы"]' if mobile else '[data-gallery-category="Волосы"]'
     gallery_panel = page.locator(gallery)
     gallery_panel.wait_for()
-    expect(gallery_panel.locator(category)).to_be_hidden()
-    expect(gallery_panel.locator(items)).to_have_count(11)
+    assert gallery_panel.locator(category).is_visible()
+    assert gallery_panel.locator(items).count() == 26
     gallery_panel.locator(".tn22-gallery-back" if mobile else "#stdGalleryBrowserBack").click()
     assert panel.count() == 1
     panel.locator(".tn22-back" if mobile else "#stdMasterPageClose").click()
     panel.wait_for(state="detached")
-    page.locator(".tn22-port-all" if mobile else "#stdOpenGallery").click()
-    expect(gallery_panel.locator(category)).to_be_visible()
-    expect(gallery_panel.locator(items)).to_have_count(26)
     context.close()
-
-
-def check_mobile_splash(browser, width, name):
-    page = browser.new_page(viewport={"width": width, "height": 900}, is_mobile=True, has_touch=True)
-    def set_splash_name(route):
-        response = route.fetch()
-        route.fulfill(response=response, body=response.text() +
-                      f"window.TANEM_SITE_DATA.salon.name.ru={name!r}; window.TANEM_SITE_DATA.media.logo='';")
-    page.route("**/site-data.js?*", set_splash_name)
-    page.goto(BASE_URL, wait_until="commit")
-    words = page.locator("#brBootIntro .br-intro-name span")
-    expect(words).to_have_count(len(name.split()))
-    bounds = words.evaluate_all("""words => words.map(word => {
-      const {left,right,top}=word.getBoundingClientRect();
-      return {left,right,top,text:word.textContent};
-    })""")
-    assert [word["text"] for word in bounds] == name.split()
-    assert all(word["left"]>=0 and word["right"]<=width for word in bounds), bounds
-    if len(bounds)>1:
-        assert bounds[0]["top"]<bounds[1]["top"], bounds
-    page.close()
 
 
 def main():
@@ -327,12 +253,8 @@ def main():
             check_mobile(browser)
             check_wide_touch(browser)
             check_eva_components(browser, False, 1366)
-            check_eva_components(browser, False, 1366, boundary=True)
             check_eva_components(browser, True, 390)
             check_eva_components(browser, True, 430)
-            for width in (390, 430):
-                check_mobile_splash(browser, width, "Виктория")
-                check_mobile_splash(browser, width, "Виктория салон")
         finally:
             browser.close()
     print("PASS: production data hydrates desktop, mobile, translations, booking, and wide touch")

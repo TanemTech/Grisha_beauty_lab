@@ -2,11 +2,11 @@
   'use strict';
   const data=global.TANEM_SITE_DATA;
   const labels={
-    ru:{book:'Записаться',options:'Варианты и цены',more:'Подробнее',less:'Свернуть',min:'мин',hour:'ч'},
-    en:{book:'Book',options:'Options and prices',more:'Read more',less:'Collapse',min:'min',hour:'h'},
-    hy:{book:'Ամրագրել',options:'Տարբերակներ և գներ',more:'Մանրամասն',less:'Փակել',min:'ր.',hour:'ժ.'},
-    uz:{book:'Yozilish',options:'Variantlar va narxlar',more:'Batafsil',less:'Yig‘ish',min:'daq',hour:'soat'},
-    tg:{book:'Сабт шудан',options:'Вариантҳо ва нархҳо',more:'Муфассал',less:'Пӯшидан',min:'дақ',hour:'соат'}
+    ru:{book:'Записаться',options:'Варианты и цены',length:'Стоимость по длине',more:'Подробнее',less:'Свернуть',min:'мин',hour:'ч'},
+    en:{book:'Book',options:'Options and prices',length:'Prices by hair length',more:'Read more',less:'Collapse',min:'min',hour:'h'},
+    hy:{book:'Ամրագրել',options:'Տարբերակներ և գներ',length:'Գներն ըստ երկարության',more:'Մանրամասն',less:'Փակել',min:'ր.',hour:'ժ.'},
+    uz:{book:'Yozilish',options:'Variantlar va narxlar',length:'Uzunlik bo‘yicha narxlar',more:'Batafsil',less:'Yig‘ish',min:'daq',hour:'soat'},
+    tg:{book:'Сабт шудан',options:'Вариантҳо ва нархҳо',length:'Нарх аз рӯи дарозӣ',more:'Муфассал',less:'Пӯшидан',min:'дақ',hour:'соат'}
   };
   const words=lang=>labels[lang]||labels.ru;
   const localize=(value,lang)=>typeof value==='string'?value:(value?.[lang]??value?.ru??value?.en??'');
@@ -27,64 +27,43 @@
     if(Number.isInteger(hours*2))return new Intl.NumberFormat(lang,{maximumFractionDigits:1}).format(hours)+' '+hour;
     return Math.floor(hours)+' '+hour+' '+Math.round(minutes%60)+' '+min;
   }
-  function priceMarkup(value,device,lang){
+  function priceMarkup(value,device){
     const price=normalizePrice(value),range=price.match(/^([\d ]+)[–-]([\d ]+)\s*([₽֏€$£])$/u);
-    const from=lang==='en'?'from':lang==='hy'?'սկսած':'от';
-    const display=range?from+' '+range[1].trim()+' '+range[3]:price;
-    return '<span class="tanem-service-price">'+escape(display)+'</span>';
-  }
-  function lengthPrice(variants,lang){
-    const prices=variants.map(variant=>normalizePrice(localize(variant.price,lang)).match(/^(?:(от|from)\s+)?([\d ]+)(?:–([\d ]+))?\s*([₽֏€$£])$/iu)).filter(Boolean);
-    const currency=prices[0]?.[4];
-    if(!currency||!prices.every(price=>price[4]===currency))return '';
-    const amounts=prices.map(price=>Number(price[2].replace(/ /g,'')));
-    const format=amount=>String(amount).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
-    const low=Math.min(...amounts),high=Math.max(...prices.map(price=>Number((price[3]||price[2]).replace(/ /g,''))));
-    const uncertain=prices.length!==variants.length||prices.some(price=>price[1]||price[3]);
-    return (high===low&&uncertain?(lang==='en'?'from ':'от '):'')+format(low)+(high===low?'':'–'+format(high))+' '+currency;
+    if(range&&device==='mobile')return '<span class="tanem-service-price is-range" aria-label="'+escape(price)+'"><span class="tanem-price-low">'+escape(range[1].trim())+'</span><span class="tanem-price-dash" aria-hidden="true">—</span><span class="tanem-price-high">'+escape(range[2].trim())+'</span><span class="tanem-price-currency">'+range[3]+'</span></span>';
+    const single=price.match(/^(?:(от|from)\s+)?([\d ]+)\s*([₽֏€$£])$/u);
+    if(single&&device==='mobile')return '<span class="tanem-service-price"><span class="tanem-price-amount">'+(single[1]?'<small>'+escape(single[1])+' </small>':'')+escape(single[2].trim())+'</span><span class="tanem-price-currency">'+single[3]+'</span></span>';
+    return '<span class="tanem-service-price">'+escape(price)+'</span>';
   }
   function render(service,device,lang=language()){
     const title=localize(service.title,lang).replace(/\u00ad/g,''),variants=(service.variants||[]).filter(v=>localize(v.label,lang)||localize(v.price,lang)||localize(v.duration,lang));
-    const range=lengthPrice(variants,lang);
-    const copy=description(service,lang),price=(service.variantType==='length'?range:'')||localize(service.price,lang)||range,time=duration(service.duration,lang);
+    const copy=description(service,lang),price=localize(service.price,lang),time=duration(service.duration,lang);
     const id='service-description-'+device+'-'+(service.profileId||'catalogue')+'-'+service.id;
     const copyLabels=words(lang),book=copyLabels.book;
     const tariffRows=variants.map(variant=>{
-      const originalLabel=localize(variant.label,lang);
-      const shortLabels=lang==='ru'?{'Короткие волосы':'Короткие','Средняя длина':'Средние','Длинные волосы':'Длинные','Супердлинные волосы':'Супердлинные'}:{};
-      const label=service.variantType==='length'?(shortLabels[originalLabel]||originalLabel):originalLabel;
+      const label=localize(variant.label,lang);
       const time=duration(variant.duration,lang);
       const price=normalizePrice(localize(variant.price,lang));
       return '<div><dt>'+escape(label)+'</dt><dd>'+(time?'<span class="tanem-variant-duration">'+escape(time)+'</span>':'')+
         (price?'<span>'+escape(price)+'</span>':'')+'</dd></div>';
     }).join('');
     const tariffs=tariffRows?'<dl class="tanem-service-tariffs">'+tariffRows+'</dl>':'';
-    const optionsLabel=copyLabels.options;
+    const optionsLabel=service.variantType==='length'?copyLabels.length:copyLabels.options;
     const options=variants.length?'<details class="tanem-service-options"><summary><span class="tanem-options-label">'+escape(optionsLabel)+' +</span></summary><div class="tanem-options-panel">'+tariffs+'</div></details>':'';
-    const prose=copy?'<div class="tanem-service-description"><p id="'+escape(id)+'">'+escape(copy)+'</p></div>':'';
-    const more=copy?'<button class="tanem-service-more" type="button" aria-expanded="false" aria-controls="'+escape(id)+'" hidden>'+copyLabels.more+'</button>':'';
+    const prose=copy?'<div class="tanem-service-description"><p id="'+escape(id)+'">'+escape(copy)+'</p><button class="tanem-service-more" type="button" aria-expanded="false" aria-controls="'+escape(id)+'">'+copyLabels.more+'</button></div>':'';
     return '<article class="'+(device==='desktop'?'dct-service-card':'tn31-service-row')+' tanem-service-card" data-tanem-service-id="'+escape(service.id)+'" data-tanem-profile="'+escape(service.profileId||'catalogue')+'" data-tanem-layout="'+device+'" data-tanem-lang="'+lang+'">'+
-      '<strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
-      '<div class="tanem-service-copy">'+prose+'</div>'+
-      '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration"'+(service.previewDuration?' title="'+(lang==='en'?'Demonstration only':'Тестовое значение')+'"':'')+'><svg class="tanem-duration-clock" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.5V8l2.3 1.5"/></svg><span class="tanem-duration-text">'+escape(time)+'</span></small>':'')+(price?priceMarkup(price,device,lang):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+more+options+
+      '<div class="tanem-service-copy"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
+      options+prose+'</div>'+
+      '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration">'+escape(time)+'</small>':'')+(price?priceMarkup(price,device):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+
       '<button class="tanem-service-book" type="button" '+(device==='desktop'?'data-service-book':'data-book-service')+' aria-label="'+book+': '+escape(title)+'"></button></article>';
   }
   function measure(card){
-    const box=card.querySelector('.tanem-service-description');if(!box){positionPrice(card);return;}
-    const paragraph=box.querySelector('p'),button=card.querySelector('.tanem-service-more');
+    const box=card.querySelector('.tanem-service-description');if(!box)return;
+    const paragraph=box.querySelector('p'),button=box.querySelector('button');
     box.classList.add('is-measuring');
     const needsMore=paragraph.getBoundingClientRect().height>(parseFloat(getComputedStyle(paragraph).lineHeight)||18)*2+1.5;
     box.classList.remove('is-measuring');
     button.hidden=!needsMore;
     if(!needsMore){box.classList.remove('is-expanded');button.setAttribute('aria-expanded','false')}
-    positionPrice(card);
-  }
-  function positionPrice(card){
-    if(card.querySelector('.is-expanded,.tanem-service-options[open]'))return;
-    const side=card.querySelector('.tanem-service-side');if(!side||!card.clientHeight)return;
-    const copy=card.querySelector('.tanem-service-copy');
-    const top=Math.max(0,((copy?.offsetHeight||0)-side.offsetHeight)/2);
-    card.style.setProperty('--tanem-price-top',top+'px');
   }
   function enhance(scope){
     scope.querySelectorAll('.tanem-service-card').forEach(card=>{
@@ -107,7 +86,6 @@
         summary.addEventListener('click',event=>{
           event.preventDefault();event.stopPropagation();
           const wasVisible=options.open;
-          if(!wasVisible)positionPrice(card);
           const from=panel.getBoundingClientRect().height;
           const computedOpacity=wasVisible?Number.parseFloat(getComputedStyle(panel).opacity):0;
           animation?.cancel();animation=null;
@@ -140,7 +118,7 @@
           if(reduce||typeof panel.animate!=='function'||Math.abs(to-fromHeight)<1){
             clearPanelStyles();
             options.open=expanded;
-            if(!expanded){syncGlint();positionPrice(card);}
+            if(!expanded)syncGlint();
             return;
           }
           const current=panel.animate(
@@ -154,7 +132,7 @@
             animation=null;
             clearPanelStyles();
             options.open=expanded;
-            if(!expanded){syncGlint();positionPrice(card);}
+            if(!expanded)syncGlint();
           };
           current.onfinish=finish;
           animationTimer=global.setTimeout(()=>{
@@ -170,9 +148,8 @@
         button.onclick=event=>{
           event.preventDefault();event.stopPropagation();
           const expanded=button.getAttribute('aria-expanded')!=='true';
-          if(expanded)positionPrice(card);
           button.setAttribute('aria-expanded',String(expanded));
-          card.querySelector('.tanem-service-description')?.classList.toggle('is-expanded',expanded);
+          button.closest('.tanem-service-description').classList.toggle('is-expanded',expanded);
           button.textContent=(expanded?words(language()).less:words(language()).more);
           measure(card);
         };
@@ -203,7 +180,7 @@
         const label=options.querySelector('.tanem-options-label');
         if(label)label.textContent=label.textContent.slice(0,-2)+(optionsOpen?' −':' +');
       }
-      if(expanded){const button=card.querySelector('.tanem-service-more');if(button){button.setAttribute('aria-expanded','true');button.textContent=words(lang).less;card.querySelector('.tanem-service-description')?.classList.add('is-expanded')}}
+      if(expanded){const button=card.querySelector('.tanem-service-more');if(button){button.setAttribute('aria-expanded','true');button.textContent=words(lang).less;button.parentElement.classList.add('is-expanded')}}
     });
     enhance(document);
   }

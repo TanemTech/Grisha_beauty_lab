@@ -8,7 +8,7 @@ mkdir -- _site
 core_files=(
     index.html desktop.css desktop.js mobile.css mobile-overrides.css
     mobile.js salon-palette.css site-data.js site-regions.js site-services.js
-    site-runtime.js site-content.js review-refinements.css favicon-source.png logo-placeholder.svg media-placeholder.svg
+    site-runtime.js favicon-source.png logo-placeholder.svg media-placeholder.svg
 )
 for file in "${core_files[@]}"; do
     [[ -f "$file" && ! -L "$file" ]]

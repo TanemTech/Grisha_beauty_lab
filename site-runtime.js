@@ -30,7 +30,7 @@
   };
 
   function setText(selector,value,scope=document){
-    scope.querySelectorAll(selector).forEach(node=>{node.dataset.tanemLocalized='true';if(node.textContent!==value)node.textContent=value});
+    scope.querySelectorAll(selector).forEach(node=>{node.textContent=value});
   }
   function setLink(node,url,fallback){
     if(!node)return;
@@ -192,11 +192,6 @@
     if(reviewsAll)setLink(reviewsAll,data.contacts.reviewsUrl,'#salonDesktopReviews');
   }
 
-  function setMapEmbed(frame,url){
-    const src=url||'about:blank';
-    if(frame&&frame.getAttribute('src')!==src)frame.setAttribute('src',src);
-  }
-
   function applyDesktop(lang){
     const root=document.getElementById('salon-desktop-v1');
     if(!root)return;
@@ -246,7 +241,8 @@
     setLink(root.querySelector('.std-meta .std-meta-item[href]'),contacts.mapUrl,'#salonDesktopContacts');
     if(contactCall&&contacts.phone)setLink(contactCall,phoneHref(),'#salonDesktopContacts');
     setLink(root.querySelector('.std-contact-route'),contacts.mapUrl,'#salonDesktopContacts');
-    setMapEmbed(root.querySelector('.std-contact-map iframe'),contacts.mapEmbedUrl);
+    const mapFrame=root.querySelector('.std-contact-map iframe');
+    if(mapFrame)mapFrame.src=contacts.mapEmbedUrl||'about:blank';
     const hero=data.media.hero?.[0];
     const heroImage=root.querySelector('#stdHeroMedia');
     if(heroImage&&hero){
@@ -322,17 +318,18 @@
     root.querySelector('.tn22-visit-actions')?.classList.toggle('is-single',!contacts.phone);
     if(mobileCall&&contacts.phone)setLink(mobileCall,phoneHref(),'#tn13Visit');
     setLink(root.querySelector('.tn22-route'),contacts.mapUrl,'#tn13Visit');
-    setMapEmbed(root.querySelector('.tn22-mapwrap iframe'),contacts.mapEmbedUrl);
+    const mapFrame=root.querySelector('.tn22-mapwrap iframe');
+    if(mapFrame)mapFrame.src=contacts.mapEmbedUrl||'about:blank';
     renderMobileBooking(lang);
   }
 
   function applyOptionalSections(){
-    const hasPortfolio=(window.TANEM_PORTFOLIO_PREVIEW??data.media.portfolio).length>0;
+    const hasPortfolio=(data.media.portfolio||[]).length>0;
     const hasGallery=Object.values(data.media.gallery||{}).some(items=>items.length>0);
     ['#salonDesktopPortfolio','#tn13Portfolio'].forEach(selector=>{const node=document.querySelector(selector);if(node)node.hidden=!hasPortfolio});
     // Team and reviews are permanent structural sections. Missing data is rendered as a neutral empty state.
     ['#salonDesktopReviews','#tn13Reviews','#salonDesktopTeam','#tn13Team'].forEach(selector=>{const node=document.querySelector(selector);if(node)node.hidden=false});
-    if(!hasGallery)document.querySelectorAll('#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,.tn22-port-all,.tn22-worklink,.tn22-media').forEach(node=>{node.hidden=true});
+    if(!hasGallery)document.querySelectorAll('#stdOpenGallery,#stdStickyGalleryOpen,.tn22-port-all,.tn22-worklink,.tn22-media').forEach(node=>{node.hidden=true});
   }
 
   function apply(){
@@ -410,14 +407,7 @@
   function setupMasterProfiles(){
     const desktop=window.__BR_DESKTOP_DEVICE__===true;
     const overlay=document.querySelector(desktop?'#stdMasterOverlay':'.tn22-master-page');
-    if(!overlay)return;
-    const masters=new Map((data.team||[]).map(master=>[master.id,master]));
-    for(const button of document.querySelectorAll('[data-empty-master]')){
-      const id=button.dataset.emptyMaster;
-      masters.set(id,{id,empty:true});
-    }
-    if(!masters.size)return;
-    const bookButton=overlay.querySelector(desktop?'#stdMasterPageBook':'.tn22-master-book');
+    if(!overlay||!data.team?.length)return;
     let selectedId='';
     let renderedMasterId='',renderedLang='';
     let stopServiceToggle=()=>{};
@@ -478,7 +468,6 @@
       const target=overlay.querySelector(desktop?'#stdMasterPageContent':'.tn22-master-body');
       if(!target)return;
       stopServiceToggle();
-      bookButton?.toggleAttribute('hidden',master.empty===true);
       const sameMaster=renderedMasterId===master.id;
       const servicesExpanded=sameMaster&&target.querySelector('[data-master-expand]')?.getAttribute('aria-expanded')==='true';
       const openOptions=new Set(sameMaster?[...target.querySelectorAll('.tanem-service-options')].filter(node=>node.dataset.expanded===undefined?node.open:node.dataset.expanded==='true').map(node=>node.closest('[data-tanem-service-id]').dataset.tanemServiceId):[]);
@@ -496,15 +485,15 @@
         '<section class="tanem-master-section" id="tanem-master-services"><h3>'+esc(words.services)+'</h3>'+
           (items.length?'<div class="tanem-master-price-list">'+items.slice(0,6).map(item=>serviceMarkup(item,lang,master.id)).join('')+
             (items.length>6?'<div class="tanem-master-extra"'+(servicesExpanded?'':' hidden')+'>'+(servicesExpanded?items.slice(6).map(item=>serviceMarkup(item,lang,master.id)).join(''):'')+'</div>':'')+'</div>':
-            (master.empty?'':'<p class="tanem-master-empty">'+esc(words.emptyServices)+'</p>'))+
+            '<p class="tanem-master-empty">'+esc(words.emptyServices)+'</p>')+
           (items.length>6?'<button class="tanem-master-more" type="button" aria-expanded="'+String(!!servicesExpanded)+'" data-master-expand>'+esc(servicesExpanded?lessLabel:moreLabel)+' <span>'+(servicesExpanded?'↑':'↓')+'</span></button>':'')+'</section>',
-        '<section class="tanem-master-section" id="tanem-master-portfolio"><h3>'+esc(words.portfolio)+'</h3>'+(master.categoryPreview&&works.length?'<p class="tanem-master-empty">'+(lang==='en'?'Examples from the salon gallery; authorship is not specified.':'Примеры по специальности из галереи; авторство не указано.')+'</p>':'')+
+        '<section class="tanem-master-section" id="tanem-master-portfolio"><h3>'+esc(words.portfolio)+'</h3>'+
           (works.length?'<div class="tanem-master-gallery'+(visibleWorks.length<=2?' is-paired':'')+'">'+visibleWorks.map((item,i)=>'<button type="button" data-master-work="'+i+'" aria-label="'+esc(words.viewPhoto)+'"><img src="'+esc(item.src)+'" alt="'+esc(text(item.alt,lang))+'" loading="lazy"></button>').join('')+'</div><button class="tanem-master-more" type="button" data-master-gallery>'+esc(words.gallery)+' <span aria-hidden="true">→</span></button>':
-            ('<p class="tanem-master-empty">'+esc(words.emptyPortfolio)+'</p>'))+'</section>',
+            '<p class="tanem-master-empty">'+esc(words.emptyPortfolio)+'</p>')+'</section>',
          '<section class="tanem-master-section" id="tanem-master-reviews"><h3>'+esc(words.reviews)+'</h3>'+
           (reviews.length?'<div class="tanem-master-review-window is-static"><div class="tanem-master-review-track">'+
             reviews.map(review=>reviewMarkup(review,lang,words)).join('')+'</div></div>':
-            ('<p class="tanem-master-empty">'+esc(words.emptyReviews)+'</p>'))+'</section>'
+            '<p class="tanem-master-empty">'+esc(words.emptyReviews)+'</p>')+'</section>'
       ];
       target.innerHTML='<div class="tanem-master-head"><div class="tanem-master-photo">'+(avatar?'<img src="'+esc(avatar)+'" alt="'+esc(name)+'">':'')+'</div><h2>'+esc(name)+'</h2><p>'+esc(role)+'</p></div><div class="tanem-master-sections">'+sections.join('')+'</div>';
       const existing=overlay.querySelector('.tanem-master-jump');
@@ -613,8 +602,8 @@
       else document.querySelector('#tn13Top .tn22-cta')?.click();
     },true);
     document.addEventListener('click',event=>{
-      const trigger=event.target.closest('[data-desktop-master],[data-mid],[data-sheet-mid],[data-empty-master]');
-      if(trigger)selectedId=trigger.dataset.desktopMaster||trigger.dataset.mid||trigger.dataset.sheetMid||trigger.dataset.emptyMaster;
+      const trigger=event.target.closest('[data-desktop-master],[data-mid],[data-sheet-mid]');
+      if(trigger)selectedId=trigger.dataset.desktopMaster||trigger.dataset.mid||trigger.dataset.sheetMid||'';
     },true);
     new MutationObserver(()=>{
       if(!overlay.classList.contains('open')){
@@ -632,7 +621,7 @@
       }
       restoringHistoryProfile=false;
       const fallbackName=overlay.querySelector(desktop?'.std-master-profile h2':'.tn22-profile h1')?.textContent;
-      const master=masters.get(selectedId)||
+      const master=(data.team||[]).find(item=>item.id===selectedId)||
         (data.team||[]).find(item=>text(item.name,'ru')===fallbackName);
       if(master){
         render(master);
@@ -646,13 +635,13 @@
       const masterId=history.state?.[historyKey];
       historyEntryOpen=!!masterId;
       if(masterId){
-        const master=masters.get(masterId);
+        const master=(data.team||[]).find(item=>item.id===masterId);
         if(!master)return;
         selectedId=masterId;
         if(overlay.classList.contains('open'))render(master);
         else{
-          const trigger=[...document.querySelectorAll('[data-desktop-master],[data-mid],[data-empty-master]')]
-            .find(button=>(button.dataset.desktopMaster||button.dataset.mid||button.dataset.emptyMaster)===masterId);
+          const trigger=[...document.querySelectorAll('[data-desktop-master],[data-mid]')]
+            .find(button=>(button.dataset.desktopMaster||button.dataset.mid)===masterId);
           if(trigger){
             restoringHistoryProfile=true;
             trigger.click();
@@ -678,62 +667,15 @@
     window.addEventListener('salon-template:languagechange',()=>{
       if(!overlay.classList.contains('open'))return;
       if(renderedLang===currentLang())return;
-      const master=masters.get(selectedId);
+      const master=(data.team||[]).find(item=>item.id===selectedId);
       if(master)requestAnimationFrame(()=>render(master));
     });
-  }
-
-  function setupPresentation(){
-    const sheet=document.querySelector('link[href^="review-refinements.css"]');
-    if(sheet)document.head.appendChild(sheet);
-    const reduce=matchMedia('(prefers-reduced-motion: reduce)');
-    const glintSelector='#stdViewWorks,#stdOpenGallery,#stdStickyGalleryOpen,.tn22-worklink,.tn22-port-all,[data-master-gallery]';
-    const entranceSelector='#salon-mobile>section,#tn38About,.std-portfolio,.mct-prices,.mct-about,.std-reviews,.std-contact,.tn22-photo,.std-portfolio-tile';
-    const seen=new WeakSet();
-    const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{
-      entries.forEach(({target,isIntersecting})=>{
-        if(target.classList.contains('tanem-soft-press')){
-          const light=target.querySelector('.tanem-press-light');
-          target.classList.toggle('tanem-press-visible',isIntersecting);
-          if(light)light.style.animationPlayState=isIntersecting?'running':'paused';
-        }
-        if(isIntersecting&&target.matches(entranceSelector)&&!seen.has(target)){
-          seen.add(target);if(!reduce.matches)target.classList.add('tanem-entrance');
-        }
-      });
-    },{threshold:.01}):null;
-    const scan=scope=>{
-      const nodes=[...(scope.matches?.(glintSelector)?[scope]:[]),...scope.querySelectorAll(glintSelector)];
-      nodes.forEach(node=>{
-        node.classList.add('tanem-soft-press');
-        if(!node.querySelector('.tanem-press-light')){
-          const light=document.createElement('i');light.className='tanem-press-light';light.setAttribute('aria-hidden','true');node.appendChild(light);
-        }
-        observer?.observe(node);
-      });
-      scope.querySelectorAll(entranceSelector).forEach(node=>observer?.observe(node));
-    };
-    // A shadow behind the masked mobile hero card remains visible above and along its sides.
-    const hero=document.querySelector('#tn13Top');
-    const card=hero?.querySelector('.tn22-card');
-    if(card){
-      const shadow=document.createElement('div');shadow.className='tanem-hero-shadow';shadow.setAttribute('aria-hidden','true');card.before(shadow);
-      const sync=()=>{const r=card.getBoundingClientRect(),p=hero.getBoundingClientRect();shadow.style.setProperty('--shadow-x',(r.left-p.left)+'px');shadow.style.setProperty('--shadow-y',(r.top-p.top)+'px');shadow.style.setProperty('--shadow-w',r.width+'px');shadow.style.setProperty('--shadow-h',r.height+'px')};
-      sync();if('ResizeObserver' in window){const ro=new ResizeObserver(sync);ro.observe(card);ro.observe(hero)}
-      window.addEventListener('resize',sync,{passive:true});document.fonts?.ready.then(sync);
-    }
-    scan(document);
-    new MutationObserver(records=>records.forEach(record=>{
-      record.addedNodes.forEach(node=>{if(node.nodeType===1&&!node.classList.contains('tanem-press-light'))scan(node)});
-      if(record.target.nodeType===1&&record.target.matches(glintSelector))scan(record.target);
-    })).observe(document.body,{childList:true,subtree:true});
   }
 
   window.addEventListener('salon-template:languagechange',apply);
   apply();
   setupDesktopTeamPaging();
   setupMasterProfiles();
-  setupPresentation();
   [80,260,700].forEach(delay=>window.setTimeout(apply,delay));
   window.setInterval(()=>applySchedule(currentLang()),60000);
 })();
