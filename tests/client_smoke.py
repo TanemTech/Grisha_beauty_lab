@@ -91,8 +91,8 @@ def check(browser, width, height, mobile, language):
             assert page.locator(".std-nav a").evaluate_all("(els)=>els.map(e=>e.hash)")[2:5] == ["#salonDesktopAbout", "#salonDesktopTeam", "#salonDesktopReviews"]
         air = page.locator('[data-tanem-service-id="service-001"]').first
         dry = page.locator('[data-tanem-service-id="service-003"]').first
-        assert re.sub(r"\\s+", "", air.locator(".tanem-service-price").inner_text()) == ("от17000₽" if language == "ru" else "from17000₽")
-        assert re.sub(r"\\s+", "", dry.locator(".tanem-service-price").inner_text()) == "1500₽"
+        assert re.sub(r"\s+", "", air.locator(".tanem-service-price").inner_text()) == ("от17000₽" if language == "ru" else "from17000₽")
+        assert re.sub(r"\s+", "", dry.locator(".tanem-service-price").inner_text()) == "1500₽"
         air.locator("summary").click()
         assert air.locator("details").get_attribute("open") is not None
         rows = air.locator(".tanem-service-tariffs > div")
