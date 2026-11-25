@@ -82,9 +82,7 @@
     if(card.querySelector('.is-expanded,.tanem-service-options[open]'))return;
     const side=card.querySelector('.tanem-service-side');if(!side||!card.clientHeight)return;
     const css=getComputedStyle(card),inset=parseFloat(css.paddingTop)||0;
-    const price=side.querySelector('.tanem-service-price');
-    const center=price?price.offsetTop+price.offsetHeight/2:side.offsetHeight/2;
-    const top=Math.max(0,card.clientHeight/2-inset-center);
+    const top=Math.max(0,card.clientHeight/2-inset-side.offsetHeight/2);
     card.style.setProperty('--tanem-price-top',top+'px');
   }
   function enhance(scope){

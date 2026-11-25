@@ -694,6 +694,7 @@
       entries.forEach(({target,isIntersecting})=>{
         if(target.classList.contains('tanem-soft-press')){
           const light=target.querySelector('.tanem-press-light');
+          target.classList.toggle('tanem-press-visible',isIntersecting);
           if(light)light.style.animationPlayState=isIntersecting?'running':'paused';
         }
         if(isIntersecting&&target.matches(entranceSelector)&&!seen.has(target)){
@@ -706,12 +707,21 @@
       nodes.forEach(node=>{
         node.classList.add('tanem-soft-press');
         if(!node.querySelector('.tanem-press-light')){
-          const light=document.createElement('span');light.className='tanem-press-light';light.setAttribute('aria-hidden','true');node.appendChild(light);
+          const light=document.createElement('i');light.className='tanem-press-light';light.setAttribute('aria-hidden','true');node.appendChild(light);
         }
         observer?.observe(node);
       });
       scope.querySelectorAll(entranceSelector).forEach(node=>observer?.observe(node));
     };
+    // A shadow behind the masked mobile hero card remains visible above and along its sides.
+    const hero=document.querySelector('#tn13Top');
+    const card=hero?.querySelector('.tn22-card');
+    if(card){
+      const shadow=document.createElement('div');shadow.className='tanem-hero-shadow';shadow.setAttribute('aria-hidden','true');card.before(shadow);
+      const sync=()=>{const r=card.getBoundingClientRect(),p=hero.getBoundingClientRect();shadow.style.setProperty('--shadow-x',(r.left-p.left)+'px');shadow.style.setProperty('--shadow-y',(r.top-p.top)+'px');shadow.style.setProperty('--shadow-w',r.width+'px');shadow.style.setProperty('--shadow-h',r.height+'px')};
+      sync();if('ResizeObserver' in window){const ro=new ResizeObserver(sync);ro.observe(card);ro.observe(hero)}
+      window.addEventListener('resize',sync,{passive:true});document.fonts?.ready.then(sync);
+    }
     scan(document);
     new MutationObserver(records=>records.forEach(record=>{
       record.addedNodes.forEach(node=>{if(node.nodeType===1&&!node.classList.contains('tanem-press-light'))scan(node)});
