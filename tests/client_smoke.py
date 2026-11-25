@@ -69,6 +69,22 @@ def check(browser, width, height, mobile, language):
     if language == "en":
         for description in cards.locator(".tanem-service-description").all():
             assert not re.search(r"[А-Яа-я]", description.inner_text()), "Russian description in English mode"
+    options = cards.locator(".tanem-service-options summary")
+    if options.count():
+        options.first.click()
+        table = cards.locator(".tanem-service-options").first.locator(".tanem-service-tariffs")
+        metrics = table.evaluate("""el => ({
+            rights:[...el.querySelectorAll('dd')].map(n=>n.getBoundingClientRect().right),
+            split:[...el.querySelectorAll('dt')].filter(n=>!n.textContent.trim().includes(' ')).some(n=>{
+                const r=document.createRange();r.selectNodeContents(n);
+                return r.getBoundingClientRect().height>parseFloat(getComputedStyle(n).lineHeight)+2;
+            }),
+            right:el.getBoundingClientRect().right
+        })""")
+        assert max(metrics["rights"])-min(metrics["rights"]) <= 1, "Variant prices are not aligned"
+        assert not metrics["split"], "Single variant word wraps across lines"
+        assert metrics["right"] <= width + 1, "Expanded prices overflow viewport"
+        options.first.click()
     Path("test-artifacts/visual").mkdir(parents=True, exist_ok=True)
     page.screenshot(path=f"test-artifacts/visual/{data['salon']['name']['en']}-{width}-{language}.png", full_page=True)
     if not data["reviews"]:
