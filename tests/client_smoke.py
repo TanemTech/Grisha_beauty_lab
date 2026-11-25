@@ -22,6 +22,9 @@ def check(browser, width, height, mobile, language):
         locale="ru-RU",
         reduced_motion="reduce",
     )
+    # External map widgets execute third-party scripts and are not part of
+    # the client JS contract. Stub only the map iframe document in this test.
+    context.route("https://yandex.ru/map-widget/**", lambda route: route.fulfill(status=200, content_type="text/html", body="<html></html>"))
     page = context.new_page()
     errors = []
     failed_assets = []
