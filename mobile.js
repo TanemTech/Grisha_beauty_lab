@@ -33,6 +33,7 @@
   const closeBook=()=>{
     bookSheet.classList.remove('open');
     if(!root.querySelector('.tn22-master-page.open'))document.body.style.overflow='';
+    requestAnimationFrame(()=>window.dispatchEvent(new Event('scroll')));
   };
   root.querySelector('#tn13BookClose').addEventListener('click',closeBook);
   bookSheet.addEventListener('click',event=>{if(event.target===bookSheet)closeBook()});
@@ -193,12 +194,12 @@ const heroWorksLink=hero.querySelector('.tn22-worklink');if(heroWorksLink)heroWo
 const sectionItems=[['tn13Portfolio','Портфолио'],['tn13Services','Услуги'],['tn38About','О нас'],['tn13Team','Команда'],['tn13Reviews','Отзывы'],['tn13Visit','Визит']];const sectionIds=sectionItems.map(x=>x[0]);const sectionNav=document.createElement('nav');sectionNav.className='tn23-section-nav';sectionNav.setAttribute('aria-hidden','true');sectionNav.innerHTML=sectionItems.map((x,i)=>`<button type="button" data-section="${x[0]}" class="${i===0?'active':''}">${x[1]}</button>`).join('');sectionNav.classList.add('salon-template-fixed-nav');document.body.appendChild(sectionNav);
 let activeSection='tn13Portfolio',navRaf=0,navTargetLock=null,navUnlockTimer=0;
 const mobileThemeMeta=document.querySelector('meta[name="theme-color"]');
-function updateThemeChrome(){const visit=document.getElementById('tn13Visit');const dark=!!visit&&visit.getBoundingClientRect().top<=window.innerHeight-24&&window.scrollY>hero.offsetHeight-48;const desired=dark?'#181818':'#fafaf9';if(mobileThemeMeta&&mobileThemeMeta.getAttribute('content')!==desired)mobileThemeMeta.setAttribute('content',desired)}
-function revealActiveNavButton(btn){const navRect=sectionNav.getBoundingClientRect(),btnRect=btn.getBoundingClientRect(),pad=10;let delta=0;if(btnRect.right>navRect.right-pad)delta=btnRect.right-(navRect.right-pad);else if(btnRect.left<navRect.left+pad)delta=btnRect.left-(navRect.left+pad);if(Math.abs(delta)>1)sectionNav.scrollBy({left:delta,behavior:'smooth'})}
+function updateThemeChrome(){if(mobileThemeMeta&&mobileThemeMeta.getAttribute('content')!=='#fafaf9')mobileThemeMeta.setAttribute('content','#fafaf9')}
+function revealActiveNavButton(btn){const navRect=sectionNav.getBoundingClientRect(),btnRect=btn.getBoundingClientRect(),pad=10;let delta=0;if(btnRect.right>navRect.right-pad)delta=btnRect.right-(navRect.right-pad);else if(btnRect.left<navRect.left+pad)delta=btnRect.left-(navRect.left+pad);if(Math.abs(delta)>1)sectionNav.scrollBy({left:delta,behavior:'instant'})}
 function setActiveSection(id){if(!id)return;activeSection=id;const btn=sectionNav.querySelector(`[data-section="${id}"]`);if(!btn)return;sectionNav.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===btn));revealActiveNavButton(btn)}
 function scrollSectionFromNav(id){clearTimeout(navUnlockTimer);if(id==='tn13Portfolio'){navTargetLock=null;setActiveSection('tn13Portfolio');const top=Math.max(0,window.scrollY+hero.getBoundingClientRect().top);window.scrollTo({top,behavior:'smooth'});return}const el=document.getElementById(id);if(!el)return;navTargetLock=id;setActiveSection(id);const top=Math.max(0,window.scrollY+el.getBoundingClientRect().top-sectionNav.offsetHeight+1);window.scrollTo({top,behavior:'smooth'});navUnlockTimer=setTimeout(()=>{navTargetLock=null;updateSectionNav()},900)}
 sectionNav.querySelectorAll('[data-section]').forEach(b=>b.onclick=()=>scrollSectionFromNav(b.dataset.section));
-function updateSectionNav(){navRaf=0;const heroPassed=window.scrollY>=Math.max(0,hero.offsetTop+hero.offsetHeight-2);updateThemeChrome();sectionNav.classList.toggle('visible',heroPassed);sectionNav.setAttribute('aria-hidden',heroPassed?'false':'true');if(!heroPassed){navTargetLock=null;clearTimeout(navUnlockTimer);if(activeSection!=='tn13Portfolio')setActiveSection('tn13Portfolio');return}if(navTargetLock){if(activeSection!==navTargetLock)setActiveSection(navTargetLock);return}const line=sectionNav.getBoundingClientRect().bottom+3;let chosen=sectionIds[0];for(const id of sectionIds){const el=document.getElementById(id);if(!el)continue;const r=el.getBoundingClientRect();if(r.top<=line&&r.bottom>line){chosen=id;break}if(r.top<=line)chosen=id}if(chosen!==activeSection)setActiveSection(chosen)}
+function updateSectionNav(){navRaf=0;if(document.body.style.position==='fixed'||bookSheet.classList.contains('open'))return;const scroller=document.scrollingElement;const max=Math.max(0,scroller.scrollHeight-scroller.clientHeight);const y=Math.max(0,Math.min(max,window.scrollY));const heroPassed=y>=Math.max(0,hero.offsetTop+hero.offsetHeight-2);updateThemeChrome();sectionNav.classList.toggle('visible',heroPassed);sectionNav.setAttribute('aria-hidden',heroPassed?'false':'true');if(!heroPassed){navTargetLock=null;clearTimeout(navUnlockTimer);if(activeSection!=='tn13Portfolio')setActiveSection('tn13Portfolio');return}if(navTargetLock){if(activeSection!==navTargetLock)setActiveSection(navTargetLock);return}if(max>0&&y>=max-3){if(activeSection!=='tn13Visit')setActiveSection('tn13Visit');return}const line=sectionNav.getBoundingClientRect().bottom+3;let chosen=sectionIds[0];for(const id of sectionIds){const el=document.getElementById(id);if(!el)continue;const r=el.getBoundingClientRect();if(r.top<=line&&r.bottom>line){chosen=id;break}if(r.top<=line)chosen=id}if(chosen!==activeSection)setActiveSection(chosen)}
 window.addEventListener('scroll',()=>{if(!navRaf)navRaf=requestAnimationFrame(updateSectionNav)},{passive:true});window.addEventListener('resize',updateSectionNav,{passive:true});requestAnimationFrame(updateSectionNav);
 
 // PORTFOLIO
@@ -745,7 +746,7 @@ services.insertAdjacentElement('afterend',about);
 
   function syncPageLock(root){
     if(!root) return;
-    const active=!!root.querySelector('#tn13BookSheet.open,#tn13Gallery.open,#tn13Gallery.closing,.tn22-master-page.open,.tn22-master-page.closing,.tn22-viewer.open');
+    const active=!!root.querySelector('#tn13Gallery.open,#tn13Gallery.closing,.tn22-master-page.open,.tn22-master-page.closing,.tn22-viewer.open');
     setPageLock(active);
   }
 

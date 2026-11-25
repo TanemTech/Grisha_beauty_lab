@@ -64,3 +64,52 @@ html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServi
  html[data-br-device="mobile"] #salon-mobile #tn13Top .tn22-card{width:100%!important;max-width:100%!important;min-width:0!important;transform:none!important;grid-row:2}
  html[data-br-device="mobile"] #salon-mobile #tn13Top .tn22-media{grid-row:2}
 }
+
+/* r3: approved compact controls and a price anchor calculated in the closed state. */
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-side{align-self:start!important;position:relative;top:var(--tanem-price-top,0px);gap:4px!important;flex-wrap:nowrap!important}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-more{margin-top:1px!important;padding-block:1px!important}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-description{margin-top:4px!important}
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options{margin-top:2px!important}
+html[data-br-device] .tanem-service-options summary{margin:0!important;min-height:27px!important;padding:3px 8px!important;border:1px solid currentColor!important;border-radius:7px!important;text-decoration:none!important;background:transparent!important}
+html[data-br-device] .tanem-service-options summary:after{content:none!important}
+html[data-br-device] .tanem-service-options .tanem-options-label,html[data-br-device] :is(#stdServiceList,#salonDesktopServices,#tn13Services) .tanem-service-options .tanem-options-label{border:0!important;background:none!important;-webkit-text-fill-color:currentColor!important;animation:none!important}
+.tanem-soft-press>.tanem-press-light{background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 2px rgba(255,255,255,.26),inset 0 3px 12px rgba(0,0,0,.25);animation:tanem-soft-press 4.8s ease-in-out infinite}
+@keyframes tanem-soft-press{0%,62%,100%{opacity:0}74%{opacity:1}82%{opacity:.74}94%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.tanem-soft-press>.tanem-press-light{animation:none!important}}
+/* Keep the navigation layer stable, including bottom overscroll and booking. */
+.tn23-section-nav{overscroll-behavior-x:contain;scroll-behavior:auto!important;-webkit-overflow-scrolling:touch}
+body:has(#tn13BookSheet.open) .tn23-section-nav.visible{z-index:10051!important;pointer-events:none!important}
+#salon-mobile #tn13BookSheet{display:flex!important;align-items:flex-end;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .32s ease,visibility .32s ease!important}
+#salon-mobile #tn13BookSheet.open{visibility:visible;opacity:1;pointer-events:auto}
+#salon-mobile #tn13BookSheet .tn13-panel{max-height:calc(100dvh - 58px);transform:translate3d(0,104%,0)!important;transition:transform .42s cubic-bezier(.22,.76,.26,1)!important;overscroll-behavior:contain}
+#salon-mobile #tn13BookSheet.open .tn13-panel{transform:translate3d(0,0,0)!important}
+@media(prefers-reduced-motion:reduce){#salon-mobile #tn13BookSheet,#salon-mobile #tn13BookSheet .tn13-panel{transition:none!important}}
+#salon-mobile #tn13Top .tn22-card{box-shadow:0 -10px 26px rgba(42,33,26,.15),inset 0 1px 0 rgba(255,255,255,.5)!important}
+#salonDesktopTop .std-hero-frame{box-shadow:0 12px 32px rgba(42,33,26,.12)!important}
+#salonDesktopTeam .std-master-role,#salon-mobile .tn22-master-role{white-space:nowrap!important;font-size:clamp(9px,1.4vw,13px)!important}
+@media(max-width:600px){#salon-mobile .tn22-master-role{font-size:clamp(9px,2.7vw,12px)!important}}
+/* Existing desktop composition for modern short landscape viewports. */
+@media(min-width:768px) and (max-width:1023px) and (max-height:550px) and (orientation:landscape){
+ html[data-br-device="desktop"] #salon-desktop-v1{width:100%!important;max-width:none!important;min-width:0!important}
+ #salon-desktop-v1 .std-header{height:auto!important;min-height:64px!important;padding:8px 16px!important;display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+ #salon-desktop-v1 .std-header-brand{width:auto!important;min-width:0!important;flex:0 0 auto!important}
+ #salon-desktop-v1 .std-header-brand-main{font-size:22px!important}
+ #salon-desktop-v1 .std-nav{position:static!important;transform:none!important;flex:1 1 100%!important;order:3;justify-content:center!important;width:100%!important;gap:12px!important}
+ #salon-desktop-v1 .std-nav a{font-size:12px!important;white-space:nowrap}
+ #salon-desktop-v1 .std-header-right{margin-left:auto!important}
+ #salon-desktop-v1 .std-header-right .std-phone{display:none!important}
+ #salonDesktopTop.std-hero{min-height:0!important;height:auto!important}
+ #salonDesktopTop .std-hero-copy,#salonDesktopTop .std-hero-photo{min-width:0!important;max-width:100%!important}
+ #salonDesktopTop .std-hero-frame{padding:16px!important}
+ #salonDesktopServices.mct-prices>.mct-shell{width:calc(100% - 32px)!important;margin-inline:16px!important;grid-template-columns:minmax(210px,32%) minmax(0,1fr)!important;gap:20px!important}
+ #salonDesktopServices .mct-price-head:after{display:none!important}
+ #salonDesktopServices .dct-service-sticky-card{position:relative!important;top:auto!important;min-width:0!important}
+ #salonDesktopServices .dct-service-sticky-card>strong,#salonDesktopServices .dct-services-main-title{font-size:32px!important}
+ #salonDesktopAbout>.br-about-team-headings,#salonDesktopAbout>.br-about-team-shell{column-gap:20px!important}
+ #salonDesktopTeam .std-master-avatar{max-width:100%!important}
+ #stdBookOverlay .std-book-panel{max-height:calc(100dvh - 18px)!important;overflow:auto}
+}
+@media(min-width:600px) and (max-width:767px) and (max-height:550px) and (orientation:landscape){
+ #salon-mobile{max-width:none!important;width:100%!important}
+ #salon-mobile #tn13Top .tn22-card{box-shadow:none!important}
+}

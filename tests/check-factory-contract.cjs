@@ -156,8 +156,9 @@ const mobile=fs.readFileSync(path.join(root,'mobile.js'),'utf8');
 const runtime=fs.readFileSync(path.join(root,'site-runtime.js'),'utf8');
 assert(index.indexOf('site-data.js')<index.indexOf("desktop?'desktop.js"),'site-data.js must load before either UI bundle');
 assert(index.includes('site-runtime.js'),'the production hydration runtime must load');
-assert(index.includes("matchMedia('(min-width:1024px)').matches"),'wide touch devices must use the desktop layout');
-assert(index.includes('media="(min-width:1024px)"'),'desktop styles must follow viewport width');
+const layoutQuery='(min-width:1024px), (min-width:768px) and (max-height:550px) and (orientation:landscape)';
+assert(index.includes("matchMedia('"+layoutQuery+"').matches"),'desktop and short landscape layout routing');
+assert(index.includes('media="'+layoutQuery+'"'),'desktop styles must match layout routing');
 assert(!index.includes('(hover:hover) and (pointer:fine)'),'narrow mouse viewports must not receive desktop layout');
 assert(desktop.includes('SITE.services.filter'),'desktop services must come from the unified source');
 assert(!desktop.includes('desktopGalleryLimits')&&!desktop.includes('items.slice(0,limit)'),

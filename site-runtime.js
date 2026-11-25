@@ -498,13 +498,13 @@
             (items.length>6?'<div class="tanem-master-extra"'+(servicesExpanded?'':' hidden')+'>'+(servicesExpanded?items.slice(6).map(item=>serviceMarkup(item,lang,master.id)).join(''):'')+'</div>':'')+'</div>':
             (master.empty?'':'<p class="tanem-master-empty">'+esc(words.emptyServices)+'</p>'))+
           (items.length>6?'<button class="tanem-master-more" type="button" aria-expanded="'+String(!!servicesExpanded)+'" data-master-expand>'+esc(servicesExpanded?lessLabel:moreLabel)+' <span>'+(servicesExpanded?'↑':'↓')+'</span></button>':'')+'</section>',
-        '<section class="tanem-master-section" id="tanem-master-portfolio"><h3>'+esc(words.portfolio)+'</h3>'+
+        '<section class="tanem-master-section" id="tanem-master-portfolio"><h3>'+esc(words.portfolio)+'</h3>'+(master.categoryPreview&&works.length?'<p class="tanem-master-empty">'+(lang==='en'?'Examples from the salon gallery; authorship is not specified.':'Примеры по специальности из галереи; авторство не указано.')+'</p>':'')+
           (works.length?'<div class="tanem-master-gallery'+(visibleWorks.length<=2?' is-paired':'')+'">'+visibleWorks.map((item,i)=>'<button type="button" data-master-work="'+i+'" aria-label="'+esc(words.viewPhoto)+'"><img src="'+esc(item.src)+'" alt="'+esc(text(item.alt,lang))+'" loading="lazy"></button>').join('')+'</div><button class="tanem-master-more" type="button" data-master-gallery>'+esc(words.gallery)+' <span aria-hidden="true">→</span></button>':
-            (master.empty?'':'<p class="tanem-master-empty">'+esc(words.emptyPortfolio)+'</p>'))+'</section>',
+            ('<p class="tanem-master-empty">'+esc(words.emptyPortfolio)+'</p>'))+'</section>',
          '<section class="tanem-master-section" id="tanem-master-reviews"><h3>'+esc(words.reviews)+'</h3>'+
           (reviews.length?'<div class="tanem-master-review-window is-static"><div class="tanem-master-review-track">'+
             reviews.map(review=>reviewMarkup(review,lang,words)).join('')+'</div></div>':
-            (master.empty?'':'<p class="tanem-master-empty">'+esc(words.emptyReviews)+'</p>'))+'</section>'
+            ('<p class="tanem-master-empty">'+esc(words.emptyReviews)+'</p>'))+'</section>'
       ];
       target.innerHTML='<div class="tanem-master-head"><div class="tanem-master-photo">'+(avatar?'<img src="'+esc(avatar)+'" alt="'+esc(name)+'">':'')+'</div><h2>'+esc(name)+'</h2><p>'+esc(role)+'</p></div><div class="tanem-master-sections">'+sections.join('')+'</div>';
       const existing=overlay.querySelector('.tanem-master-jump');
@@ -687,7 +687,7 @@
     const sheet=document.querySelector('link[href^="review-refinements.css"]');
     if(sheet)document.head.appendChild(sheet);
     const reduce=matchMedia('(prefers-reduced-motion: reduce)');
-    const glintSelector='#stdViewWorks,.tn22-worklink';
+    const glintSelector='#stdViewWorks,#stdOpenGallery,#stdStickyGalleryOpen,.tn22-worklink,.tn22-port-all,[data-master-gallery]';
     const entranceSelector='#salon-mobile>section,#tn38About,.std-portfolio,.mct-prices,.mct-about,.std-reviews,.std-contact,.tn22-photo,.std-portfolio-tile';
     const seen=new WeakSet();
     const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>{
