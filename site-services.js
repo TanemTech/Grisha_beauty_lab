@@ -34,10 +34,20 @@
     if(single&&device==='mobile')return '<span class="tanem-service-price"><span class="tanem-price-amount">'+(single[1]?'<small>'+escape(single[1])+' </small>':'')+escape(single[2].trim())+'</span><span class="tanem-price-currency">'+single[3]+'</span></span>';
     return '<span class="tanem-service-price">'+escape(price)+'</span>';
   }
+  // Use the cheapest actual tariff, never a booking label in place of a known price.
+  function summaryPrice(service,variants,lang){
+    const direct=localize(service.price,lang);
+    const prices=variants.map(v=>normalizePrice(localize(v.price,lang))).filter(Boolean);
+    const amounts=prices.map(value=>{const m=value.match(/^(?:(?:от|from)\s+)?([\d ]+)\s*([₽֏€$£])$/u);return m?{amount:Number(m[1].replace(/ /g,'')),value:m[1].trim()+' '+m[2]}:null}).filter(Boolean);
+    if(amounts.length===prices.length&&amounts.length){
+      const lowest=amounts.reduce((a,b)=>a.amount<=b.amount?a:b);
+      return (amounts.length>1?(lang==='en'?'from ':'от '):'')+lowest.value;
+    }
+    return direct||prices[0]||'';
+  }
   function render(service,device,lang=language()){
     const title=localize(service.title,lang).replace(/\u00ad/g,''),variants=(service.variants||[]).filter(v=>localize(v.label,lang)||localize(v.price,lang)||localize(v.duration,lang));
-    const copy=description(service,lang),price=localize(service.price,lang),time=duration(service.duration,lang);
-    const id='service-description-'+device+'-'+(service.profileId||'catalogue')+'-'+service.id;
+    const price=summaryPrice(service,variants,lang),time=duration(service.duration,lang);
     const copyLabels=words(lang),book=copyLabels.book;
     const tariffRows=variants.map(variant=>{
       const label=localize(variant.label,lang);
@@ -48,11 +58,10 @@
     }).join('');
     const tariffs=tariffRows?'<dl class="tanem-service-tariffs">'+tariffRows+'</dl>':'';
     const optionsLabel=service.variantType==='length'?copyLabels.length:copyLabels.options;
-    const options=variants.length?'<details class="tanem-service-options"><summary><span class="tanem-options-label">'+escape(optionsLabel)+' +</span></summary><div class="tanem-options-panel">'+tariffs+'</div></details>':'';
-    const prose=copy?'<div class="tanem-service-description"><p id="'+escape(id)+'">'+escape(copy)+'</p><button class="tanem-service-more" type="button" aria-expanded="false" aria-controls="'+escape(id)+'">'+copyLabels.more+'</button></div>':'';
+    const options=variants.length?'<details class="tanem-service-options'+(service.variantType==='length'?' is-length':'')+'"><summary><span class="tanem-options-label">'+escape(optionsLabel)+' +</span></summary><div class="tanem-options-panel">'+tariffs+'</div></details>':'';
     return '<article class="'+(device==='desktop'?'dct-service-card':'tn31-service-row')+' tanem-service-card" data-tanem-service-id="'+escape(service.id)+'" data-tanem-profile="'+escape(service.profileId||'catalogue')+'" data-tanem-layout="'+device+'" data-tanem-lang="'+lang+'">'+
       '<div class="tanem-service-copy"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
-      options+prose+'</div>'+
+      options+'</div>'+
       '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration">'+escape(time)+'</small>':'')+(price?priceMarkup(price,device):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+
       '<button class="tanem-service-book" type="button" '+(device==='desktop'?'data-service-book':'data-book-service')+' aria-label="'+book+': '+escape(title)+'"></button></article>';
   }

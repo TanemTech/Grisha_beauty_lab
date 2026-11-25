@@ -259,7 +259,16 @@ function validateSiteData(data,{rootDir=process.cwd(),allowTestDomains=false}={}
     local(member.name,`${field}.name`,{required:production});
     local(member.role,`${field}.role`,{required:production});
     local(member.about,`${field}.about`,{required:production});
-    if(production||member.photo)media(member.photo,`${field}.photo`,{required:production});
+    if(member.profileType==='direction'){
+      if(member.photo)add(field,'direction profiles must not claim a personal photo');
+      if(member.categories?.length!==1)add(field,'direction profiles must have exactly one category');
+      const cat=member.categories?.[0];
+      const expected=(data.services||[]).filter(service=>service.category===cat).map(service=>service.id);
+      if(JSON.stringify(member.serviceIds)!==JSON.stringify(expected))add(field,'direction profiles must use all and only matching services');
+      const allowed=new Set((data.media.gallery?.[cat]||[]).map(item=>typeof item==='string'?item:item.src));
+      if((member.work||[]).some(item=>!allowed.has(typeof item==='string'?item:item.src)))add(field,'direction portfolio must match its category');
+      if(member.reviewIds?.length)add(field,'direction profiles cannot claim personal reviews');
+    }else if(production||member.photo)media(member.photo,`${field}.photo`,{required:production});
     if(array(member.categories,`${field}.categories`))member.categories.forEach((category,categoryIndex)=>{if(!categories.has(category))add(`${field}.categories[${categoryIndex}]`,'must exist in categoryLabels')});
     if(member.serviceIds!==undefined&&array(member.serviceIds,`${field}.serviceIds`)){
       const linked=new Set();

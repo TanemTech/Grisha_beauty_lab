@@ -72,7 +72,7 @@
         <a href="#salonDesktopServices">Услуги</a>
         <a href="#salonDesktopPortfolio">Наши работы</a>
         <a href="#salonDesktopAbout">О нас</a>
-        ${SITE.mode==='production'&&TEAM_MASTERS.length?'<a href="#salonDesktopTeam">Команда</a>':''}
+        <a href="#salonDesktopTeam">Команда</a>
         <a href="#salonDesktopReviews">Отзывы</a>
         <a href="#salonDesktopContacts">Контакты</a>
       </nav>
@@ -554,7 +554,7 @@
     const item=(DESKTOP_GALLERY_GROUPS[galleryCategory]||[])[Number(tile.dataset.galleryItem)||0];
     if(item)warmGalleryImage(item.src);
   },{passive:true});
-  function openDesktopGalleryBrowser(cat='Салон'){
+  function openDesktopGalleryBrowser(cat=Object.keys(DESKTOP_GALLERY_GROUPS)[1]||Object.keys(DESKTOP_GALLERY_GROUPS)[0]){
     galleryCategory=Object.hasOwn(DESKTOP_GALLERY_GROUPS,cat)?cat:Object.keys(DESKTOP_GALLERY_GROUPS)[0];
     renderDesktopGalleryBrowser();
     galleryBrowser.classList.add('open');
@@ -569,15 +569,15 @@
   document.querySelectorAll('.std-work').forEach(btn=>{
     btn.addEventListener('click',()=>openDesktopViewer(PORTFOLIO,Number(btn.dataset.portfolioIndex)||0,'portfolio'));
   });
-  document.getElementById('stdOpenGallery').addEventListener('click',()=>openDesktopGalleryBrowser('Ногти'));
-  document.getElementById('stdStickyGalleryOpen')?.addEventListener('click',()=>openDesktopGalleryBrowser('Ногти'));
-  document.getElementById('stdViewWorks')?.addEventListener('click',e=>{e.preventDefault();openDesktopGalleryBrowser('Ногти')});
+  document.getElementById('stdOpenGallery').addEventListener('click',()=>openDesktopGalleryBrowser());
+  document.getElementById('stdStickyGalleryOpen')?.addEventListener('click',()=>openDesktopGalleryBrowser());
+  document.getElementById('stdViewWorks')?.addEventListener('click',e=>{e.preventDefault();openDesktopGalleryBrowser()});
   document.getElementById('stdGalleryBrowserBack').addEventListener('click',closeDesktopGalleryBrowser);
   document.getElementById('stdGalleryClose').addEventListener('click',closeDesktopViewer);
   document.getElementById('stdGalleryPrev').addEventListener('click',()=>moveDesktopGallery(-1));
   document.getElementById('stdGalleryNext').addEventListener('click',()=>moveDesktopGallery(1));
   galleryViewAll.addEventListener('click',()=>{
-    const category=gallery.dataset.source==='master'?masterGalleryContext?.category:'Ногти';
+    const category=gallery.dataset.source==='master'?masterGalleryContext?.category:undefined;
     closeDesktopViewer();
     openDesktopGalleryBrowser(category);
   });

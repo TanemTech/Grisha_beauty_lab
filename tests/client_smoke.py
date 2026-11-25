@@ -80,6 +80,59 @@ def check(browser, width, height, mobile, language):
     if language in ("ru", "en"):
         must_equal(address_sub, expected_map_copy, "map provider action")
 
+
+    # Owner-requested Beauty Lab checks, separate from the generic production smoke.
+    directions = [m for m in data["team"] if m.get("profileType") == "direction"]
+    if directions:
+        assert len(directions) == len(data["categoryOrder"])
+        assert directions[0]["categories"] == [data["categoryOrder"][0]]
+        assert page.locator(".tanem-service-description").count() == 0
+        if desktop:
+            assert page.locator(".std-nav a").evaluate_all("(els)=>els.map(e=>e.hash)")[2:5] == ["#salonDesktopAbout", "#salonDesktopTeam", "#salonDesktopReviews"]
+        air = page.locator('[data-tanem-service-id="service-001"]').first
+        dry = page.locator('[data-tanem-service-id="service-003"]').first
+        assert re.sub(r"\\s+", "", air.locator(".tanem-service-price").inner_text()) == ("от17000₽" if language == "ru" else "from17000₽")
+        assert re.sub(r"\\s+", "", dry.locator(".tanem-service-price").inner_text()) == "1500₽"
+        air.locator("summary").click()
+        assert air.locator("details").get_attribute("open") is not None
+        rows = air.locator(".tanem-service-tariffs > div")
+        assert rows.count() == 4
+        bounds = rows.evaluate_all("(els)=>els.map(e=>{const a=e.querySelector('dt'),b=e.querySelector('dd');return {h:a.getBoundingClientRect().height,line:parseFloat(getComputedStyle(a).lineHeight),left:a.getBoundingClientRect().right,right:b.getBoundingClientRect().left,price:b.getBoundingClientRect().right}})")
+        assert all(r["h"] <= r["line"] + 1 and r["left"] <= r["right"] + 1 for r in bounds), bounds
+        assert max(r["price"] for r in bounds) - min(r["price"] for r in bounds) <= 1, bounds
+        air.locator("summary").click()
+        if not desktop:
+            air.scroll_into_view_if_needed()
+            page.wait_for_function("document.querySelector('.tn23-section-nav').classList.contains('visible')")
+            air.locator(".tanem-service-book").click()
+            page.locator("#tn13BookSheet.open").wait_for(state="visible")
+            assert page.locator(".tn23-section-nav").evaluate("(e)=>e.classList.contains('visible')")
+            page.locator("#tn13BookClose").click()
+            page.wait_for_function("!document.querySelector('#tn13BookSheet').classList.contains('closing')")
+        page.locator("#stdOpenGallery" if desktop else ".tn22-port-all").click()
+        tabs = page.locator("#stdGalleryBrowserTabs [data-gallery-category]" if desktop else "#tn13Gallery [data-gcat]")
+        tabs.first.wait_for(state="visible")
+        attr = "data-gallery-category" if desktop else "data-gcat"
+        assert tabs.nth(0).get_attribute(attr) == "Салон"
+        assert tabs.nth(1).get_attribute(attr) == "Волосы"
+        assert "active" in (tabs.nth(1).get_attribute("class") or "")
+        page.locator("#stdGalleryBrowserBack" if desktop else ".tn22-gallery-back").click()
+        if not desktop:
+            page.wait_for_function("!document.querySelector('#tn13Gallery').classList.contains('closing')")
+        master = page.locator('[data-desktop-master="direction-1"]' if desktop else '[data-mid="direction-1"]').first
+        master.click()
+        overlay = page.locator("#stdMasterOverlay" if desktop else ".tn22-master-page")
+        overlay.locator(".tanem-master-head").wait_for(state="visible")
+        assert overlay.locator(".tanem-master-head h2").inner_text() == directions[0]["name"][language]
+        assert overlay.locator(".tanem-master-head p").inner_text() == directions[0]["role"][language]
+        ids = overlay.locator("[data-tanem-service-id]").evaluate_all("(els)=>els.map(e=>e.dataset.tanemServiceId)")
+        assert ids and set(ids).issubset(set(directions[0]["serviceIds"]))
+        works = overlay.locator(".tanem-master-gallery img").evaluate_all("(els)=>els.map(e=>e.getAttribute('src'))")
+        assert works and set(works).issubset(set(directions[0]["work"]))
+        overlay.locator("#stdMasterPageClose" if desktop else ".tn22-back").click()
+        if not desktop:
+            page.wait_for_function("!document.querySelector('.tn22-master-page').classList.contains('closing')")
+
     sample = page.locator("#stdHeaderBookBtn" if desktop else ".tn22-cta")
     sample.click(timeout=9000)
     links = page.locator("#stdBookOverlay .std-book-options a" if desktop

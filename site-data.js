@@ -199,6 +199,238 @@ const data={
       }
     ],
     "gallery": {
+      "Салон": [
+        {
+          "src": "gallery-06.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-08.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-11.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-14.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-16.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-23.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-27.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-29.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-30.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-32.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-39.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-40.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-42.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-49.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-56.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-57.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-60.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-66.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-68.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-69.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-72.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-73.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        },
+        {
+          "src": "gallery-80.webp",
+          "alt": {
+            "ru": "Салон Бьюти Лаб",
+            "en": "Beauty Lab salon",
+            "hy": "",
+            "uz": "",
+            "tg": ""
+          }
+        }
+      ],
       "Волосы": [
         {
           "src": "gallery-01.webp",
@@ -777,238 +1009,6 @@ const data={
           "alt": {
             "ru": "Бьюти Лаб — Макияж",
             "en": "Beauty Lab — Makeup",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        }
-      ],
-      "Салон": [
-        {
-          "src": "gallery-06.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-08.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-11.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-14.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-16.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-23.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-27.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-29.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-30.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-32.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-39.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-40.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-42.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-49.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-56.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-57.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-60.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-66.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-68.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-69.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-72.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-73.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
-            "hy": "",
-            "uz": "",
-            "tg": ""
-          }
-        },
-        {
-          "src": "gallery-80.webp",
-          "alt": {
-            "ru": "Салон Бьюти Лаб",
-            "en": "Beauty Lab salon",
             "hy": "",
             "uz": "",
             "tg": ""
@@ -6423,7 +6423,488 @@ const data={
       "variants": []
     }
   ],
-  "team": [],
+  "team": [
+    {
+      "id": "direction-1",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Парикмахер",
+        "en": "Hair stylist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Волосы"
+      ],
+      "serviceIds": [
+        "service-001",
+        "service-002",
+        "service-003",
+        "service-004",
+        "service-005",
+        "service-006",
+        "service-007",
+        "service-008",
+        "service-009",
+        "service-010",
+        "service-011",
+        "service-012",
+        "service-013",
+        "service-014",
+        "service-015",
+        "service-016",
+        "service-017",
+        "service-018",
+        "service-019"
+      ],
+      "work": [
+        "gallery-01.webp",
+        "gallery-05.webp",
+        "gallery-12.webp",
+        "gallery-17.webp",
+        "gallery-19.webp",
+        "gallery-22.webp",
+        "gallery-26.webp",
+        "gallery-34.webp",
+        "gallery-37.webp",
+        "gallery-44.webp",
+        "gallery-46.webp",
+        "gallery-47.webp",
+        "gallery-51.webp",
+        "gallery-54.webp",
+        "gallery-61.webp",
+        "gallery-65.webp",
+        "gallery-71.webp",
+        "gallery-76.webp",
+        "gallery-77.webp"
+      ],
+      "reviewIds": []
+    },
+    {
+      "id": "direction-2",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Мастер маникюра и педикюра",
+        "en": "Nail technician",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Ногти"
+      ],
+      "serviceIds": [
+        "service-020",
+        "service-021",
+        "service-022",
+        "service-023",
+        "service-024",
+        "service-025",
+        "service-026",
+        "service-027",
+        "service-028",
+        "service-029",
+        "service-030",
+        "service-031",
+        "service-032",
+        "service-033",
+        "service-034",
+        "service-035",
+        "service-036",
+        "service-037",
+        "service-038",
+        "service-039",
+        "service-040",
+        "service-041",
+        "service-042",
+        "service-043",
+        "service-044",
+        "service-045",
+        "service-046",
+        "service-047",
+        "service-048",
+        "service-049",
+        "service-050",
+        "service-051",
+        "service-052",
+        "service-053",
+        "service-054",
+        "service-055",
+        "service-056",
+        "service-057",
+        "service-058",
+        "service-059",
+        "service-060",
+        "service-061",
+        "service-062",
+        "service-063",
+        "service-064",
+        "service-065"
+      ],
+      "work": [
+        "gallery-03.webp",
+        "gallery-09.webp",
+        "gallery-10.webp",
+        "gallery-13.webp",
+        "gallery-15.webp",
+        "gallery-20.webp",
+        "gallery-24.webp",
+        "gallery-28.webp",
+        "gallery-35.webp",
+        "gallery-36.webp",
+        "gallery-48.webp",
+        "gallery-50.webp",
+        "gallery-53.webp",
+        "gallery-55.webp",
+        "gallery-59.webp",
+        "gallery-64.webp",
+        "gallery-70.webp",
+        "gallery-75.webp",
+        "gallery-78.webp",
+        "gallery-79.webp"
+      ],
+      "reviewIds": []
+    },
+    {
+      "id": "direction-3",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Массажист",
+        "en": "Massage specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Массаж"
+      ],
+      "serviceIds": [
+        "service-066",
+        "service-067",
+        "service-068",
+        "service-069",
+        "service-070",
+        "service-071",
+        "service-072",
+        "service-073",
+        "service-074",
+        "service-075",
+        "service-076",
+        "service-077",
+        "service-078",
+        "service-079",
+        "service-080",
+        "service-081",
+        "service-082"
+      ],
+      "work": [],
+      "reviewIds": []
+    },
+    {
+      "id": "direction-4",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Косметолог",
+        "en": "Cosmetology specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Косметология"
+      ],
+      "serviceIds": [
+        "service-083",
+        "service-084",
+        "service-085",
+        "service-086",
+        "service-087",
+        "service-088",
+        "service-089",
+        "service-090",
+        "service-091",
+        "service-092",
+        "service-093",
+        "service-094",
+        "service-095",
+        "service-096",
+        "service-097",
+        "service-098",
+        "service-099",
+        "service-100",
+        "service-101",
+        "service-102"
+      ],
+      "work": [
+        "gallery-07.webp",
+        "gallery-33.webp"
+      ],
+      "reviewIds": []
+    },
+    {
+      "id": "direction-5",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Мастер лазерной эпиляции",
+        "en": "Laser hair removal specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Лазерная эпиляция"
+      ],
+      "serviceIds": [
+        "service-103",
+        "service-104",
+        "service-105",
+        "service-106",
+        "service-107",
+        "service-108",
+        "service-109",
+        "service-110",
+        "service-111",
+        "service-112",
+        "service-113",
+        "service-114",
+        "service-115",
+        "service-116",
+        "service-117",
+        "service-118",
+        "service-160",
+        "service-161",
+        "service-162"
+      ],
+      "work": [
+        "gallery-21.webp",
+        "gallery-74.webp"
+      ],
+      "reviewIds": []
+    },
+    {
+      "id": "direction-6",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Мастер восковой депиляции",
+        "en": "Waxing specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Восковая депиляция"
+      ],
+      "serviceIds": [
+        "service-119",
+        "service-120",
+        "service-121",
+        "service-122",
+        "service-123",
+        "service-124",
+        "service-125",
+        "service-126",
+        "service-127",
+        "service-128",
+        "service-129",
+        "service-130",
+        "service-131",
+        "service-132"
+      ],
+      "work": [],
+      "reviewIds": []
+    },
+    {
+      "id": "direction-7",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Мастер по ресницам",
+        "en": "Lash specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Ресницы"
+      ],
+      "serviceIds": [
+        "service-133",
+        "service-134",
+        "service-135",
+        "service-136",
+        "service-137",
+        "service-138",
+        "service-139",
+        "service-140",
+        "service-141",
+        "service-142",
+        "service-143",
+        "service-144",
+        "service-145",
+        "service-146",
+        "service-147",
+        "service-148",
+        "service-149",
+        "service-150",
+        "service-151",
+        "service-152",
+        "service-153",
+        "service-154"
+      ],
+      "work": [
+        "gallery-02.webp",
+        "gallery-04.webp",
+        "gallery-38.webp",
+        "gallery-67.webp"
+      ],
+      "reviewIds": []
+    },
+    {
+      "id": "direction-8",
+      "profileType": "direction",
+      "name": {
+        "ru": "Мастер",
+        "en": "Specialist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "role": {
+        "ru": "Визажист",
+        "en": "Makeup artist",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "about": {
+        "ru": "Профиль специалиста пока не заполнен.",
+        "en": "Specialist profile is not yet complete.",
+        "hy": "",
+        "uz": "",
+        "tg": ""
+      },
+      "photo": "",
+      "categories": [
+        "Макияж"
+      ],
+      "serviceIds": [
+        "service-155",
+        "service-156",
+        "service-157",
+        "service-158",
+        "service-159"
+      ],
+      "work": [
+        "gallery-43.webp"
+      ],
+      "reviewIds": []
+    }
+  ],
   "reviews": [
     {
       "id": "review-1",
