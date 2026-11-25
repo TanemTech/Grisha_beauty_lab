@@ -100,10 +100,18 @@ def check(browser, width, height, mobile, language):
             const price=el.querySelector('.tanem-service-price').getBoundingClientRect();
             const box=el.getBoundingClientRect();
             const time=el.querySelector('.tanem-service-duration')?.getBoundingClientRect();
-            return {gap:(time||price).left-copy.right,edge:time?price.left-time.right:box.right-price.right};
+            const description=el.querySelector('.tanem-service-description');
+            return {gap:(time||price).left-copy.right,edge:time?price.left-time.right:(time||price).left-copy.right,
+                description:!!description,priceRight:price.right,cardRight:box.right};
         }""")
         assert metrics['gap']>0, "Description overlaps the price"
         assert abs(metrics['gap']-metrics['edge'])<=2, f"Price spacing is unequal: {metrics}"
+        assert metrics['priceRight'] <= metrics['cardRight'] - 4, f"Price overflows card: {metrics}"
+        if card.locator(".tanem-service-more:visible").count() and card.locator("summary").count():
+            more = card.locator(".tanem-service-more").bounding_box()
+            summary = card.locator("summary").bounding_box()
+            assert more["x"] + more["width"] <= summary["x"] + 1, "Bottom actions overlap"
+            assert abs(more["y"]-summary["y"])<=2, "Bottom actions are not aligned"
     assert page.locator('.tanem-soft-press').count()>=2, "View work and Open gallery should share the same animation"
     options = cards.locator(".tanem-service-options summary")
     if options.count():

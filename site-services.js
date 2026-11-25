@@ -61,16 +61,17 @@
     const tariffs=tariffRows?'<dl class="tanem-service-tariffs">'+tariffRows+'</dl>':'';
     const optionsLabel=copyLabels.options;
     const options=variants.length?'<details class="tanem-service-options"><summary><span class="tanem-options-label">'+escape(optionsLabel)+' +</span></summary><div class="tanem-options-panel">'+tariffs+'</div></details>':'';
-    const prose=copy?'<div class="tanem-service-description"><p id="'+escape(id)+'">'+escape(copy)+'</p><button class="tanem-service-more" type="button" aria-expanded="false" aria-controls="'+escape(id)+'">'+copyLabels.more+'</button></div>':'';
+    const prose=copy?'<div class="tanem-service-description"><p id="'+escape(id)+'">'+escape(copy)+'</p></div>':'';
+    const more=copy?'<button class="tanem-service-more" type="button" aria-expanded="false" aria-controls="'+escape(id)+'" hidden>'+copyLabels.more+'</button>':'';
     return '<article class="'+(device==='desktop'?'dct-service-card':'tn31-service-row')+' tanem-service-card" data-tanem-service-id="'+escape(service.id)+'" data-tanem-profile="'+escape(service.profileId||'catalogue')+'" data-tanem-layout="'+device+'" data-tanem-lang="'+lang+'">'+
-      '<div class="tanem-service-copy"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
-      prose+'</div>'+
-      '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration"'+(service.previewDuration?' title="'+(lang==='en'?'Demonstration only':'Тестовое значение')+'"':'')+'>'+escape(time)+'</small>':'')+(price?priceMarkup(price,device,lang):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+options+
+      '<strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
+      '<div class="tanem-service-copy">'+prose+'</div>'+
+      '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration"'+(service.previewDuration?' title="'+(lang==='en'?'Demonstration only':'Тестовое значение')+'"':'')+'>'+escape(time)+'</small>':'')+(price?priceMarkup(price,device,lang):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+more+options+
       '<button class="tanem-service-book" type="button" '+(device==='desktop'?'data-service-book':'data-book-service')+' aria-label="'+book+': '+escape(title)+'"></button></article>';
   }
   function measure(card){
     const box=card.querySelector('.tanem-service-description');if(!box){positionPrice(card);return;}
-    const paragraph=box.querySelector('p'),button=box.querySelector('button');
+    const paragraph=box.querySelector('p'),button=card.querySelector('.tanem-service-more');
     box.classList.add('is-measuring');
     const needsMore=paragraph.getBoundingClientRect().height>(parseFloat(getComputedStyle(paragraph).lineHeight)||18)*2+1.5;
     box.classList.remove('is-measuring');
@@ -81,8 +82,8 @@
   function positionPrice(card){
     if(card.querySelector('.is-expanded,.tanem-service-options[open]'))return;
     const side=card.querySelector('.tanem-service-side');if(!side||!card.clientHeight)return;
-    const css=getComputedStyle(card),inset=parseFloat(css.paddingTop)||0;
-    const top=Math.max(0,card.clientHeight/2-inset-side.offsetHeight/2);
+    const copy=card.querySelector('.tanem-service-copy');
+    const top=Math.max(0,((copy?.offsetHeight||0)-side.offsetHeight)/2);
     card.style.setProperty('--tanem-price-top',top+'px');
   }
   function enhance(scope){
@@ -171,7 +172,7 @@
           const expanded=button.getAttribute('aria-expanded')!=='true';
           if(expanded)positionPrice(card);
           button.setAttribute('aria-expanded',String(expanded));
-          button.closest('.tanem-service-description').classList.toggle('is-expanded',expanded);
+          card.querySelector('.tanem-service-description')?.classList.toggle('is-expanded',expanded);
           button.textContent=(expanded?words(language()).less:words(language()).more);
           measure(card);
         };
@@ -202,7 +203,7 @@
         const label=options.querySelector('.tanem-options-label');
         if(label)label.textContent=label.textContent.slice(0,-2)+(optionsOpen?' −':' +');
       }
-      if(expanded){const button=card.querySelector('.tanem-service-more');if(button){button.setAttribute('aria-expanded','true');button.textContent=words(lang).less;button.parentElement.classList.add('is-expanded')}}
+      if(expanded){const button=card.querySelector('.tanem-service-more');if(button){button.setAttribute('aria-expanded','true');button.textContent=words(lang).less;card.querySelector('.tanem-service-description')?.classList.add('is-expanded')}}
     });
     enhance(document);
   }
