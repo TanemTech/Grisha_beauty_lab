@@ -27,4 +27,8 @@ html[data-br-device] .tanem-service-price{white-space:nowrap!important;display:b
 @keyframes tanem-entrance{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
 @media(prefers-reduced-motion:reduce){.tanem-glint>.tanem-glint-light,.tanem-entrance{animation:none!important}.tanem-glint>.tanem-glint-light{display:none}}
 /* Keep a readable one-line brand clear of the longer Directions navigation label. */
-@media(min-width:1024px) and (max-width:1180px){#salon-desktop-v1 .std-nav{gap:13px!important}}
+@media(min-width:1024px) and (max-width:1440px){#salon-desktop-v1 .std-nav{gap:13px!important}body[data-br-lang="en"] #salon-desktop-v1 .std-nav{width:auto!important;gap:13px!important}}
+@media(min-width:1024px) and (max-width:1180px){#salon-desktop-v1 .std-header-right .std-phone{display:none!important}}
+
+/* Accessibility: the legacy entrance styles must not hide content in reduced-motion mode. */
+@media(prefers-reduced-motion:reduce){#salonDesktopPortfolio .std-portfolio-head,#salonDesktopPortfolio .std-portfolio-grid,#salonDesktopPortfolio .std-portfolio-more,#salonDesktopServices .mct-price-head,#salonDesktopServices .dct-services-main-title,#salonDesktopServices .mct-tabs-ribbon-wrap,#salonDesktopServices .dct-service-groups,#salonDesktopServices .mct-more-services,#salonDesktopAbout .br-about-column,#salonDesktopTeam,#salonDesktopReviews .std-reviews-head,#salonDesktopReviews .std-reviews-viewport,#salonDesktopReviews .std-reviews-actions,#salonDesktopContacts .std-contact-inner{opacity:1!important;transform:none!important;transition:none!important}}
