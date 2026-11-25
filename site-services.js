@@ -66,7 +66,7 @@
     return '<article class="'+(device==='desktop'?'dct-service-card':'tn31-service-row')+' tanem-service-card" data-tanem-service-id="'+escape(service.id)+'" data-tanem-profile="'+escape(service.profileId||'catalogue')+'" data-tanem-layout="'+device+'" data-tanem-lang="'+lang+'">'+
       '<strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
       '<div class="tanem-service-copy">'+prose+'</div>'+
-      '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration"'+(service.previewDuration?' title="'+(lang==='en'?'Demonstration only':'Тестовое значение')+'"':'')+'>'+escape(time)+'</small>':'')+(price?priceMarkup(price,device,lang):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+more+options+
+      '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration"'+(service.previewDuration?' title="'+(lang==='en'?'Demonstration only':'Тестовое значение')+'"':'')+'><svg class="tanem-duration-clock" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.5V8l2.3 1.5"/></svg><span class="tanem-duration-text">'+escape(time)+'</span></small>':'')+(price?priceMarkup(price,device,lang):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+more+options+
       '<button class="tanem-service-book" type="button" '+(device==='desktop'?'data-service-book':'data-book-service')+' aria-label="'+book+': '+escape(title)+'"></button></article>';
   }
   function measure(card){
