@@ -183,4 +183,28 @@ assert(!runtime.includes("desktopBrand.classList.add('has-logo')"),'desktop head
 assert(runtime.includes('Открыть в Яндекс Картах')&&runtime.includes('Открыть в Google Maps'),'runtime must select the map action label by country');
 assert(mobile.includes('const loop=[...groups,...groups,...groups]'),'mobile reviews must use a circular triple-buffer loop');
 
+// Exercise the production preview without a browser or AI call.
+{
+  const {loadSiteData}=require('./validate-site-data.cjs');
+  const source=loadSiteData(path.join(root,'site-data.js'));
+  if(source.previewConfig?.categoryMasterFallback){
+    const make=(search)=>{
+      const window={TANEM_SITE_DATA:structuredClone(source)};
+      new Function('window','location','URLSearchParams',fs.readFileSync(path.join(root,'site-content.js'),'utf8'))(window,{search},URLSearchParams);
+      new Function('window',fs.readFileSync(path.join(root,'site-services.js'),'utf8'))(window);
+      return window;
+    };
+    const normal=make(''),preview=make('?preview=1');
+    assert.equal(normal.TANEM_SITE_DATA.team.length,source.categoryOrder.length);
+    assert(normal.TANEM_SITE_DATA.team.every(m=>m.categoryPreview&&m.name.ru==='Мастер'));
+    assert.equal(normal.TANEM_SITE_DATA.team.flatMap(m=>m.serviceIds).length,source.services.length);
+    assert.equal(normal.TANEM_SITE_DATA.services[0].duration,source.services[0].duration);
+    assert.deepEqual(preview.TANEM_SITE_DATA.services.slice(0,4).map(s=>s.duration),['2 ч','1,5 ч','30 мин','4 ч']);
+    for(const service of normal.TANEM_SITE_DATA.services){
+      if(!service.price&&service.variants.some(v=>/\d.*₽/u.test(v.price||''))){
+        assert(!normal.TANEM_SERVICES.render(service,'mobile','ru').includes('class="tanem-service-price">Записаться'),service.id+' must show its known price');
+      }
+    }
+  }
+}
 console.log('PASS: schema, release blockers, unified services, and wide-touch routing are enforced');

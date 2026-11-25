@@ -82,7 +82,9 @@
     if(card.querySelector('.is-expanded,.tanem-service-options[open]'))return;
     const side=card.querySelector('.tanem-service-side');if(!side||!card.clientHeight)return;
     const css=getComputedStyle(card),inset=parseFloat(css.paddingTop)||0;
-    const top=Math.max(0,card.clientHeight/2-inset-side.offsetHeight/2);
+    const price=side.querySelector('.tanem-service-price');
+    const center=price?price.offsetTop+price.offsetHeight/2:side.offsetHeight/2;
+    const top=Math.max(0,card.clientHeight/2-inset-center);
     card.style.setProperty('--tanem-price-top',top+'px');
   }
   function enhance(scope){
@@ -106,6 +108,7 @@
         summary.addEventListener('click',event=>{
           event.preventDefault();event.stopPropagation();
           const wasVisible=options.open;
+          if(!wasVisible)positionPrice(card);
           const from=panel.getBoundingClientRect().height;
           const computedOpacity=wasVisible?Number.parseFloat(getComputedStyle(panel).opacity):0;
           animation?.cancel();animation=null;
@@ -138,7 +141,7 @@
           if(reduce||typeof panel.animate!=='function'||Math.abs(to-fromHeight)<1){
             clearPanelStyles();
             options.open=expanded;
-            if(!expanded)syncGlint();
+            if(!expanded){syncGlint();positionPrice(card);}
             return;
           }
           const current=panel.animate(
@@ -152,7 +155,7 @@
             animation=null;
             clearPanelStyles();
             options.open=expanded;
-            if(!expanded)syncGlint();
+            if(!expanded){syncGlint();positionPrice(card);}
           };
           current.onfinish=finish;
           animationTimer=global.setTimeout(()=>{
@@ -168,6 +171,7 @@
         button.onclick=event=>{
           event.preventDefault();event.stopPropagation();
           const expanded=button.getAttribute('aria-expanded')!=='true';
+          if(expanded)positionPrice(card);
           button.setAttribute('aria-expanded',String(expanded));
           button.closest('.tanem-service-description').classList.toggle('is-expanded',expanded);
           button.textContent=(expanded?words(language()).less:words(language()).more);

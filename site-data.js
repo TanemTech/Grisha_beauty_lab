@@ -6713,6 +6713,7 @@ const data={
     }
   ]
 };
+  data.previewConfig={categoryMasterFallback:true};
   global.TANEM_SITE_DATA=data;
   const rows=[];
   const collect=value=>{

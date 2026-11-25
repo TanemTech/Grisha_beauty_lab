@@ -1,4 +1,4 @@
-/* Shared gallery ordering; team data is left unchanged. */
+/* Shared gallery order and client-only preview configuration. */
 (function(global){
   'use strict';
   const data=global.TANEM_SITE_DATA;
@@ -28,7 +28,7 @@
         else if(typeof master.name==='string')master.name=master.name.trim().split(/\s+/u)[0];
         else for(const lang of Object.keys(master.name||{}))if(master.name[lang])master.name[lang]=master.name[lang].trim().split(/\s+/u)[0];
       }
-    }else{
+    }else if(data.previewConfig?.categoryMasterFallback){
       data.team=data.categoryOrder.filter(category=>data.services.some(s=>s.category===category)).map((category,index)=>({
         id:'category-master-'+(index+1),categoryPreview:true,
         name:loc('Мастер','Specialist'),role:roles[category]||loc(category, data.categoryLabels?.[category]?.en||category),
@@ -38,10 +38,13 @@
       }));
     }
     // Fake duration values are restricted to the explicitly requested demonstration URL.
-    if(typeof location!=='undefined'&&new URLSearchParams(location.search).get('preview')==='1'){
+    if(data.previewConfig?.categoryMasterFallback&&typeof location!=='undefined'&&new URLSearchParams(location.search).get('preview')==='1'){
       const previewTimes={'service-001':'2 ч','service-002':'1,5 ч','service-003':'30 мин','service-004':'4 ч'};
       for(const service of data.services)if(previewTimes[service.id]){service.duration=previewTimes[service.id];service.previewDuration=true;}
     }
+  }
+  for(const master of data.team||[])if(master.categoryPreview){
+    for(const value of [master.name,master.role,master.about])global.TANEM_SITE_I18N_ROWS?.push([value.ru,value.hy,value.en]);
   }
   global.TANEM_CONTENT={galleryDefault};
 })(window);

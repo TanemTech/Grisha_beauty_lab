@@ -34,7 +34,7 @@ def check(browser, width, height, mobile, language):
     page.goto(HOST, wait_until="domcontentloaded", timeout=30000)
     data = page.evaluate("window.TANEM_SITE_DATA")
     assert data and data["mode"] == "production", "Site did not load production data"
-    desktop = width >= 1024
+    desktop = width >= 1024 or (width >= 768 and width > height and height <= 550)
     root = "#salon-desktop-v1" if desktop else "#salon-mobile"
     page.locator(root).wait_for(state="visible", timeout=18000)
     page.wait_for_function("!document.documentElement.classList.contains('br-booting')")
@@ -57,7 +57,12 @@ def check(browser, width, height, mobile, language):
     reviews_section = page.locator("#salonDesktopReviews" if desktop else "#tn13Reviews")
     assert not team_section.is_hidden(), "Team is a permanent structural section"
     assert not reviews_section.is_hidden(), "Reviews are a permanent structural section"
-    if not data["team"]:
+    data = page.evaluate("window.TANEM_SITE_DATA")
+    if data.get("previewConfig", {}).get("categoryMasterFallback"):
+        category_cards = team_section.locator("[data-desktop-master]" if desktop else "[data-mid]")
+        assert category_cards.count() == len(data["categoryOrder"]), "One preview master per service category"
+        assert all(m.get("categoryPreview") and m["name"]["ru"] == "Мастер" for m in data["team"]), "No invented employee names"
+    elif not data["team"]:
         placeholder_cards = page.locator("#salonDesktopTeam .std-master.is-placeholder" if desktop else "#tn13Team .tn22-master-card.is-placeholder")
         assert placeholder_cards.count() == 4, "Empty team must preserve four neutral visual master cards"
         real_team_cards = page.locator("#salonDesktopTeam [data-desktop-master]" if desktop else "#tn13Team [data-mid]")
@@ -78,10 +83,16 @@ def check(browser, width, height, mobile, language):
         }""")
         assert metrics['gap']>0, "Description overlaps the price"
         assert abs(metrics['gap']-metrics['edge'])<=2, f"Price spacing is unequal: {metrics}"
-    assert page.locator('.tanem-soft-press').count()==1, "Only View work should pulse"
+    assert page.locator('.tanem-soft-press').count()>=2, "View work and Open gallery should share the same animation"
     options = cards.locator(".tanem-service-options summary")
     if options.count():
+        card = options.first.locator('xpath=ancestor::article[1]')
+        price = card.locator('.tanem-service-price')
+        before = price.bounding_box()['y'] - card.bounding_box()['y']
         options.first.click()
+        page.wait_for_timeout(350)
+        after = price.bounding_box()['y'] - card.bounding_box()['y']
+        assert abs(before-after)<=2, 'Price moved when options opened'
         table = cards.locator(".tanem-service-options").first.locator(".tanem-service-tariffs")
         metrics = table.evaluate("""el => ({
             rights:[...el.querySelectorAll('dd')].map(n=>n.getBoundingClientRect().right),

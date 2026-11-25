@@ -113,3 +113,7 @@ body:has(#tn13BookSheet.open) .tn23-section-nav.visible{z-index:10051!important;
  #salon-mobile{max-width:none!important;width:100%!important}
  #salon-mobile #tn13Top .tn22-card{box-shadow:none!important}
 }
+
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-card:has(.tanem-service-duration){min-height:84px!important}
+html[data-br-device] .tanem-service-options summary{border-color:rgba(200,194,188,.48)!important}
+html[data-br-device] .tanem-master-price-list .tanem-service-options summary{border-color:rgba(111,98,88,.35)!important}
