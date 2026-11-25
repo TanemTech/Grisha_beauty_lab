@@ -919,6 +919,5 @@ html[data-br-device="mobile"] #salon-mobile #tn13BookSheet .tn13-panel{
 }
 html[data-br-device="mobile"] #salon-mobile #tn13BookSheet.open .tn13-panel{transform:translate3d(0,0,0)!important}
 @media(prefers-reduced-motion:reduce){
-  html[data-br-device="mobile"] #salon-mobile #tn13BookSheet,
-  html[data-br-device="mobile"] #salon-mobile #tn13BookSheet .tn13-panel{transition:none!important}
+  html[data-br-device="mobile"] #salon-mobile #tn13BookSheet,html[data-br-device="mobile"] #salon-mobile #tn13BookSheet .tn13-panel{transition:none!important}
 }
