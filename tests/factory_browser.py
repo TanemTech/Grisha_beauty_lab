@@ -29,14 +29,15 @@ def wait_for_app(page, root):
 
 def check_empty_profile(page, mobile):
     profile = page.locator(".tn22-master-page.open" if mobile else "#stdMasterOverlay.open")
-    page.locator("#tn13Team [data-mid]" if mobile else "#salonDesktopTeam [data-desktop-master]").first.click()
-    expect(profile.locator(".tanem-master-section")).to_have_count(3)
-    expect(profile.locator(".tanem-master-review")).to_have_count(0)
-    assert profile.locator(".tanem-service-card").count() > 0
+    page.locator("[data-empty-master]").first.click()
+    expect(profile.locator(".tanem-master-section")).to_have_count(4)
+    expect(profile.locator(".tanem-master-head img")).to_have_count(0)
+    expect(profile.locator(".tanem-service-card, [data-master-work], .tanem-master-review")).to_have_count(0)
+    expect(profile.locator(".tn22-master-book" if mobile else "#stdMasterPageBook")).to_be_hidden()
     page.go_back()
     expect(profile).to_have_count(0)
     page.go_forward()
-    expect(profile.locator("h3").first).to_have_text("О направлении")
+    expect(profile.locator("h3").first).to_have_text("О мастере")
     page.keyboard.press("Escape")
     expect(profile).to_have_count(0)
 
@@ -51,8 +52,8 @@ def check_desktop(browser):
     assert page.locator("#stdHeroMedia").first.get_attribute("src") == "tests/fixtures/photo.svg", "desktop hero media is not applied"
     assert page.locator("#stdServiceList .dct-service-card").count() == 3
     assert not page.locator("#salonDesktopTeam").is_hidden()
-    expect_text(page.locator("#salonDesktopTeam .std-team-subtitle"), "Услуги и работы по направлениям.", "desktop directions state")
-    assert page.locator("#salonDesktopTeam [data-desktop-master]").count() == page.evaluate("window.TANEM_CONTENT.profiles.length")
+    expect_text(page.locator("#salonDesktopTeam .std-team-subtitle"), "Команда салона", "desktop empty team state")
+    assert page.locator("#salonDesktopTeam .std-master.is-placeholder").count() == 4
     assert page.locator("#salonDesktopPortfolio").is_hidden()
     check_empty_profile(page, False)
     expect_text(page.locator(".std-reviews-score strong"), "5,0", "desktop rating")
@@ -151,7 +152,7 @@ def check_mobile(browser):
     page.wait_for_timeout(120)
     assert page.locator("#tn13Services .tn31-service-row").count() == 3
     assert not page.locator("#tn13Team").is_hidden()
-    assert page.locator("#tn13Team [data-mid]").count() == page.evaluate("window.TANEM_CONTENT.profiles.length")
+    assert page.locator("#tn13Team .tn22-master-card.is-placeholder").count() == 4
     assert page.locator("#tn13Portfolio").is_hidden()
     check_empty_profile(page, True)
     assert page.locator("#tn13Reviews .br-review-card").count() >= 3

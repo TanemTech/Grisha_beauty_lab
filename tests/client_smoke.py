@@ -58,10 +58,10 @@ def check(browser, width, height, mobile, language):
     assert not team_section.is_hidden(), "Team is a permanent structural section"
     assert not reviews_section.is_hidden(), "Reviews are a permanent structural section"
     if not data["team"]:
-        profiles = page.evaluate("window.TANEM_CONTENT.profiles")
-        assert profiles and all(profile.get("kind") == "direction" for profile in profiles)
-        heading = page.locator("#stdTeamTitle" if desktop else "#tn13Team h2")
-        assert "Мастер" not in heading.inner_text(), "Absent team must not invent people"
+        placeholder_cards = page.locator("#salonDesktopTeam .std-master.is-placeholder" if desktop else "#tn13Team .tn22-master-card.is-placeholder")
+        assert placeholder_cards.count() == 4, "Empty team must preserve four neutral visual master cards"
+        real_team_cards = page.locator("#salonDesktopTeam [data-desktop-master]" if desktop else "#tn13Team [data-mid]")
+        assert real_team_cards.count() == 0, "Neutral team cards must not become invented specialists"
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), "Page overflows horizontally"
     prices = cards.locator(".tanem-service-price")
     for price in prices.all():
@@ -69,6 +69,16 @@ def check(browser, width, height, mobile, language):
     if language == "en":
         for description in cards.locator(".tanem-service-description").all():
             assert not re.search(r"[А-Яа-я]", description.inner_text()), "Russian description in English mode"
+    for card in cards.all():
+        metrics=card.evaluate("""el=>{
+            const copy=el.querySelector('.tanem-service-copy').getBoundingClientRect();
+            const price=el.querySelector('.tanem-service-price').getBoundingClientRect();
+            const box=el.getBoundingClientRect();
+            return {gap:price.left-copy.right,edge:box.right-price.right};
+        }""")
+        assert metrics['gap']>0, "Description overlaps the price"
+        assert abs(metrics['gap']-metrics['edge'])<=2, f"Price spacing is unequal: {metrics}"
+    assert page.locator('.tanem-soft-press').count()==1, "Only View work should pulse"
     options = cards.locator(".tanem-service-options summary")
     if options.count():
         options.first.click()
@@ -146,6 +156,8 @@ def main():
             for width in (320, 360, 375, 414, 430, 768):
                 check(browser, width, 932 if width == 430 else 844, True, "ru")
             check(browser, 390, 844, False, "ru")
+            for width,height,mobile in [(667,375,True),(844,390,True),(932,430,True),(820,1180,True),(1024,1366,True),(1366,1024,True),(1536,864,False),(1920,1080,False)]:
+                check(browser,width,height,mobile,"ru")
         finally:
             browser.close()
     print("PASS actual production site on desktop, phone and touch tablet")

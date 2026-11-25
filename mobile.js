@@ -87,9 +87,8 @@ const worksCategory=SITE.mode==='production'
  : 'Салон';
 const PORTFOLIO=(window.TANEM_PORTFOLIO_PREVIEW??SITE.media.portfolio).map(mediaItem);
 const REVIEW_DATA=SITE.reviews.map(review=>[russian(review.author),russian(review.text)]);
-const MASTERS=(window.TANEM_CONTENT?.profiles||SITE.team).map(master=>({
+const MASTERS=SITE.team.map(master=>({
   id:master.id,
-  kind:master.kind,
   name:russian(master.name),
   role:russian(master.role),
   about:russian(master.about),

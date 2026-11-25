@@ -37,13 +37,13 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
 #brLoadError a{display:inline-block;margin-top:22px;color:#181818}
 @media(prefers-reduced-motion:reduce){#brBootIntro{transition:none!important}}
 </style>
-<link rel="stylesheet" href="desktop.css?v=review-20261125" media="(min-width:1024px)">
-<link rel="stylesheet" href="salon-palette.css?v=review-20261125" media="(min-width:1024px)">
-<script src="site-data.js?v=review-20261125"></script>
-<script src="site-regions.js?v=review-20261125"></script>
-<script src="site-content.js?v=review-20261125"></script>
-<link rel="stylesheet" href="review-refinements.css?v=review-20261125">
-<script src="site-services.js?v=review-20261125"></script>
+<link rel="stylesheet" href="desktop.css?v=review-20261125-r2" media="(min-width:1024px)">
+<link rel="stylesheet" href="salon-palette.css?v=review-20261125-r2" media="(min-width:1024px)">
+<script src="site-data.js?v=review-20261125-r2"></script>
+<script src="site-regions.js?v=review-20261125-r2"></script>
+<script src="site-content.js?v=review-20261125-r2"></script>
+<link rel="stylesheet" href="review-refinements.css?v=review-20261125-r2">
+<script src="site-services.js?v=review-20261125-r2"></script>
 <script>
 (()=>{
  const site=window.TANEM_SITE_DATA;
@@ -78,11 +78,11 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
   const preload=document.createElement('link');
   preload.rel='preload';
   preload.as='style';
-  preload.href='mobile-overrides.css?v=review-20261125';
+  preload.href='mobile-overrides.css?v=review-20261125-r2';
   const palettePreload=document.createElement('link');
   palettePreload.rel='preload';
   palettePreload.as='style';
-  palettePreload.href='salon-palette.css?v=review-20261125';
+  palettePreload.href='salon-palette.css?v=review-20261125-r2';
   document.head.appendChild(palettePreload);
   document.head.appendChild(preload);
  }
@@ -160,10 +160,10 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
    }else ready();
  }
  const script=document.createElement('script');
- script.src=desktop?'desktop.js?v=review-20261125':'mobile.js?v=review-20261125';
+ script.src=desktop?'desktop.js?v=review-20261125-r2':'mobile.js?v=review-20261125-r2';
  script.async=false;script.onload=()=>{
    const runtime=document.createElement('script');
-   runtime.src='site-runtime.js?v=review-20261125';
+   runtime.src='site-runtime.js?v=review-20261125-r2';
    runtime.async=false;runtime.onload=loaded;
    runtime.onerror=()=>{if(closed)error.classList.add('is-visible')};
    document.body.appendChild(runtime);

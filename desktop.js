@@ -42,9 +42,8 @@
       return tuple;
     })
   ]));
-  const TEAM_MASTERS=(window.TANEM_CONTENT?.profiles||SITE.team).map(master=>({
+  const TEAM_MASTERS=SITE.team.map(master=>({
     id:master.id,
-    kind:master.kind,
     name:russian(master.name),
     role:russian(master.role),
     about:russian(master.about),
