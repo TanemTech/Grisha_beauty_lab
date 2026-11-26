@@ -23,3 +23,6 @@ html[data-br-device="mobile"] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdView
 @media(prefers-reduced-motion:reduce){html[data-br-device="mobile"] #salon-mobile .tn22-master-shell{transform:none!important;opacity:1!important;transition:none!important}html[data-br-device="mobile"] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#stdViewGallery,.tn22-port-all,.tn22-worklink,.tn22-view-gallery,[data-master-gallery]){animation:none!important}html[data-br-device="mobile"] #salon-mobile .tanem-options-label::after{transition:none!important}}
 
 @keyframes tanem-gallery-hint{0%,82%,100%{filter:brightness(1)}90%{filter:brightness(1.075)}}
+
+/* Keep the options control close under the title, flush to the same left edge. */
+html[data-br-device="mobile"] #salon-mobile :is(#tn13Services,.tanem-master-price-list) .tanem-service-options{flex:0 0 100%!important;width:100%!important}

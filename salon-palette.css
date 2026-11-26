@@ -1017,3 +1017,6 @@ html[data-br-device] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#st
 #salonDesktopContacts .std-contact-map{flex:0 0 430px!important;height:430px!important;min-height:430px!important}
 #salonDesktopContacts .std-contact-map iframe{display:block!important;width:100%!important;height:100%!important;min-height:430px!important}
 @media(max-width:1200px){#salonDesktopContacts .std-contact-body{min-height:350px!important}#salonDesktopContacts .std-contact-right{min-height:350px!important}#salonDesktopContacts .std-contact-map{flex-basis:350px!important;height:350px!important;min-height:350px!important}#salonDesktopContacts .std-contact-map iframe{min-height:350px!important}}
+
+/* Keep the options control close under the title, flush to the same left edge. */
+html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) :is(#salonDesktopServices,#tn13Services,.tanem-master-price-list) .tanem-service-options{flex:0 0 100%!important;width:100%!important}

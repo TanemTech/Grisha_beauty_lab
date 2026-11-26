@@ -105,8 +105,8 @@ def check(browser, width, height, mobile, language):
         assert re.sub(r"\s+", "", dry.locator(".tanem-service-price").inner_text()) == "1500₽"
         position = "(e)=>{const r=e.getBoundingClientRect(),p=e.querySelector('.tanem-service-price').getBoundingClientRect();return [p.top-r.top,p.right-r.left]}"
         before = air.evaluate(position)
-        title_button = air.evaluate("(e)=>{const t=e.querySelector('.tanem-service-title').getBoundingClientRect(),s=e.querySelector('summary').getBoundingClientRect();return {gap:s.left-t.right,center:Math.abs((s.top+s.bottom-t.top-t.bottom)/2)}}")
-        assert -1 <= title_button["gap"] <= 20 and title_button["center"] <= 5, title_button
+        title_button = air.evaluate("(e)=>{const t=e.querySelector('.tanem-service-title').getBoundingClientRect(),s=e.querySelector('summary').getBoundingClientRect();return {left:Math.abs(s.left-t.left),gap:s.top-t.bottom}}")
+        assert title_button["left"] <= 2 and -2 <= title_button["gap"] <= 8, title_button
         assert air.locator("summary").evaluate("(e)=>parseFloat(getComputedStyle(e).borderTopWidth)>0")
         assert air.locator(".tanem-options-label").evaluate("(e)=>parseFloat(getComputedStyle(e).borderBottomWidth)===0&&getComputedStyle(e,'::after').content.includes('→')")
         price_center = air.evaluate("(e)=>{const a=e.getBoundingClientRect(),p=e.querySelector('.tanem-service-price').getBoundingClientRect();return Math.abs((a.top+a.bottom-p.top-p.bottom)/2)}")
