@@ -200,14 +200,16 @@ def check_eva_components(browser, mobile, width):
     page.locator(ru).first.click()
     service_list = "#tn13Services" if mobile else "#stdServiceList"
     option = page.locator(f'{service_list} [data-tanem-service-id="care"] summary')
-    expect(option.locator(".tanem-options-label")).to_have_text("Стоимость по длине +")
+    expect(option.locator(".tanem-options-label")).to_have_text("Стоимость по длине")
+    assert option.locator(".tanem-options-label").evaluate("(e)=>getComputedStyle(e,'::after').content.includes('→')")
     option.click()
     assert option.get_attribute("aria-expanded") == "true"
+    assert option.locator(".tanem-options-label").evaluate("(e)=>getComputedStyle(e,'::after').transform!=='none'")
     expect_text(page.locator(f'{service_list} .tanem-variant-duration').first, "45 мин", "variant duration")
     booking = "#tn13BookSheet" if mobile else "#stdBookOverlay"
     assert page.locator(booking + ".open").count() == 0
     page.locator(en).first.click()
-    expect(option.locator(".tanem-options-label")).to_have_text("Prices by hair length −")
+    expect(option.locator(".tanem-options-label")).to_have_text("Prices by hair length")
     assert option.get_attribute("aria-expanded") == "true"
     option.click()
     assert option.get_attribute("aria-expanded") == "false"
