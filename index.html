@@ -48,6 +48,10 @@ html.br-booting #salon-mobile,html.br-booting #salon-desktop-v1{visibility:hidde
   css.rel='stylesheet';
   css.href='mobile.css?v=safe-clean-20260929-v1';
   document.head.appendChild(css);
+  const beautyLabPatch=document.createElement('link');
+  beautyLabPatch.rel='stylesheet';
+  beautyLabPatch.href='beauty-lab-mobile.css?v=20261126-v1';
+  document.head.appendChild(beautyLabPatch);
   const preload=document.createElement('link');
   preload.rel='preload';
   preload.as='style';
