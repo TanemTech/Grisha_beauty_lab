@@ -1011,9 +1011,9 @@ html[data-br-device] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#st
 @media(prefers-reduced-motion:reduce){html[data-br-device="mobile"] #salon-mobile .tn22-master-shell{transform:none!important;opacity:1!important;transition:none!important}html[data-br-device] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#stdViewGallery,.tn22-port-all,.tn22-worklink,.tn22-view-gallery,[data-master-gallery]){animation:none!important}html[data-br-device] :is(#salon-desktop-v1,#salon-mobile) .tanem-options-label::after{transition:none!important}}
 
 
-/* Keep the desktop map column at a real height; the previous 100% height had no parent height to resolve against. */
-html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-body{min-height:430px!important;align-items:stretch!important}
-html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-right{height:100%!important;min-height:430px!important}
-html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-map{flex:1 1 auto!important;height:auto!important;min-height:430px!important}
-html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-map iframe{width:100%!important;height:100%!important;min-height:430px!important}
-@media(max-width:1200px){html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-body{min-height:350px!important}html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-right{min-height:350px!important}html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-map{min-height:350px!important}html[data-br-device="desktop"] #salon-desktop-v1 #salonDesktopContacts .std-contact-map iframe{min-height:350px!important}}
+/* Give the desktop map a concrete height; its old 100% height collapsed inside an auto-height flex column. */
+#salonDesktopContacts .std-contact-body{min-height:430px!important;align-items:stretch!important}
+#salonDesktopContacts .std-contact-right{height:auto!important;min-height:430px!important}
+#salonDesktopContacts .std-contact-map{flex:0 0 430px!important;height:430px!important;min-height:430px!important}
+#salonDesktopContacts .std-contact-map iframe{display:block!important;width:100%!important;height:100%!important;min-height:430px!important}
+@media(max-width:1200px){#salonDesktopContacts .std-contact-body{min-height:350px!important}#salonDesktopContacts .std-contact-right{min-height:350px!important}#salonDesktopContacts .std-contact-map{flex-basis:350px!important;height:350px!important;min-height:350px!important}#salonDesktopContacts .std-contact-map iframe{min-height:350px!important}}
