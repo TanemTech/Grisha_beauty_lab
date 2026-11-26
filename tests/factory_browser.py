@@ -226,7 +226,9 @@ def check_eva_components(browser, mobile, width):
     assert panel.locator('[data-tanem-service-id="haircut"]').count() == 0
     assert panel.locator(".tanem-master-review").count() == 1
     assert panel.locator("[data-master-work]").count() == (4 if mobile else 6)
-    panel.locator(".tanem-service-book").first.click()
+    booking_button=panel.locator(".tanem-service-book").first
+    booking_box=booking_button.bounding_box()
+    booking_button.click(position={"x":booking_box["width"]/2,"y":max(10,booking_box["height"]-4)})
     page.locator(booking + ".open").wait_for()
     page.locator("#tn13BookClose" if mobile else "#stdBookClose").click()
     assert panel.count() == 1

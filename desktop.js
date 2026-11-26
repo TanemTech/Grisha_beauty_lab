@@ -355,7 +355,7 @@
           </div>
 
           <div class="std-contact-right">
-            <div class="std-contact-map"><iframe title="Карта салона" loading="eager" src="${MAP_EMBED_URL||'about:blank'}" allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+            <div class="std-contact-map" style="height:430px!important;min-height:430px!important;flex:0 0 430px!important"><iframe title="Карта салона" loading="eager" src="${MAP_EMBED_URL||'about:blank'}" allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" style="display:block!important;width:100%!important;height:100%!important;min-height:430px!important"></iframe></div>
             <div class="std-contact-actions">
               <a class="std-contact-action-btn std-contact-call" href="#salonDesktopContacts">Позвонить</a>
               <a class="std-contact-action-btn std-contact-route" href="${ROUTE}" aria-disabled="true">Построить маршрут</a>
