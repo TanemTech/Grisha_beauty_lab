@@ -59,9 +59,11 @@
     const tariffs=tariffRows?'<dl class="tanem-service-tariffs">'+tariffRows+'</dl>':'';
     const optionsLabel=service.variantType==='length'?copyLabels.length:copyLabels.options;
     const options=variants.length?'<details class="tanem-service-options'+(service.variantType==='length'?' is-length':'')+'"><summary><span class="tanem-options-label">'+escape(optionsLabel)+'</span></summary></details>':'';
+    const details=description(service,lang);
+    const descriptionMarkup=details?'<div class="tanem-service-description"><p>'+escape(details)+'</p><button type="button" class="tanem-service-more" aria-expanded="false" hidden>'+copyLabels.more+'</button></div>':'';
     const panel=variants.length?'<div class="tanem-options-panel" hidden>'+tariffs+'</div>':'';
     return '<article class="'+(device==='desktop'?'dct-service-card':'tn31-service-row')+' tanem-service-card" data-tanem-service-id="'+escape(service.id)+'" data-tanem-profile="'+escape(service.profileId||'catalogue')+'" data-tanem-layout="'+device+'" data-tanem-lang="'+lang+'">'+
-      '<div class="tanem-service-copy"><div class="tanem-service-heading"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+options+'</div></div>'+panel+
+      '<div class="tanem-service-copy"><div class="tanem-service-heading"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+options+'</div></div>'+panel+descriptionMarkup+
       '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration">'+escape(time)+'</small>':'')+(price?priceMarkup(price,device):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+
       '<button class="tanem-service-book" type="button" '+(device==='desktop'?'data-service-book':'data-book-service')+' aria-label="'+book+': '+escape(title)+'"></button></article>';
   }
