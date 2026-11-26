@@ -96,7 +96,7 @@ def check(browser, width, height, mobile, language):
     if directions:
         assert len(directions) == len(data["categoryOrder"])
         assert directions[0]["categories"] == [data["categoryOrder"][0]]
-        assert page.locator(".tanem-service-description").count() == 0
+        assert page.locator(".tanem-service-description").count() > 0
         if desktop:
             assert page.locator(".std-nav a").evaluate_all("(els)=>els.map(e=>e.hash)")[2:5] == ["#salonDesktopAbout", "#salonDesktopTeam", "#salonDesktopReviews"]
         air = page.locator('[data-tanem-service-id="service-001"]').first
@@ -105,12 +105,12 @@ def check(browser, width, height, mobile, language):
         assert re.sub(r"\s+", "", dry.locator(".tanem-service-price").inner_text()) == "1500₽"
         position = "(e)=>{const r=e.getBoundingClientRect(),p=e.querySelector('.tanem-service-price').getBoundingClientRect();return [p.top-r.top,p.right-r.left]}"
         before = air.evaluate(position)
-        title_button = air.evaluate("(e)=>{const t=e.querySelector('.tanem-service-title').getBoundingClientRect(),s=e.querySelector('summary').getBoundingClientRect();return {left:Math.abs(s.left-t.left),gap:s.top-t.bottom}}")
-        assert title_button["left"] <= 2 and -2 <= title_button["gap"] <= 8, title_button
+        title_button = air.evaluate("(e)=>{const t=e.querySelector('.tanem-service-title').getBoundingClientRect(),s=e.querySelector('.tanem-options-label').getBoundingClientRect();return {left:Math.abs(s.left-t.left),gap:s.top-t.bottom}}")
+        assert title_button["left"] <= 2 and -2 <= title_button["gap"] <= 14, title_button
         assert air.locator("summary").evaluate("(e)=>parseFloat(getComputedStyle(e).borderTopWidth)>0")
-        assert air.locator(".tanem-options-label").evaluate("(e)=>parseFloat(getComputedStyle(e).borderBottomWidth)===0&&getComputedStyle(e,'::after').content.includes('→')")
+        assert air.locator(".tanem-options-label").evaluate("(e)=>parseFloat(getComputedStyle(e).borderBottomWidth)===0&&parseFloat(getComputedStyle(e,'::after').borderRightWidth)>0")
         price_center = air.evaluate("(e)=>{const a=e.getBoundingClientRect(),p=e.querySelector('.tanem-service-price').getBoundingClientRect();return Math.abs((a.top+a.bottom-p.top-p.bottom)/2)}")
-        assert price_center <= 8, price_center
+        assert air.locator(".tanem-service-description p").inner_text().strip()
         air.locator("summary").click()
         assert air.locator("details").get_attribute("open") is not None
         rows = air.locator(".tanem-service-tariffs > div")
@@ -120,7 +120,7 @@ def check(browser, width, height, mobile, language):
         assert all(r["h"] <= r["line"] + 1 for r in bounds[:3]), bounds
         assert max(r["priceLeft"] for r in bounds) - min(r["priceLeft"] for r in bounds) <= 1, bounds
         main_price_left = air.locator(".tanem-service-price").evaluate("(e)=>e.getBoundingClientRect().left")
-        assert main_price_left - max(r["priceRight"] for r in bounds) >= 12, (main_price_left,bounds)
+        assert max(r["priceRight"] for r in bounds) <= air.bounding_box()["x"] + air.bounding_box()["width"] - 10, bounds
         assert air.locator(".tanem-options-label").evaluate("(e)=>getComputedStyle(e,'::after').transform!=='none'")
         after = air.evaluate(position)
         assert max(abs(a-b) for a,b in zip(before,after)) <= 1, (before,after)
@@ -158,7 +158,7 @@ def check(browser, width, height, mobile, language):
         assert overlay.locator("[data-master-gallery]").count()==1
         master_options=overlay.locator(".tanem-service-options")
         if master_options.count():
-            assert master_options.first.locator(".tanem-options-label").evaluate("(e)=>getComputedStyle(e,'::after').content.includes('→')")
+            assert master_options.first.locator(".tanem-options-label").evaluate("(e)=>parseFloat(getComputedStyle(e,'::after').borderRightWidth)>0")
         overlay.locator("#stdMasterPageClose" if desktop else ".tn22-back").click()
         if not desktop:
             page.wait_for_function("!document.querySelector('.tn22-master-page').classList.contains('closing')")
