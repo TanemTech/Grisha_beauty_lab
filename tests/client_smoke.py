@@ -86,7 +86,8 @@ def check(browser, width, height, mobile, language):
     expected_embed = data.get("contacts", {}).get("mapEmbedUrl")
     if expected_embed:
         assert map_frame.get_attribute("src") == expected_embed, "Yandex map iframe did not receive the configured embed URL"
-        assert map_frame.evaluate("(e)=>{const r=e.getBoundingClientRect();return r.width>250&&r.height>250&&getComputedStyle(e).display!=='none'}"), "Map iframe is not visibly sized"
+        map_geometry = map_frame.evaluate("(e)=>{const r=e.getBoundingClientRect(),p=e.parentElement.getBoundingClientRect();return {width:r.width,height:r.height,parentWidth:p.width,parentHeight:p.height,display:getComputedStyle(e).display}}")
+        assert map_geometry["width"]>250 and map_geometry["height"]>250 and map_geometry["display"]!="none", f"Map iframe is not visibly sized: {map_geometry}"
 
 
     # Owner-requested Beauty Lab checks, separate from the generic production smoke.

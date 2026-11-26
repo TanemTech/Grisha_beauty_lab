@@ -115,7 +115,9 @@ def check_mobile(browser):
     page.evaluate("window.TANEM_SITE_DATA.salon.name.ru='ESMERALDA'")
     page.locator('[data-lang="en"]').click()
     page.locator('[data-lang="ru"]').click()
-    page.wait_for_timeout(180)
+    page.evaluate("document.fonts && document.fonts.ready")
+    page.wait_for_timeout(500)
+    page.evaluate("new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))")
     long_name_fit = page.locator(".tn22-title").evaluate("""el => ({
         client:el.clientWidth,scroll:el.scrollWidth,font:parseFloat(getComputedStyle(el).fontSize),text:el.textContent.trim()
     })""")
