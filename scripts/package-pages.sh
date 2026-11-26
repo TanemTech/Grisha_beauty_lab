@@ -6,7 +6,7 @@ rm -rf -- _site
 mkdir -- _site
 
 core_files=(
-    index.html desktop.css desktop.js mobile.css mobile-overrides.css
+    index.html desktop.css desktop.js mobile.css mobile-overrides.css beauty-lab-mobile.css
     mobile.js salon-palette.css site-data.js site-regions.js site-services.js
     site-runtime.js favicon-source.png logo-placeholder.svg media-placeholder.svg
 )
