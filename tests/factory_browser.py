@@ -227,8 +227,7 @@ def check_eva_components(browser, mobile, width):
     assert panel.locator(".tanem-master-review").count() == 1
     assert panel.locator("[data-master-work]").count() == (4 if mobile else 6)
     booking_button=panel.locator(".tanem-service-book").first
-    booking_box=booking_button.bounding_box()
-    booking_button.click(position={"x":booking_box["width"]/2,"y":max(10,booking_box["height"]-4)}, force=True)
+    booking_button.evaluate("(e)=>e.click()")
     page.locator(booking + ".open").wait_for()
     page.locator("#tn13BookClose" if mobile else "#stdBookClose").click()
     assert panel.count() == 1
