@@ -21,3 +21,5 @@ html[data-br-device="mobile"] #salon-mobile .tn22-master-page.open .tn22-master-
 html[data-br-device="mobile"] #salon-mobile .tn22-master-page.closing .tn22-master-shell{transform:translate3d(0,8px,0) scale(.985)!important;opacity:.98!important}
 html[data-br-device="mobile"] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#stdViewGallery,.tn22-port-all,.tn22-worklink,.tn22-view-gallery,[data-master-gallery]){animation:tanem-gallery-hint 7s ease-in-out infinite!important}
 @media(prefers-reduced-motion:reduce){html[data-br-device="mobile"] #salon-mobile .tn22-master-shell{transform:none!important;opacity:1!important;transition:none!important}html[data-br-device="mobile"] :is(#stdOpenGallery,#stdStickyGalleryOpen,#stdViewWorks,#stdViewGallery,.tn22-port-all,.tn22-worklink,.tn22-view-gallery,[data-master-gallery]){animation:none!important}html[data-br-device="mobile"] #salon-mobile .tanem-options-label::after{transition:none!important}}
+
+@keyframes tanem-gallery-hint{0%,82%,100%{filter:brightness(1)}90%{filter:brightness(1.075)}}
