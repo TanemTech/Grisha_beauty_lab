@@ -14,6 +14,7 @@
   const russian=value=>localized(value,'ru');
   const REGION=window.TANEM_REGION||{locales:['ru','en'],fallback:'ru',labels:{ru:'RU',en:'EN'},resolve:v=>['ru','en'].includes(v)?v:'ru',ui:()=>null,teamHeading:l=>l==='ru'?'Наша команда':'Our Team'};
   const MAP_URL=SITE.contacts.mapUrl||'#salonDesktopContacts';
+  const MAP_EMBED_URL=String(SITE.contacts.mapEmbedUrl||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
   const ROUTE=MAP_URL;
   const MESSENGER_URL=SITE.contacts.messengerUrl||'#salonDesktopContacts';
   const REVIEWS_URL=SITE.contacts.reviewsUrl||'#salonDesktopReviews';
@@ -354,7 +355,7 @@
           </div>
 
           <div class="std-contact-right">
-            <div class="std-contact-map"><iframe title="Карта салона" loading="eager" src="about:blank"></iframe></div>
+            <div class="std-contact-map"><iframe title="Карта салона" loading="eager" src="${MAP_EMBED_URL||'about:blank'}" allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             <div class="std-contact-actions">
               <a class="std-contact-action-btn std-contact-call" href="#salonDesktopContacts">Позвонить</a>
               <a class="std-contact-action-btn std-contact-route" href="${ROUTE}" aria-disabled="true">Построить маршрут</a>

@@ -82,6 +82,11 @@ def check(browser, width, height, mobile, language):
     expected_map_copy = ("Открыть в Яндекс Картах" if data.get("country") == "RU" else "Открыть в Google Maps") if language == "ru" else ("Open in Yandex Maps" if data.get("country") == "RU" else "Open in Google Maps")
     if language in ("ru", "en"):
         must_equal(address_sub, expected_map_copy, "map provider action")
+    map_frame = page.locator("#salonDesktopContacts .std-contact-map iframe" if desktop else "#tn13Visit .tn22-mapwrap iframe")
+    expected_embed = data.get("contacts", {}).get("mapEmbedUrl")
+    if expected_embed:
+        assert map_frame.get_attribute("src") == expected_embed, "Yandex map iframe did not receive the configured embed URL"
+        assert map_frame.evaluate("(e)=>{const r=e.getBoundingClientRect();return r.width>250&&r.height>250&&getComputedStyle(e).display!=='none'}"), "Map iframe is not visibly sized"
 
 
     # Owner-requested Beauty Lab checks, separate from the generic production smoke.
@@ -98,19 +103,25 @@ def check(browser, width, height, mobile, language):
         assert re.sub(r"\s+", "", dry.locator(".tanem-service-price").inner_text()) == "1500₽"
         position = "(e)=>{const r=e.getBoundingClientRect(),p=e.querySelector('.tanem-service-price').getBoundingClientRect();return [p.top-r.top,p.right-r.left]}"
         before = air.evaluate(position)
+        title_button = air.evaluate("(e)=>{const t=e.querySelector('.tanem-service-title').getBoundingClientRect(),s=e.querySelector('summary').getBoundingClientRect();return {gap:s.left-t.right,center:Math.abs((s.top+s.bottom-t.top-t.bottom)/2)}}")
+        assert -1 <= title_button["gap"] <= 20 and title_button["center"] <= 5, title_button
         assert air.locator("summary").evaluate("(e)=>parseFloat(getComputedStyle(e).borderTopWidth)>0")
-        assert air.locator(".tanem-options-label").evaluate("(e)=>parseFloat(getComputedStyle(e).borderBottomWidth)===0")
+        assert air.locator(".tanem-options-label").evaluate("(e)=>parseFloat(getComputedStyle(e).borderBottomWidth)===0&&getComputedStyle(e,'::after').content.includes('→')")
+        price_center = air.evaluate("(e)=>{const a=e.getBoundingClientRect(),p=e.querySelector('.tanem-service-price').getBoundingClientRect();return Math.abs((a.top+a.bottom-p.top-p.bottom)/2)}")
+        assert price_center <= 8, price_center
         air.locator("summary").click()
         assert air.locator("details").get_attribute("open") is not None
         rows = air.locator(".tanem-service-tariffs > div")
         assert rows.count() == 4
-        bounds = rows.evaluate_all("(els)=>els.map(e=>{const a=e.querySelector('dt'),b=e.querySelector('dd');return {h:a.getBoundingClientRect().height,line:parseFloat(getComputedStyle(a).lineHeight),left:a.getBoundingClientRect().right,right:b.getBoundingClientRect().left,price:b.getBoundingClientRect().right}})")
-        assert all(r["left"] <= r["right"] + 1 for r in bounds), bounds
+        bounds = rows.evaluate_all("(els)=>els.map(e=>{const a=e.querySelector('dt'),b=e.querySelector('dd');return {h:a.getBoundingClientRect().height,line:parseFloat(getComputedStyle(a).lineHeight),labelRight:a.getBoundingClientRect().right,priceLeft:b.getBoundingClientRect().left,priceRight:b.getBoundingClientRect().right}})")
+        assert all(r["labelRight"] <= r["priceLeft"] + 1 for r in bounds), bounds
         assert all(r["h"] <= r["line"] + 1 for r in bounds[:3]), bounds
+        assert max(r["priceLeft"] for r in bounds) - min(r["priceLeft"] for r in bounds) <= 1, bounds
+        main_price_left = air.locator(".tanem-service-price").evaluate("(e)=>e.getBoundingClientRect().left")
+        assert main_price_left - max(r["priceRight"] for r in bounds) >= 12, (main_price_left,bounds)
+        assert air.locator(".tanem-options-label").evaluate("(e)=>getComputedStyle(e,'::after').transform!=='none'")
         after = air.evaluate(position)
         assert max(abs(a-b) for a,b in zip(before,after)) <= 1, (before,after)
-        assert abs(bounds[0]["price"] - air.locator(".tanem-service-price").evaluate("(e)=>e.getBoundingClientRect().right")) <= 3, bounds
-        assert max(r["price"] for r in bounds) - min(r["price"] for r in bounds) <= 1, bounds
         air.locator("summary").click()
         if not desktop:
             air.scroll_into_view_if_needed()
@@ -143,9 +154,18 @@ def check(browser, width, height, mobile, language):
         works = overlay.locator(".tanem-master-gallery img").evaluate_all("(els)=>els.map(e=>e.getAttribute('src'))")
         assert len(works) == (6 if desktop else 4) and set(works).issubset(set(directions[0]["work"]))
         assert overlay.locator("[data-master-gallery]").count()==1
+        master_options=overlay.locator(".tanem-service-options")
+        if master_options.count():
+            assert master_options.first.locator(".tanem-options-label").evaluate("(e)=>getComputedStyle(e,'::after').content.includes('→')")
         overlay.locator("#stdMasterPageClose" if desktop else ".tn22-back").click()
         if not desktop:
             page.wait_for_function("!document.querySelector('.tn22-master-page').classList.contains('closing')")
+            page.locator("#tn13Reviews").scroll_into_view_if_needed()
+            page.wait_for_function("document.querySelector('.tn23-section-nav').classList.contains('visible')")
+            page.locator('.tn23-section-nav [data-section="tn13Reviews"]').click()
+            page.wait_for_function("document.querySelector('.tn23-section-nav button[data-section=tn13Reviews]').classList.contains('active')")
+            page.locator('.tn23-section-nav [data-section="tn13Visit"]').click()
+            page.wait_for_function("document.querySelector('.tn23-section-nav button[data-section=tn13Visit]').classList.contains('active') && Math.abs(document.querySelector('#tn13Visit').getBoundingClientRect().top-48)<5", timeout=6000)
 
     sample = page.locator("#stdHeaderBookBtn" if desktop else ".tn22-cta")
     sample.click(timeout=9000)

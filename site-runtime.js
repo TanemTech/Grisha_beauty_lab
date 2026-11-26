@@ -539,8 +539,8 @@
           options.dataset.expanded=String(isOpen);
           const summary=options.querySelector('summary');
           summary?.setAttribute('aria-expanded',String(isOpen));
-          const label=options.querySelector('.tanem-options-label');
-          if(label)label.textContent=label.textContent.slice(0,-2)+(isOpen?' −':' +');
+          const panel=card.querySelector('.tanem-options-panel');
+          if(panel)panel.hidden=!isOpen;
         }
       });
       window.TANEM_SERVICES.enhance(target);

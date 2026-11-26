@@ -58,10 +58,10 @@
     }).join('');
     const tariffs=tariffRows?'<dl class="tanem-service-tariffs">'+tariffRows+'</dl>':'';
     const optionsLabel=service.variantType==='length'?copyLabels.length:copyLabels.options;
-    const options=variants.length?'<details class="tanem-service-options'+(service.variantType==='length'?' is-length':'')+'"><summary><span class="tanem-options-label">'+escape(optionsLabel)+' +</span></summary><div class="tanem-options-panel">'+tariffs+'</div></details>':'';
+    const options=variants.length?'<details class="tanem-service-options'+(service.variantType==='length'?' is-length':'')+'"><summary><span class="tanem-options-label">'+escape(optionsLabel)+'</span></summary></details>':'';
+    const panel=variants.length?'<div class="tanem-options-panel" hidden>'+tariffs+'</div>':'';
     return '<article class="'+(device==='desktop'?'dct-service-card':'tn31-service-row')+' tanem-service-card" data-tanem-service-id="'+escape(service.id)+'" data-tanem-profile="'+escape(service.profileId||'catalogue')+'" data-tanem-layout="'+device+'" data-tanem-lang="'+lang+'">'+
-      '<div class="tanem-service-copy"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+
-      '</div>'+options+
+      '<div class="tanem-service-copy"><div class="tanem-service-heading"><strong class="tanem-service-title '+(device==='desktop'?'dct-service-card-title':'tn31-service-name')+'">'+escape(title).replace(/([+/])/g,'$1<wbr>')+'</strong>'+options+'</div></div>'+panel+
       '<div class="tanem-service-side">'+(time?'<small class="tanem-service-duration">'+escape(time)+'</small>':'')+(price?priceMarkup(price,device):'<span class="tanem-service-price">'+book+'</span>')+'</div>'+
       '<button class="tanem-service-book" type="button" '+(device==='desktop'?'data-service-book':'data-book-service')+' aria-label="'+book+': '+escape(title)+'"></button></article>';
   }
@@ -77,43 +77,42 @@
   function enhance(scope){
     scope.querySelectorAll('.tanem-service-card').forEach(card=>{
       const options=card.querySelector('.tanem-service-options');
-      if(options&&!options.dataset.bound){
+      const panel=card.querySelector('.tanem-options-panel');
+      if(options&&panel&&!options.dataset.bound){
         options.dataset.bound='true';
-        const summary=options.querySelector('summary'),panel=options.querySelector('.tanem-options-panel');
-        const label=summary.querySelector('.tanem-options-label');
-        const baseLabel=label.textContent.slice(0,-2);
+        const summary=options.querySelector('summary');
         const initialExpanded=options.dataset.expanded===undefined?options.open:options.dataset.expanded==='true';
         let animation=null,animationTimer=0,animationRun=0;
-        const syncGlint=()=>{label.style.animationDelay='-'+Math.round(performance.now()%5000)+'ms'};
         const updateLabel=expanded=>{
-          label.textContent=baseLabel+(expanded?' −':' +');
           summary.setAttribute('aria-expanded',String(expanded));
           options.dataset.expanded=String(expanded);
         };
+        options.open=initialExpanded;
+        panel.hidden=!initialExpanded;
         updateLabel(initialExpanded);
-        syncGlint();
         summary.addEventListener('click',event=>{
           event.preventDefault();event.stopPropagation();
-          const wasVisible=options.open;
-          const from=panel.getBoundingClientRect().height;
+          const wasVisible=!panel.hidden;
+          const from=wasVisible?panel.getBoundingClientRect().height:0;
           const computedOpacity=wasVisible?Number.parseFloat(getComputedStyle(panel).opacity):0;
           animation?.cancel();animation=null;
           global.clearTimeout(animationTimer);
           const run=++animationRun;
           const expanded=options.dataset.expanded!=='true';
-          options.open=true;
+          options.open=expanded;
           updateLabel(expanded);
-
-          // A closed <details> hides its panel. Open it, measure its natural
-          // height, then establish a real zero-height start before animating.
+          if(expanded){
+            panel.hidden=false;
+            panel.style.removeProperty('height');
+            panel.style.removeProperty('opacity');
+          }
           const naturalHeight=expanded?panel.getBoundingClientRect().height:0;
           if(!wasVisible&&expanded){
             panel.style.height='0px';
             panel.style.opacity='0';
+            panel.getBoundingClientRect();
           }
           panel.style.overflow='hidden';
-          if(!wasVisible&&expanded)panel.getBoundingClientRect();
-
           const reduce=global.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
           const to=expanded?naturalHeight:0;
           const fromHeight=wasVisible?from:0;
@@ -126,8 +125,7 @@
           };
           if(reduce||typeof panel.animate!=='function'||Math.abs(to-fromHeight)<1){
             clearPanelStyles();
-            options.open=expanded;
-            if(!expanded)syncGlint();
+            panel.hidden=!expanded;
             return;
           }
           const current=panel.animate(
@@ -140,8 +138,7 @@
             global.clearTimeout(animationTimer);
             animation=null;
             clearPanelStyles();
-            options.open=expanded;
-            if(!expanded)syncGlint();
+            panel.hidden=!expanded;
           };
           current.onfinish=finish;
           animationTimer=global.setTimeout(()=>{
@@ -186,8 +183,8 @@
         options.dataset.expanded=String(!!optionsOpen);
         const summary=options.querySelector('summary');
         summary.setAttribute('aria-expanded',String(!!optionsOpen));
-        const label=options.querySelector('.tanem-options-label');
-        if(label)label.textContent=label.textContent.slice(0,-2)+(optionsOpen?' −':' +');
+        const panel=card.querySelector('.tanem-options-panel');
+        if(panel)panel.hidden=!optionsOpen;
       }
       if(expanded){const button=card.querySelector('.tanem-service-more');if(button){button.setAttribute('aria-expanded','true');button.textContent=words(lang).less;button.parentElement.classList.add('is-expanded')}}
     });
